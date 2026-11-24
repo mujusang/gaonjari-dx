@@ -1831,7 +1831,13 @@ document.addEventListener('click', function(ev){
   const path = el.getAttribute('data-k'), v = el.getAttribute('data-v'), multi = el.getAttribute('data-m')==='1';
   setVal(path, v, multi);
   if(multi){
-    el.setAttribute('aria-pressed', (get(path)||[]).includes(v)?'true':'false');
+    /* 같은 항목의 다른 칩까지 상태에 맞춰 다시 칠함 (정상·없음을 고르면 나머지가 풀림) */
+    const arr = get(path)||[];
+    Array.prototype.forEach.call(el.parentElement.children, function(c){
+      if(c.hasAttribute && c.hasAttribute('data-k') && c.getAttribute('data-k')===path){
+        c.setAttribute('aria-pressed', arr.indexOf(c.getAttribute('data-v'))>=0?'true':'false');
+      }
+    });
     refreshCounts();
   } else {
     const box = el.parentElement;
