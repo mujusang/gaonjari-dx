@@ -1618,8 +1618,13 @@ function rxCard(a){
     }
     h += '</article>';
   });
+  const more = a.list.filter(function(x){ return x.eff>=2.5; }).slice(3,6);
+  if(more.length){
+    h += '<div class="rx-foot" style="margin-top:10px"><span class="pill" style="background:var(--gray-bg);border-color:var(--gray-line);color:var(--gray)">그 밖의 후보</span>'+
+      more.map(function(x){ return '<span class="pill">'+esc(x.n)+' <small style="font-weight:700;color:#6d8a80">'+x.eff.toFixed(1)+'</small></span>'; }).join('')+'</div>';
+  }
   h += '<div class="legend" style="margin-top:10px;border-top:1px dashed var(--line);padding-top:9px">'+
-   '<b>主之</b> 정증에 잘 맞음 · <b>與</b> 한번 줘 보라(증상이 뚜렷할 때 상당수) · <b>宜</b> 맞을 것 같다 — p.101~103 스펙트럼</div>';
+   '<b>主之</b> 정증에 잘 맞음 · <b>與</b> 한 번 줘 보라(증상이 뚜렷할 때 상당수) · <b>宜</b> 맞을 것 같다 — p.101~103 스펙트럼</div>';
   h += '</div>';
   return h;
 }
@@ -1867,10 +1872,10 @@ document.addEventListener('input', function(ev){
 
 function refreshCounts(){
   document.querySelectorAll('.grp').forEach(function(g){
-    const keys = Array.prototype.map.call(g.querySelectorAll('[data-k^="inq."]'), function(b){ return b.getAttribute('data-k').split('.')[1]; });
-    const uniq = Array.from(new Set(keys));
-    const n = uniq.reduce(function(c,k){ const v=S.inq[k]; return c + (Array.isArray(v)?v.length:(v?1:0)); },0);
-    const cnt = g.querySelector('.cnt'); if(cnt) cnt.textContent = n||'';
+    const cnt = g.querySelector('.cnt'); if(!cnt) return;
+    let n = 0;
+    Array.prototype.forEach.call(g.querySelectorAll('[aria-pressed="true"]'), function(){ n++; });
+    cnt.textContent = n||'';
   });
 }
 
