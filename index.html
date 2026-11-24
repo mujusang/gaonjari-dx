@@ -1751,6 +1751,7 @@ function renderResults(){
   }
   box.innerHTML = '<div class="res">'+sxResCard()+verdictCard(a)+rxCard(a)+acuCard(a)+dataCard()+'</div>';
   updateBar(a);
+  try{ window.__gaonDiag.summary = summaryText(); }catch(e){ window.__gaonDiag.errors.push('summary:'+e.message); }
 }
 
 /* ═══════════════════════════════════════════════════════════════
