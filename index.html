@@ -978,6 +978,12 @@ function ageFromBirth(b){
   if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
   return (a >= 0 && a < 130) ? a : '';
 }
+function fmtBirth(v){
+  const d = String(v||'').replace(/[^0-9]/g,'').slice(0,8);
+  if(d.length<=4) return d;
+  if(d.length<=6) return d.slice(0,4)+'-'+d.slice(4);
+  return d.slice(0,4)+'-'+d.slice(4,6)+'-'+d.slice(6);
+}
 function syncAge(){
   const a = ageFromBirth(S.pt.birth);
   S.pt.age = (a===''?'':String(a));
@@ -1238,7 +1244,7 @@ function idCard(){
   '<div class="grid4" style="margin-bottom:10px">'+
     '<label class="field"><span class="flabel">이름</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="환자명"></label>'+
     '<div class="field"><div class="flabel">성별</div>'+chipsRaw('pt.sex',[{v:'남',l:'남'},{v:'여',l:'여'}],false)+'</div>'+
-    '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out">'+ageTxt+'</b></span><input class="inp" type="date" data-t="pt.birth" value="'+esc(S.pt.birth)+'"></label>'+
+    '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out">'+ageTxt+'</b></span><input class="inp" type="text" inputmode="numeric" maxlength="10" autocomplete="bday" data-t="pt.birth" value="'+esc(S.pt.birth)+'" placeholder="1974-02-12"></label>'+
     '<label class="field"><span class="flabel">혈압</span><input class="inp" data-t="pt.bp" value="'+esc(S.pt.bp)+'" placeholder="120/80"></label>'+
   '</div>'+
   '<div class="grid3" style="margin-bottom:10px">'+
@@ -1413,7 +1419,7 @@ function panelPatient(){
      '<div class="field"><div class="flabel">성별</div>'+chipsRaw('pt.sex',[{v:'남',l:'남'},{v:'여',l:'여'}],false)+'</div>'+
    '</div>'+
    '<div class="grid3" style="margin-bottom:10px">'+
-     '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out-p">'+ageTxt+'</b></span><input class="inp" type="date" data-t="pt.birth" value="'+esc(S.pt.birth)+'"></label>'+
+     '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out-p">'+ageTxt+'</b></span><input class="inp" type="text" inputmode="numeric" maxlength="10" autocomplete="bday" data-t="pt.birth" value="'+esc(S.pt.birth)+'" placeholder="1974-02-12"></label>'+
      '<label class="field"><span class="flabel">전화번호</span><input class="inp" type="tel" inputmode="tel" data-t="pt.phone" value="'+esc(S.pt.phone)+'" placeholder="010-0000-0000"></label>'+
      '<label class="field"><span class="flabel">이메일</span><input class="inp" type="email" inputmode="email" data-t="pt.email" value="'+esc(S.pt.email)+'" placeholder="name@example.com"></label>'+
    '</div>'+
@@ -1489,7 +1495,7 @@ function panelPhoto(){
    '<div class="step'+(done?' done':'')+'"><i>'+(done?'✓':'3')+'</i>오른쪽 판정 확인</div></div>';
   h += '<div class="grid2" style="margin-bottom:10px">'+
    '<label class="field"><span class="flabel">이름</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="환자명"></label>'+
-   '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out">'+(S.pt.age===''?'만 나이 자동':'만 '+S.pt.age+'세')+'</b></span><input class="inp" type="date" data-t="pt.birth" value="'+esc(S.pt.birth)+'"></label>'+
+   '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out">'+(S.pt.age===''?'만 나이 자동':'만 '+S.pt.age+'세')+'</b></span><input class="inp" type="text" inputmode="numeric" maxlength="10" autocomplete="bday" data-t="pt.birth" value="'+esc(S.pt.birth)+'" placeholder="1974-02-12"></label>'+
    '</div>';
   h += sxPickHTML();
   h += '<div class="field"><div class="flabel">복탄력 <span class="req">필수</span></div>'+seg('abd.elast',5,['아주 무름','무름','기준(3)','단단','아주 단단'],'warm')+'</div>';
@@ -1850,7 +1856,11 @@ document.addEventListener('input', function(ev){
   const path = t.getAttribute('data-t').split('.'); let o = S;
   for(let i=0;i<path.length-1;i++) o = o[path[i]];
   o[path[path.length-1]] = t.value;
-  if(t.getAttribute('data-t')==='pt.birth') syncAge();
+  if(t.getAttribute('data-t')==='pt.birth'){
+    const f = fmtBirth(t.value);
+    if(f !== t.value){ t.value = f; o[path[path.length-1]] = f; }
+    syncAge();
+  }
   if(t.getAttribute('data-t')==='pt.ht'||t.getAttribute('data-t')==='pt.wt') syncBmi();
   renderResults();
 });
