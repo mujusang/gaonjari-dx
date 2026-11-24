@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>가온자리 진단툴 · 2차 시안</title>
+<title>가온자리 진단툴 · 3차 반영</title>
 <style>
 
 :root{
@@ -344,6 +344,7 @@ input[type=range].vas{flex:1;min-width:110px;accent-color:#b4611f;height:24px}
 .abd-cell.on{border-color:#cfe4da;background:var(--soft2)}
 .abd-cell .nm{font-size:12.2px;font-weight:700;color:var(--ink2);line-height:1.35;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
 .abd-cell .nm i{font-style:normal;font-size:10px;font-weight:600;color:var(--ink3)}
+.abd-cell .def{font-size:10.6px;font-weight:600;color:var(--ink3);line-height:1.4;margin-top:3px}
 .abd-cell .seg{margin-top:6px;gap:3px}
 .abd-cell .seg button{padding:5px 1px;font-size:11.5px;border-radius:7px;font-weight:700}
 .cust{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -385,7 +386,7 @@ input[type=range].vas{flex:1;min-width:110px;accent-color:#b4611f;height:24px}
     <div class="brand">
       <b>가온자리 진단툴</b>
       <span>문진·복진 → 육경병 변증 → 탕약·침 제안</span>
-      <span class="ver">2차 시안</span>
+      <span class="ver">3차 반영 · 11-25</span>
     </div>
     <div class="tabs" role="tablist" aria-label="입력 방식">
       <button role="tab" id="tab-doctor" aria-selected="true" aria-controls="panel-doctor" data-mode="doctor">원장님 진료<em>클릭형</em></button>
@@ -460,8 +461,9 @@ input[type=range].vas{flex:1;min-width:110px;accent-color:#b4611f;height:24px}
     <li>판정·처방 매핑은 『최용선원장의 중경방임상강좌 1 · 총론』(295쪽) 제2편 복진(63~103쪽)·제3편 문진(159~295쪽)에서 뽑았습니다. 원장님이 직접 찍어 보내신 <b>p.90 복진 도해, p.102~103 총괄표·主之與宜 스펙트럼, p.149 소음병 도표, p.162 표준진료부</b>를 원문으로 대조했습니다.</li>
     <li>조문은 두 등급으로 나눠 표시합니다. <b>「책 원문 확인」</b>은 찍어 보내신 책 쪽의 조문 그대로이고, <b>「송본 조문」</b>은 통용 송본 전사문으로 문구를 확인한 것이며 이 책의 해당 쪽과는 아직 대조 전입니다. 그 밖의 처방은 조문을 지어내지 않고 <b>책 쪽수와 서술 근거만</b> 표시했습니다.</li>
     <li>문진 항목별 판정 중 일부(특히 p.164~188)는 드라이브 문서 판독을 거친 2차 정리본이라, 앱 규칙으로 굳히기 전에 원문 대조가 필요합니다.</li>
-    <li><b>2차 시안에서 더한 것</b> — 생년월일→만 나이 자동 계산, 전화번호·주소·이메일, 키·몸무게 분리와 BMI, 증상 다중선택·심한 순위·통증 0~10(10=견딜 수 없는 통증), 복진 부위·소견 상세(심하예·심하비견·수분혈·신복직근·계령괴·소복불인·구급·현급·종비·급결·어혈·흉협 3구분·위내정수·제상동계)와 <b>위치 직접 추가</b>, 맥을 비롯한 문진 항목 전부 다중선택. 순위가 높은 주증상과 추가된 복진 소견이 처방 점수·요약에 반영됩니다.</li>
-    <li><b>아직 확정하지 않은 것</b> — <b>계령괴</b>는 원장님이 적어 주신 이름 그대로 항목만 두었고 정의·처방 대응은 확인 전입니다. <b>제상동계</b>는 책 쪽수를 확인하지 못했습니다. 증상별 처방 대응(SXMAP)은 문진 장의 표를 증상 이름으로 묶은 1차 초안이라 원장님 검토가 필요합니다.</li>
+    <li><b>2차 시안에서 더한 것</b> — 생년월일→만 나이 자동 계산, 전화번호·주소·이메일, 키·몸무게 분리와 BMI, 증상 다중선택·심한 순위·통증 0~10(10=견딜 수 없는 통증), 복진 부위·소견 상세(복량(伏梁)·심하비견·수분혈·신복직근·계령괴·소복불인·구급·현급·종비·급결·어혈·흉협 3구분·위내정수·제상동계)와 <b>위치 직접 추가</b>, 맥을 비롯한 문진 항목 전부 다중선택. 순위가 높은 주증상과 추가된 복진 소견이 처방 점수·요약에 반영됩니다.</li>
+    <li><b>3차 반영(2026-11-25 · 원장님 구술)</b> — <b>복량(伏梁)</b>은 배꼽 위에서 명치(심하)까지 임맥을 따라 대들보처럼 뻗쳐 만져지는 단단한 덩어리이며, 중경학회 강의록 기준 <b>大陷胸湯의 핵심 복진 지표</b>입니다. <b>계령괴</b>는 배꼽 구멍 옆, 신복직근(복직근)과 배꼽 사이(주로 왼쪽)에서 우동가락만 하게 만져지는 딱딱한 경결로 <b>血·어혈 지표</b>이며 桂枝茯苓丸에 연결했습니다. 柴胡劑를 쓸 때는 계령괴가 거의 함께 잡히고, 계령괴가 없어도 柴胡劑에는 桂枝茯苓丸을 겸해 쓰는 원장님 임상 규칙을 가중으로 넣었습니다.</li>
+    <li><b>아직 확정하지 않은 것</b> — <b>제상동계</b>는 책 쪽수를 확인하지 못했습니다. 증상별 처방 대응(SXMAP)은 문진 장의 표를 증상 이름으로 묶은 1차 초안이라 원장님 검토가 필요합니다. 복량에 거안·희안이 겹칠 때 泄下 강도를 어떻게 조절할지는 원장님 확인이 필요합니다.</li>
     <li>이 화면은 <b>진단·처방을 대신하지 않습니다.</b> 변증과 처방의 최종 결정은 복진을 포함한 대면 진찰로 원장님이 내리시고, 앱은 후보와 근거를 한자리에 모으는 역할만 합니다.</li>
     <li>침 처방은 책의 복진 부위와 육경병에 대응하는 <b>기본 혈자리 초안</b>이며, 원장님 임상 검토가 반드시 필요합니다.</li>
   </ol>
@@ -746,14 +748,14 @@ const SXMAP = {
    ═══════════════════════════════════════════════════════════════ */
 const ABD = [
  {g:'심하부',k:'jeongjae',nm:'정재심하(명치 압통)',pg:'p.76~83·p.90',hint:'명치 바로 아래를 눌러 아픈 자리',say:'간열+심열이 만난 자리 · 담음 결흉(小陷胸湯) 쪽'},
- {g:'심하부',k:'simhaYe',nm:'심하예(心下痞鞕)',pg:'p.76~83',hint:'명치 아래가 막히고 단단하게 잡힘',say:'心下痞鞕 · 瀉心湯類(반하사심탕·감초사심탕), 희안이면 人蔘湯'},
+ {g:'심하부',k:'bokryang',nm:'복량(伏梁)',pg:'원장님 구술',def:'배꼽~명치 임맥을 따라 대들보처럼 뻗친 단단한 덩어리',hint:'배꼽 위에서 명치(심하)까지 임맥을 따라 대들보처럼 뻗쳐 만져지는 단단한 덩어리 — 大陷胸湯 핵심 지표',say:'복량(伏梁) · 임맥 대들보 경결 — 大陷胸湯 핵심 지표'},
  {g:'심하부',k:'jungwan',nm:'중완 주위',pg:'p.90·p.102',hint:'심장열이 주로 나타나는 자리',say:'심장열이 몰린 자리 · 心下痞(黃連劑)'},
  {g:'심하부',k:'bitGyeon',nm:'심하비견',pg:'p.103',hint:'늑골 아래가 뻑뻑하고 압통이 있음',say:'늑골 아래 뻑뻑한 압통 · 木防己湯·大陷胸湯類'},
  {g:'수분·복직근',k:'subun',nm:'수분혈 통증·비증',pg:'p.84~88·p.90',hint:'배꼽 위 물컹·뻑뻑한 통증',say:'水毒 · 五苓散·防己劑(열증이면 豬苓湯)'},
  {g:'수분·복직근',k:'rectus',nm:'신복직근(복직근 구련)',pg:'p.68~75·p.90',hint:'양쪽 복직근이 줄처럼 굳고 눌러 아픔',say:'구련·압통 · 芍藥證(작약감초탕·소건중탕)'},
  {g:'수분·복직근',k:'waterSound',nm:'위내정수·물소리',pg:'p.240',hint:'배에서 꿀렁 소리',say:'위내정수 · 苓桂朮甘湯·理中湯'},
  {g:'배꼽·소복',k:'leftUmb',nm:'배꼽 좌측 경결',pg:'p.90·p.102',hint:'연필 심처럼 잡히는 경결',say:'瘀血 · 桂枝茯苓丸'},
- {g:'배꼽·소복',k:'gyeryeong',nm:'계령괴',pg:'원장님 표현',hint:'원장님 표현 그대로 등록 — 정의·처방 대응 확인 대기',say:'정의·처방 대응 확인 대기'},
+ {g:'배꼽·소복',k:'gyeryeong',nm:'계령괴',pg:'원장님 구술',def:'복직근과 배꼽 사이·주로 왼쪽의 우동가락 경결 — 血·어혈 지표',hint:'배꼽 구멍 옆, 신복직근(복직근)과 배꼽 사이(주로 왼쪽)에서 만져지는 우동가락만 한 딱딱한 경결 — 어혈(血) 지표',say:'계령괴 · 血·어혈 지표 — 桂枝茯苓丸 (柴胡劑와 함께 자주 보임)'},
  {g:'배꼽·소복',k:'lowerNotIn',nm:'소복불인',pg:'p.89~94',hint:'아랫배를 눌러도 힘없이 폭 꺼짐',say:'소복불인 · 六味·八味地黄丸'},
  {g:'배꼽·소복',k:'lowerGugeup',nm:'소복구급',pg:'p.89~94',hint:'아랫배가 당겨 굳음',say:'소복구급 · 芍藥·桂枝 계열'},
  {g:'배꼽·소복',k:'lowerHyeongeup',nm:'소복현급',pg:'p.97~98',hint:'아랫배가 거문고 줄처럼 굳음',say:'소복현급 · 桂枝加龍骨牡蠣湯'},
@@ -778,10 +780,10 @@ const R = [
  why:'정재심하(명치) 압통 + 흉부 거안 → 간열과 심열이 만난 담음·결흉', pg:'p.90·p.102·p.239'},
 {w:s=>s.abd.jeongjae>0 && (S.abd.chestAccept>0) && !(S.abd.chestReject>0), f:[['인삼탕',3],['감초사심탕',1]],
  why:'정재심하 압통 + 희안 → 心下痞의 담음 쪽(人蔘湯)', pg:'p.90·p.102'},
-{w:s=>s.abd.simhaYe>=1 && (S.abd.chestReject>0), f:[['반하사심탕',3],['감초사심탕',2],['생강사심탕',1]],
- why:'심하예(心下痞鞕)·거안 → 心熱, 黃連·瀉心湯類', pg:'p.76~83·p.216'},
-{w:s=>s.abd.simhaYe>=1 && !(S.abd.chestReject>0) && (S.abd.chestAccept>0), f:[['인삼탕',3]],
- why:'심하예(心下痞鞕)이나 희안 → 담음·內虛 쪽, 人蔘湯', pg:'p.76~83·p.201'},
+{w:s=>s.abd.bokryang>=1 && (S.abd.chestReject>0), f:[['대함흉탕',5],['소함흉탕',1]],
+ why:'복량(伏梁) + 거안 → 결흉 쪽, 大陷胸湯', pg:'원장님 구술 · 중경학회 강의록'},
+{w:s=>s.abd.bokryang>=1 && !(S.abd.chestReject>0), f:[['대함흉탕',4]],
+ why:'복량(伏梁) — 배꼽 위에서 명치까지 임맥을 따라 대들보처럼 뻗친 경결, 大陷胸湯 핵심 지표', pg:'원장님 구술 · 중경학회 강의록'},
 {w:s=>s.abd.jungwan>0, f:[['감초사심탕',2],['반하사심탕',2]],
  why:'중완 주위 압통 → 심장열이 중완에 몰린 자리(心下痞)', pg:'p.90·p.102'},
 {w:s=>s.abd.bitGyeon>0 && (S.abd.chestReject>0), f:[['대함흉탕',3],['목방기탕',2]],
@@ -794,6 +796,8 @@ const R = [
  why:'배에서 물소리(위내정수) → 寒痰·水飮, 苓桂劑', pg:'p.240'},
 {w:s=>s.abd.leftUmb>0, f:[['계지복령환',6]],
  why:'배꼽 좌측에 연필 심처럼 잡히는 경결 → 계지복령환(어혈)', pg:'p.90·p.102'},
+{w:s=>s.abd.gyeryeong>0, f:[['계지복령환',5]],
+ why:'계령괴 — 신복직근과 배꼽 사이(주로 왼쪽)에 우동가락만 하게 잡히는 경결, 血·어혈 지표 → 桂枝茯苓丸', pg:'원장님 구술(2026-11-24)'},
 {w:s=>s.abd.rectus>0 && (s.abd.elast||3)<=3, f:[['작약감초탕',3],['소건중탕',3],['당귀작약산',2]],
  why:'신복직근 구련·압통 + 복탄력 3 이하 → 芍藥證(작약감초탕·소건중탕)', pg:'p.68~75·p.282'},
 {w:s=>s.abd.rectus>0 && (s.abd.elast||0)>=4 && s.abd.hypoHeat>0, f:[['사역산',3],['대시호탕',2]],
@@ -929,7 +933,7 @@ const fresh = () => ({
   sx:[],
   body:{build:null,skinColor:[],skinHeat:[],skinThick:null,skinTurgor:null},
   abd:{elast:null,chestReject:null,chestAccept:null,
-       jeongjae:null,simhaYe:null,jungwan:null,bitGyeon:null,subun:null,rectus:null,waterSound:null,
+       jeongjae:null,bokryang:null,jungwan:null,bitGyeon:null,subun:null,rectus:null,waterSound:null,
        leftUmb:null,gyeryeong:null,lowerNotIn:null,lowerGugeup:null,lowerHyeongeup:null,
        lowerJongbi:null,lowerGeupgyeol:null,lowerPain:null,lowerBlood:null,
        hypoHeat:null,hypoDef:null,hypoHeui:null,kiDong:null,custom:[]},
@@ -1049,6 +1053,16 @@ function assess(){
     r.f.forEach(([n,p])=> add(n,p,{t:r.why,pg:r.pg}));
   });
 
+  /* 柴胡劑와 계령괴·桂枝茯苓丸의 동반 가중 — 원장님 구술(2026-11-24) */
+  const SIHO = ['소시호탕','중시호탕','대시호탕','시호계지탕','시함흉탕','소시호탕가길경석고','사역산'];
+  const siho = SIHO.filter(n=>acc[n]).sort((a,b)=>acc[b].p-acc[a].p)[0];
+  if(siho && acc[siho].p>=3){
+    if(num('abd.gyeryeong',0)>0)
+      add('계지복령환', 3, {t:'柴胡劑('+siho+')를 쓸 때는 계령괴가 거의 함께 잡힘 → 桂枝茯苓丸 병용', pg:'원장님 임상 규칙'});
+    else
+      add('계지복령환', 1, {t:'柴胡劑('+siho+')에는 계령괴가 없어도 桂枝茯苓丸을 겸해 쓰는 편', pg:'원장님 임상 규칙'});
+  }
+
   /* 주증상 — 순위 가중 · 통증 강도 */
   S.sx.forEach((it,i)=>{
     const m = SXMAP[it.k]; if(!m) return;
@@ -1074,7 +1088,7 @@ function assess(){
   if(inc('coldheat','왕래한열')||num('abd.hypoHeat',0)>0||inc('mouth','구고')) sig('소양',4);
   if(num('abd.chestAccept',0)>0||(inc('stool','설사')&&num('abd.elast',3)<=2)) sig('태음',3);
   if(inc('pulse','침')||inc('urine','야뇨')||inc('coldheat','수족냉')) sig('소음',4);
-  if(num('abd.hypoHeui',0)>0||inc('mens','어혈')||num('abd.leftUmb',0)>0) sig('궐음',3);
+  if(num('abd.hypoHeui',0)>0||inc('mens','어혈')||num('abd.leftUmb',0)>0||num('abd.gyeryeong',0)>0) sig('궐음',3);
 
   const yukSorted = Object.entries(yuk).sort((a,b)=>b[1]-a[1]);
   const yMax = yukSorted[0][1] || 1;
@@ -1110,11 +1124,12 @@ function assess(){
   if(S.inq.edema.length) flags.수독 += 3;
   if(inc('urine','불리')) flags.수독 += 2;
   if(inc('head','현훈')) flags.수독 += 2;
-  if(num('abd.simhaYe',0)>0 && chR>0) flags.담음 += 3;
+  if(num('abd.bokryang',0)>0 && chR>0) flags.담음 += 3;
   if(inc('tan','심하비')) flags.담음 += 3;
   if(inc('throat','매핵기')||inc('tan','매핵기')) { flags.담음 += 2; flags.기울 += 3; }
   if(inc('chest','흉비')||inc('chest','동계')) flags.담음 += 2;
   if(num('abd.leftUmb',0)>0) flags.어혈 += 4;
+  if(num('abd.gyeryeong',0)>0) flags.어혈 += 4;
   if(num('abd.lowerJongbi',0)>0||num('abd.lowerGeupgyeol',0)>0) flags.어혈 += 3;
   if(num('abd.lowerBlood',0)>0) flags.어혈 += 2;
   if(num('abd.lowerPain',0)>0) flags.어혈 += 2;
@@ -1199,7 +1214,7 @@ function scaleHint(a,b){ return '<div class="scale-hint"><span>'+a+'</span><span
 function abdMap(){
   const pts = [
     {k:'abd.jeongjae', x:100, y:70,  l:'정재심하', side:'r'},
-    {k:'abd.simhaYe',  x:100, y:83,  l:'',        side:'l'},
+    {k:'abd.bokryang',  x:100, y:83,  l:'',        side:'l'},
     {k:'abd.jungwan',  x:100, y:96,  l:'중완',     side:'r'},
     {k:'abd.subun',    x:100, y:108, l:'수분',     side:'l'},
     {k:'abd.rectus',   x:76,  y:100, l:'',         side:'n'},
@@ -1331,6 +1346,7 @@ function bodyCard(){
 function abdCell(k){
   const it = ABD_MAP[k], v = S.abd[k];
   return '<div class="abd-cell'+(v?' on':'')+'"><div class="nm" title="'+esc(it.hint)+'">'+esc(it.nm)+' <i>'+esc(it.pg)+'</i></div>'+
+    (it.def?'<div class="def">'+esc(it.def)+'</div>':'')+
     seg('abd.'+k,5,null,'',0)+'</div>';
 }
 function customList(){
@@ -1468,7 +1484,7 @@ function panelPatient(){
        '<div class="hint">불편·숨참 = 흉협고만 / 손이 쑥 들어감 = 허 / 머리 맑아짐 = 희안</div>'+
        '<div class="abd-grid" style="margin-top:6px">'+abdCell('hypoHeat')+abdCell('hypoDef')+abdCell('hypoHeui')+'</div></div>'+
    '</div></div>'+
-   '<div class="abd-grid">'+['jeongjae','simhaYe','jungwan','subun','rectus','leftUmb','lowerNotIn','lowerGugeup','lowerHyeongeup','lowerJongbi','lowerGeupgyeol','lowerPain'].map(function(k){ return abdCell(k); }).join('')+'</div>'+
+   '<div class="abd-grid">'+['jeongjae','bokryang','jungwan','subun','rectus','leftUmb','lowerNotIn','lowerGugeup','lowerHyeongeup','lowerJongbi','lowerGeupgyeol','lowerPain'].map(function(k){ return abdCell(k); }).join('')+'</div>'+
    '</div>';
 
   h += '<div class="card"><h2><span class="no">6</span>그 밖에</h2>'+
@@ -1503,7 +1519,7 @@ function panelPhoto(){
   h += '<div class="grid2">'+
    '<div class="field"><div class="flabel">흉부 거안</div>'+seg('abd.chestReject',5,null,'',0)+'</div>'+
    '<div class="field"><div class="flabel">흉부 희안</div>'+seg('abd.chestAccept',5,null,'',0)+'</div></div>';
-  h += '<div class="abd-grid">'+['jeongjae','simhaYe','bitGyeon','jungwan','subun','rectus','leftUmb','gyeryeong','lowerHyeongeup','lowerJongbi','lowerGeupgyeol','lowerPain'].map(function(k){ return abdCell(k); }).join('')+'</div>';
+  h += '<div class="abd-grid">'+['jeongjae','bokryang','bitGyeon','jungwan','subun','rectus','leftUmb','gyeryeong','lowerHyeongeup','lowerJongbi','lowerGeupgyeol','lowerPain'].map(function(k){ return abdCell(k); }).join('')+'</div>';
   h += '<div class="grid2" style="margin-top:10px">'+
    '<div class="field"><div class="flabel">소변</div>'+chips('inq.urine','urine')+'</div>'+
    '<div class="field"><div class="flabel">대변</div>'+chips('inq.stool','stool')+'</div></div>';
@@ -1523,7 +1539,7 @@ function emptyHTML(){
   '<div class="legend">'+
    '<p style="margin:0 0 8px"><b>1. 복진 먼저</b> — 복탄력 3을 기준으로 3 미만은 內虛(乾薑), 3 초과는 內實(大黃).</p>'+
    '<p style="margin:0 0 8px"><b>2. 흉부 압진</b> — 거안은 心熱(黃連·瀉心劑), 희안은 心虛(苓桂·人蔘).</p>'+
-   '<p style="margin:0 0 8px"><b>3. 부위</b> — 정재심하·심하예·중완·수분혈·협하·소복 순으로 짚습니다.</p>'+
+   '<p style="margin:0 0 8px"><b>3. 부위</b> — 정재심하·복량(伏梁)·중완·수분혈·협하·소복 순으로 짚습니다.</p>'+
    '<p style="margin:0"><b>4. 문진으로 겸증 확정</b> — 같은 설사도 복탄력과 거안·희안 조합으로 少陽·太陰·陽明이 갈립니다.</p>'+
   '</div></div></div>';
 }
@@ -1645,7 +1661,7 @@ function acuCard(a){
   const main = a.yukSorted[0][1]>0 ? a.yukSorted[0][0] : null;
   if(main) push(main+'병 기본혈', ACU_YUK[main]);
   if(num('abd.jeongjae',0)>0) push(ACU_PART.jeongjae.t, ACU_PART.jeongjae.p);
-  if(num('abd.simhaYe',0)>0) push('심하예(心下痞)', ACU_PART.jeongjae.p);
+  if(num('abd.bokryang',0)>0) push('복량(伏梁)', ACU_PART.jeongjae.p);
   if(num('abd.jungwan',0)>0) push(ACU_PART.jungwan.t, ACU_PART.jungwan.p);
   if(num('abd.subun',0)>0) push(ACU_PART.subun.t, ACU_PART.subun.p);
   if(num('abd.leftUmb',0)>0) push(ACU_PART.leftUmb.t, ACU_PART.leftUmb.p);
@@ -1904,7 +1920,7 @@ const EX = [
    pt:{name:'예시1',sex:'여',birth:'1978-04-12',age:'',phone:'010-0000-1111',addr:'부산 동래구 온천동',email:'',ht:'163',wt:'51',bp:'118/74',meds:'',chief:'두 달 전부터 잠을 못 자고 가슴이 답답하다',onset:'2개월 전',aggr:'밤에',relief:'눕거나 따뜻하게'},
    sx:[{k:'불면',pain:0,vas:null},{k:'심번',pain:0,vas:null},{k:'두통',pain:1,vas:6}],
    body:{build:2,skinColor:['백'],skinHeat:['건'],skinThick:2,skinTurgor:3},
-   abd:{elast:3,chestReject:4,chestAccept:0,jeongjae:2,simhaYe:3,jungwan:2,bitGyeon:0,subun:0,rectus:0,waterSound:0,
+   abd:{elast:3,chestReject:4,chestAccept:0,jeongjae:2,bokryang:3,jungwan:2,bitGyeon:0,subun:0,rectus:0,waterSound:0,
         leftUmb:0,gyeryeong:0,lowerNotIn:0,lowerGugeup:0,lowerHyeongeup:0,lowerJongbi:0,lowerGeupgyeol:0,lowerPain:0,lowerBlood:0,
         hypoHeat:2,hypoDef:0,hypoHeui:0,kiDong:0,custom:[]},
    tongue:{color:['홍'],coat:['황'],dry:['건']},pulse:['현','삭'],
@@ -1913,7 +1929,7 @@ const EX = [
    pt:{name:'예시2',sex:'남',birth:'1971-09-03',age:'',phone:'010-0000-2222',addr:'부산 동래구 사직동',email:'',ht:'175',wt:'82',bp:'138/88',meds:'혈압약 장기',chief:'변이 굳고 목이 마르며 얼굴이 화끈하다',onset:'6개월',aggr:'식후',relief:'찬물'},
    sx:[{k:'변비',pain:0,vas:null},{k:'상열감',pain:0,vas:null},{k:'두통',pain:1,vas:7}],
    body:{build:4,skinColor:['적'],skinHeat:['열'],skinThick:4,skinTurgor:4},
-   abd:{elast:5,chestReject:4,chestAccept:0,jeongjae:3,simhaYe:2,jungwan:3,bitGyeon:0,subun:0,rectus:1,waterSound:0,
+   abd:{elast:5,chestReject:4,chestAccept:0,jeongjae:3,bokryang:2,jungwan:3,bitGyeon:0,subun:0,rectus:1,waterSound:0,
         leftUmb:0,gyeryeong:0,lowerNotIn:0,lowerGugeup:0,lowerHyeongeup:0,lowerJongbi:0,lowerGeupgyeol:0,lowerPain:0,lowerBlood:0,
         hypoHeat:3,hypoDef:0,hypoHeui:0,kiDong:0,custom:[]},
    tongue:{color:['홍'],coat:['황'],dry:['건']},pulse:['홍','삭'],
@@ -1922,7 +1938,7 @@ const EX = [
    pt:{name:'예시3',sex:'여',birth:'1964-01-28',age:'',phone:'010-0000-3333',addr:'부산 부산진구 전포동',email:'',ht:'158',wt:'58',bp:'126/78',meds:'',chief:'묽은 변을 자주 보고 아랫배가 당기며 어지럽다',onset:'1년',aggr:'아침',relief:'따뜻하게'},
    sx:[{k:'설사',pain:0,vas:null},{k:'어지럼·현훈',pain:0,vas:null},{k:'복통',pain:1,vas:5}],
    body:{build:3,skinColor:['백'],skinHeat:[],skinThick:3,skinTurgor:2},
-   abd:{elast:2,chestReject:0,chestAccept:3,jeongjae:0,simhaYe:1,jungwan:1,bitGyeon:0,subun:3,rectus:2,waterSound:2,
+   abd:{elast:2,chestReject:0,chestAccept:3,jeongjae:0,bokryang:1,jungwan:1,bitGyeon:0,subun:3,rectus:2,waterSound:2,
         leftUmb:0,gyeryeong:0,lowerNotIn:2,lowerGugeup:3,lowerHyeongeup:4,lowerJongbi:0,lowerGeupgyeol:0,lowerPain:0,lowerBlood:0,
         hypoHeat:0,hypoDef:0,hypoHeui:0,kiDong:0,custom:[{nm:'좌 협하 압통',loc:'흉협',sev:2}]},
    tongue:{color:['담'],coat:['백'],dry:['습']},pulse:['침','지'],
