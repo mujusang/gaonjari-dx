@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>가온자리 진단툴 · 1차 시안</title>
+<title>가온자리 진단툴 · 2차 시안</title>
 <style>
+
 :root{
   --bg:#f2f5f3; --paper:#ffffff; --ink:#16241e; --ink2:#4d5c54; --ink3:#7b8a82;
   --line:#e0e6e1; --line2:#eef1ee;
@@ -311,6 +312,70 @@ blockquote.jm-q.pending cite{color:var(--gold)}
   details.jm{border-top:1px solid #ddd}
   details.jm .jm-body{display:flex !important}
 }
+
+
+/* ══ 2차 추가: 인적사항·증상 순위·통증강도·복진 상세·위치추가 ══ */
+.span2{grid-column:span 2}
+.span4{grid-column:1 / -1}
+.ageout,.bmiout{font-size:11.5px;font-weight:800;border-radius:7px;padding:1px 7px;margin-left:5px;white-space:nowrap}
+.ageout{color:var(--brand);background:var(--soft);border:1px solid #cfe4da}
+.bmiout{color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold-line)}
+.dsin{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--ink3);font-weight:600;border:1px dashed var(--line);border-radius:9px;padding:7px 9px;background:#fcfdfc}
+.dsin b{color:var(--ink2)}
+input[type=date].inp{min-height:38px}
+input[type=range].vas{flex:1;min-width:110px;accent-color:#b4611f;height:24px}
+.sx-row{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:8px;align-items:center;
+  border:1px solid var(--line);border-radius:11px;padding:8px 10px;background:#fff;margin-bottom:7px}
+.sx-row.first{border-color:var(--gold-line);background:linear-gradient(180deg,#fffdf7,#fff)}
+.sx-row .rk{width:24px;height:24px;border-radius:7px;background:var(--gray-bg);color:var(--ink2);display:grid;place-items:center;font-size:12px;font-weight:800}
+.sx-row.first .rk{background:var(--gold);color:#fff}
+.sx-row .nm{font-size:13.5px;font-weight:700;color:var(--ink);min-width:0;line-height:1.35}
+.sx-row .nm small{font-weight:800;color:var(--warn);font-size:10.5px;border:1px solid var(--warn-line);background:var(--warn-bg);border-radius:6px;padding:0 4px;margin-left:4px}
+.sx-row .tools{display:flex;gap:4px;flex:none}
+.sx-row .tools button{width:27px;height:27px;border-radius:7px;border:1px solid var(--line);background:#fff;
+  font-size:12px;font-weight:800;color:var(--ink2);display:grid;place-items:center;padding:0}
+.sx-row .tools button:hover{border-color:#c4d5cc;background:#fbfdfc}
+.vas-wrap{grid-column:1 / -1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
+.vas-wrap .vas-lbl{font-size:10.5px;color:var(--ink3);font-weight:700;white-space:nowrap}
+.vas-wrap .vasv{min-width:62px;text-align:right;font-size:12px;font-weight:800;color:var(--warn);font-variant-numeric:tabular-nums}
+.abd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(184px,1fr));gap:9px}
+.abd-cell{border:1px solid var(--line);border-radius:11px;padding:8px 9px 7px;background:#fff}
+.abd-cell.on{border-color:#cfe4da;background:var(--soft2)}
+.abd-cell .nm{font-size:12.2px;font-weight:700;color:var(--ink2);line-height:1.35;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+.abd-cell .nm i{font-style:normal;font-size:10px;font-weight:600;color:var(--ink3)}
+.abd-cell .seg{margin-top:6px;gap:3px}
+.abd-cell .seg button{padding:5px 1px;font-size:11.5px;border-radius:7px;font-weight:700}
+.cust{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.cust .c{display:inline-flex;align-items:center;gap:6px;background:var(--gold-bg);border:1px solid var(--gold-line);
+  color:#7d540f;border-radius:999px;padding:4px 5px 4px 10px;font-size:12.2px;font-weight:700}
+.cust .c button{border:0;background:transparent;color:#a3733a;font-weight:800;font-size:14px;line-height:1;padding:0 4px}
+.addrow{display:grid;grid-template-columns:minmax(0,1fr) 96px 72px auto;gap:7px;align-items:center;margin-top:9px}
+.addrow.n3{grid-template-columns:minmax(0,1fr) auto auto}
+.addrow .inp{padding:8px 10px;font-size:13.5px}
+.addrow .chk{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.sxres{display:flex;flex-direction:column;gap:8px}
+.sxres-row{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start;font-size:12.8px}
+.sxres-row .rk{width:20px;height:20px;border-radius:6px;background:var(--gray-bg);color:var(--ink2);display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:1px}
+.sxres-row.first .rk{background:var(--gold);color:#fff}
+.sxres-row b{font-size:13px}
+.vasbar{height:7px;border-radius:5px;background:var(--line2);overflow:hidden;margin-top:4px;max-width:100%}
+.vasbar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#f0b27a,#b4611f)}
+@media (max-width:760px){
+  .span2,.span4{grid-column:1 / -1}
+  .addrow,.addrow.n3{grid-template-columns:1fr 1fr}
+  .addrow .inp:first-child{grid-column:1 / -1}
+  .abd-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  .abd-grid{grid-template-columns:1fr}
+  .sx-row{grid-template-columns:24px minmax(0,1fr)}
+  .sx-row .tools{grid-column:1 / -1;justify-content:flex-end}
+}
+@media print{
+  .sx-row .tools,.addrow,.cust .c button{display:none !important}
+  .sx-row,.abd-cell{break-inside:avoid}
+}
+
 </style>
 </head>
 <body>
@@ -319,7 +384,7 @@ blockquote.jm-q.pending cite{color:var(--gold)}
     <div class="brand">
       <b>가온자리 진단툴</b>
       <span>문진·복진 → 육경병 변증 → 탕약·침 제안</span>
-      <span class="ver">1차 시안</span>
+      <span class="ver">2차 시안</span>
     </div>
     <div class="tabs" role="tablist" aria-label="입력 방식">
       <button role="tab" id="tab-doctor" aria-selected="true" aria-controls="panel-doctor" data-mode="doctor">원장님 진료<em>클릭형</em></button>
@@ -336,15 +401,12 @@ blockquote.jm-q.pending cite{color:var(--gold)}
 
 <main class="wrap">
   <div class="col-in">
-    <!-- ① 원장님 진료 -->
     <section class="panel" id="panel-doctor" role="tabpanel" aria-labelledby="tab-doctor"></section>
-    <!-- ② 환자 문진표 -->
     <section class="panel" id="panel-patient" role="tabpanel" aria-labelledby="tab-patient" hidden></section>
-    <!-- ③ 사진 판독 -->
     <section class="panel" id="panel-photo" role="tabpanel" aria-labelledby="tab-photo" hidden>
       <div class="card">
         <h2><span class="no">1</span>문진표 사진 올리기<span class="src">화면 설계 · 판독 미연동</span></h2>
-        <p class="card-sub">종이 문진표를 <b>사진으로 찍어 올리면 항목을 읽어 채우는</b> 흐름입니다. 이번 1차 시안에서는 <b>올린 사진을 보관·확인하는 화면까지</b> 만들었고, 실제 글자 판독은 다음 단계에서 붙입니다.</p>
+        <p class="card-sub">종이 문진표를 <b>사진으로 찍어 올리면 항목을 읽어 채우는</b> 흐름입니다. 이번 2차 시안에서도 <b>올린 사진을 보관·확인하는 화면까지</b>이고, 실제 글자 판독은 다음 단계에서 붙입니다.</p>
         <label class="drop" id="drop" for="photo-input">
           <b>사진을 여기로 끌어오거나 눌러서 선택</b>
           <span>JPG·PNG · 휴대폰으로 찍은 사진 그대로 올리시면 됩니다</span>
@@ -361,12 +423,12 @@ blockquote.jm-q.pending cite{color:var(--gold)}
 
       <div class="card live">
         <h2><span class="no">2</span>수동 보정<span class="src">판독 대신 손으로 채우기</span></h2>
-        <p class="card-sub">사진을 보며 <b>핵심 항목만 옮겨 적으면</b> 바로 판정이 나옵니다. 복진은 손으로 눌러 확인한 값을 넣으십시오.</p>
+        <p class="card-sub">사진을 보며 <b>핵심 항목만 옮겨 적으면</b> 바로 판정이 나옵니다. 증상은 <b>여러 개를 골라 순위</b>를 정하고, 복진은 손으로 눌러 확인한 값을 넣으십시오.</p>
         <div id="panel-photo-body"></div>
       </div>
 
       <div class="card">
-        <h2><span class="no">3</span>다음 단계에서 붙일 것<span class="src">2차 범위</span></h2>
+        <h2><span class="no">3</span>다음 단계에서 붙일 것<span class="src">3차 범위</span></h2>
         <div class="notice info">
           <b>판독 연동 순서(안)</b>
           <ul>
@@ -392,11 +454,13 @@ blockquote.jm-q.pending cite{color:var(--gold)}
 </div>
 
 <footer class="foot">
-  <b>근거와 한계 — 이 시안을 읽는 기준</b>
+  <b>근거와 한계 — 이 화면을 읽는 기준</b>
   <ol>
     <li>판정·처방 매핑은 『최용선원장의 중경방임상강좌 1 · 총론』(295쪽) 제2편 복진(63~103쪽)·제3편 문진(159~295쪽)에서 뽑았습니다. 원장님이 직접 찍어 보내신 <b>p.90 복진 도해, p.102~103 총괄표·主之與宜 스펙트럼, p.149 소음병 도표, p.162 표준진료부</b>를 원문으로 대조했습니다.</li>
-    <li>조문은 두 등급으로 나눠 표시합니다. <b>「p.149 원문 확인」</b>은 찍어 보내신 책 쪽의 조문 그대로이고, <b>「송본 조문」</b>은 통용 송본 전사문으로 문구를 확인한 것이며 이 책의 해당 쪽과는 아직 대조 전입니다. 그 밖의 처방은 조문을 지어내지 않고 <b>책 쪽수와 서술 근거만</b> 표시했습니다.</li>
+    <li>조문은 두 등급으로 나눠 표시합니다. <b>「책 원문 확인」</b>은 찍어 보내신 책 쪽의 조문 그대로이고, <b>「송본 조문」</b>은 통용 송본 전사문으로 문구를 확인한 것이며 이 책의 해당 쪽과는 아직 대조 전입니다. 그 밖의 처방은 조문을 지어내지 않고 <b>책 쪽수와 서술 근거만</b> 표시했습니다.</li>
     <li>문진 항목별 판정 중 일부(특히 p.164~188)는 드라이브 문서 판독을 거친 2차 정리본이라, 앱 규칙으로 굳히기 전에 원문 대조가 필요합니다.</li>
+    <li><b>2차 시안에서 더한 것</b> — 생년월일→만 나이 자동 계산, 전화번호·주소·이메일, 키·몸무게 분리와 BMI, 증상 다중선택·심한 순위·통증 0~10(10=견딜 수 없는 통증), 복진 부위·소견 상세(심하예·심하비견·수분혈·신복직근·계령괴·소복불인·구급·현급·종비·급결·어혈·흉협 3구분·위내정수·제상동계)와 <b>위치 직접 추가</b>, 맥을 비롯한 문진 항목 전부 다중선택. 순위가 높은 주증상과 추가된 복진 소견이 처방 점수·요약에 반영됩니다.</li>
+    <li><b>아직 확정하지 않은 것</b> — <b>계령괴</b>는 원장님이 적어 주신 이름 그대로 항목만 두었고 정의·처방 대응은 확인 전입니다. <b>제상동계</b>는 책 쪽수를 확인하지 못했습니다. 증상별 처방 대응(SXMAP)은 문진 장의 표를 증상 이름으로 묶은 1차 초안이라 원장님 검토가 필요합니다.</li>
     <li>이 화면은 <b>진단·처방을 대신하지 않습니다.</b> 변증과 처방의 최종 결정은 복진을 포함한 대면 진찰로 원장님이 내리시고, 앱은 후보와 근거를 한자리에 모으는 역할만 합니다.</li>
     <li>침 처방은 책의 복진 부위와 육경병에 대응하는 <b>기본 혈자리 초안</b>이며, 원장님 임상 검토가 반드시 필요합니다.</li>
   </ol>
@@ -404,14 +468,14 @@ blockquote.jm-q.pending cite{color:var(--gold)}
 <script>
 (function(){
 'use strict';
+/* 진단 표시용 자기 점검(화면에는 보이지 않음) */
+window.__gaonDiag = {errors:[], renders:0, ready:false};
+window.addEventListener('error', function(e){ window.__gaonDiag.errors.push(String(e.message||e.error)); });
+window.addEventListener('unhandledrejection', function(e){ window.__gaonDiag.errors.push('promise:'+String(e.reason)); });
 
 /* ═══════════════════════════════════════════════════════════════
-   0. 근거 데이터
+   0. 근거 데이터 (1차 시안 그대로)
    ═══════════════════════════════════════════════════════════════ */
-
-/* 처방 사전
-   han: 한자 / yuk: 육경병 / band: 책의 主之·與·宜 복탄력 밴드
-   pg : 『중경방임상강좌1』 쪽 / jm: 조문 · kind='book'(p.149 촬영 원문) | 'std'(송본 전사문)  */
 const F = {
 '계지탕':{han:'桂枝湯',yuk:'태양',band:[1,2],pg:'p.191·p.244·p.256·p.102',jm:[
  {no:'12',kind:'std',zh:'太陽中風，陽浮而陰弱，陽浮者，熱自發，陰弱者，汗自出。嗇嗇惡寒，淅淅惡風，翕翕發熱，鼻鳴乾嘔者，桂枝湯主之。',ko:'태양중풍에 열이 나고 땀이 저절로 나며, 오싹한 오한·바람에 대한 불편·온몸을 덮는 발열·코 막힌 소리·헛구역이 있으면 계지탕이 주치한다.'},
@@ -502,17 +566,19 @@ const F = {
 '소시호탕가길경석고':{han:'小柴胡湯加桔梗石膏',yuk:'소양',band:[2,3],pg:'p.271',jm:[]},
 '방풍통성산':{han:'防風通聖散',yuk:'양명',band:[4,5],pg:'p.173',jm:[]},
 '온경탕':{han:'溫經湯',yuk:'궐음',band:[1,2],pg:'p.290~292',jm:[]},
-'이중탕':{han:'理中湯',yuk:'태음',band:[1,2],pg:'p.240',jm:[]}
+'이중탕':{han:'理中湯',yuk:'태음',band:[1,2],pg:'p.240',jm:[]},
+'저당환':{han:'抵當丸',yuk:'궐음',band:[3,5],pg:'p.97',jm:[]},
+'대함흉탕':{han:'大陷胸湯',yuk:'양명',band:[4,5],pg:'p.103·p.90',jm:[]}
 };
 
 /* 선택지 — v:내부값 / d:원장님 화면 / p:환자 화면 / h:짧은 보기 */
 const OPT = {
- appetite:{multi:false,items:[
+ appetite:{multi:true,items:[
   {v:'항진',d:'잘 먹음(善食)',p:'식욕이 좋아 자주 많이 먹는다'},
   {v:'없음',d:'입맛 없음',p:'입맛이 없고 먹기 싫다'},
   {v:'감기뒤',d:'감기 뒤끝 없음',p:'감기가 지나간 뒤로 입맛이 없다'},
   {v:'숙식',d:'숙식·체함',p:'먹은 것이 체해 속이 더부룩하다'}]},
- digestion:{multi:false,items:[
+ digestion:{multi:true,items:[
   {v:'양호',d:'양호',p:'소화는 대체로 잘 된다'},
   {v:'불량',d:'소화불량',p:'소화가 잘 안 되고 더부룩하다'},
   {v:'체기',d:'체기·만성장애',p:'자주 체하고 속이 막힌 느낌이 든다'},
@@ -523,14 +589,14 @@ const OPT = {
   {v:'구건',d:'입 타고 물 많이',p:'물을 계속 마셔도 목이 탄다'},
   {v:'구취',d:'입 냄새',p:'입 냄새가 난다'},
   {v:'구창',d:'입안 궤양',p:'입안이 헐거나 음부에 궤양이 생긴다'}]},
- urine:{multi:false,items:[
+ urine:{multi:true,items:[
   {v:'정상',d:'정상',p:'대체로 정상'},
   {v:'황',d:'색 진하고 노랗다',p:'소변 색이 진하고 노랗다'},
   {v:'불리',d:'시원치 않고 자주',p:'소변이 시원하지 않고 자주 본다'},
   {v:'잔뇨',d:'잔뇨감',p:'보고 나도 남은 느낌이 있다'},
   {v:'야뇨',d:'야뇨·새는 소변',p:'밤에 자주 깨서 보고, 새기도 한다'},
   {v:'통증',d:'배뇨 시 통증',p:'소변 볼 때 따갑거나 아프다'}]},
- stool:{multi:false,items:[
+ stool:{multi:true,items:[
   {v:'정상',d:'정상',p:'대체로 하루 한 번 본다'},
   {v:'변비',d:'변비',p:'변이 굳고 딱딱하다'},
   {v:'설사',d:'설사',p:'묽은 변을 자주 본다'},
@@ -543,25 +609,25 @@ const OPT = {
   {v:'몽',d:'꿈·몽유',p:'꿈이 많고 자다가 뒤척인다'},
   {v:'심번',d:'심번·뒤척임',p:'가슴이 답답하고 뒤척여 잠들지 못한다'},
   {v:'열감',d:'수면 중 열감',p:'자다가 열이 오르거나 흥건하게 땀이 난다'}]},
- sweat:{multi:false,items:[
+ sweat:{multi:true,items:[
   {v:'정상',d:'보통',p:'땀은 대체로 보통'},
   {v:'무한',d:'땀 없음(無汗)',p:'꼭 아파도 땀이 나지 않는다'},
   {v:'자한',d:'자한·다한',p:'조금만 움직여도 땀이 많다'},
   {v:'두한',d:'머리에만 땀',p:'머리와 얼굴에만 땀이 난다'},
   {v:'수족한',d:'손발 땀',p:'손발에 땀이 많이 난다'},
   {v:'음한',d:'음낭·사타구니 땀',p:'사타구니 쪽에 땀이 차고 습하다'}]},
- edema:{multi:false,items:[
+ edema:{multi:true,items:[
   {v:'없음',d:'없음',p:'붓지 않는다'},
   {v:'전신',d:'전신 부종 + 무한',p:'얼굴부터 온몸이 붓는다'},
   {v:'하체',d:'하체 부종 + 물컹',p:'다리가 잘 붓고 눌러 보면 물컹하다'},
   {v:'얼굴',d:'얼굴·눈 주위',p:'아침에 얼굴이 많이 붓는다'}]},
- tan:{multi:false,items:[
+ tan:{multi:true,items:[
   {v:'없음',d:'없음',p:'가슴 쪽에 걸리는 느낌은 없다'},
   {v:'심하비',d:'가슴·명치 담음 + 거안',p:'가슴과 명치가 답답하게 걸린다'},
   {v:'한열상잡',d:'한열이 섞인 담음',p:'더우면서도 손발은 차고 속은 답답하다'},
   {v:'물소리',d:'배에서 물소리 + 현훈',p:'배에서 꿀렁 소리가 나고 어지럽다'},
   {v:'매핵기',d:'목에 걸리는 매핵기',p:'목에 뭔가 걸린 듯하고 답답하다'}]},
- spirit:{multi:false,items:[
+ spirit:{multi:true,items:[
   {v:'보통',d:'보통',p:'평소와 다르지 않다'},
   {v:'강단',d:'눈빛 매섭고 말 또박또박',p:'말이 또박또박하고 성격이 급하다'},
   {v:'허약',d:'눈빛 풀리고 말 느림',p:'말이 느리고 기운이 없다'},
@@ -599,7 +665,7 @@ const OPT = {
   {v:'동계',d:'가슴 두근거림',p:'가슴이 두근거린다'},
   {v:'흉비',d:'가슴 막힘·통증',p:'가슴이 막힌 듯 아프다'},
   {v:'답답',d:'가슴 답답',p:'이유 없이 가슴이 답답하다'}]},
- abpain:{multi:false,items:[
+ abpain:{multi:true,items:[
   {v:'없음',d:'없음',p:'배가 아프지는 않다'},
   {v:'거안',d:'누르면 아픔(거안)',p:'배를 누르면 아프고 피한다'},
   {v:'희안',d:'누르면 편함(희안)',p:'배를 눌러 주면 편하다'},
@@ -610,110 +676,208 @@ const OPT = {
   {v:'목어깨',d:'목·어깨 굳음 + 무한',p:'목과 어깨가 굳고 땀이 없다'},
   {v:'흉협고만',d:'굳음 + 흉협고만',p:'옆구리가 뻐근하며 근육이 굳는다'},
   {v:'관절',d:'관절·뼈 쑤심 + 건조',p:'관절이 쑤시고 몸이 건조하다'}]},
- mens:{multi:false,items:[
+ mens:{multi:true,items:[
   {v:'해당없음',d:'해당 없음(남성·비해당)',p:'해당 없음'},
   {v:'어혈',d:'생리통 + 덩어리혈 + 소복압통',p:'생리통이 심하고 덩어리 피가 나온다'},
   {v:'흉협',d:'생리통 + 흉협고만·복직근',p:'생리 때 옆구리가 뻐근하고 배가 긴장된다'},
   {v:'양적음',d:'양 적음 + 마름·건조',p:'생리량이 적고 몸이 마르고 건조하다'},
   {v:'불순',d:'생리 불순',p:'주기가 일정하지 않다'}]}
 };
+/* ═══════════════════════════════════════════════════════════════
+   0-b. 주증상 카탈로그 — 다중선택 · 심한 순위 · 통증 0~10
+   ═══════════════════════════════════════════════════════════════ */
+const SXP = [
+ {g:'통증',open:true,items:[['두통',1],['어지럼·현훈',0],['목·어깨 통증',1],['허리 통증',1],['무릎·관절 통증',1],
+   ['근육통',1],['복통',1],['생리통',1],['가슴 통증',1],['인후통',1],['손발 저림·참',1],['치통',1]]},
+ {g:'소화',open:true,items:[['입맛 없음',0],['소화불량',0],['체함',0],['속쓰림',0],['구역·구토',0],['복부 팽만',0],['변비',0],['설사',0]]},
+ {g:'수면·정신',open:false,items:[['불면',0],['천면·얕은 잠',0],['다면·졸림',0],['불안',0],['우울',0],['심번',0]]},
+ {g:'호흡·이비인후',open:false,items:[['기침',0],['가래',0],['코막힘·콧물',0],['목 건조',0],['이명',0]]},
+ {g:'배뇨·부인',open:false,items:[['빈뇨',0],['잔뇨감',0],['야뇨',0],['부종',0],['생리불순',0]]},
+ {g:'전신·피부',open:false,items:[['피로',0],['식은땀',0],['상열감',0],['가려움',0],['두드러기',0]]}
+];
+/* 증상 → 처방 초안 (문진 장 표를 증상 이름으로 묶은 1차 초안 · 원장님 검토 필요) */
+const SXMAP = {
+'두통':{f:[['갈근탕',2],['오수유탕',1]],why:'두통 — 표증이면 葛根, 간한·궐음 쪽이면 吳茱萸',pg:'p.268·p.269'},
+'어지럼·현훈':{f:[['영계출감탕',2],['오령산',1]],why:'머리 무거움·어지럼 — 水飮·水毒',pg:'p.270'},
+'목·어깨 통증':{f:[['갈근탕',3]],why:'목·어깨 굳음 — 葛根證',pg:'p.283'},
+'허리 통증':{f:[['마황탕',1],['계지탕',1]],why:'몸·허리 통증 — 表實/表虛',pg:'p.226'},
+'무릎·관절 통증':{f:[['백호가계지탕',2],['백호가인삼탕',1]],why:'관절·뼈 쑤심 — 裏熱로 진액 마름',pg:'p.284'},
+'근육통':{f:[['갈근탕',2],['계지탕',1]],why:'근육 굳음 — 表證',pg:'p.283'},
+'복통':{f:[['소건중탕',2],['인삼탕',1]],why:'배 속 당김·통증 — 芍藥證/內虛',pg:'p.282'},
+'생리통':{f:[['계지복령환',2],['당귀작약산',1]],why:'생리통 — 瘀血',pg:'p.285'},
+'가슴 통증':{f:[['괄루해백반하탕',3]],why:'가슴 막힘·통증 — 胸痺',pg:'p.281'},
+'인후통':{f:[['소시호탕가길경석고',2]],why:'인후통·부종 — 表裏熱',pg:'p.271'},
+'손발 저림·참':{f:[['당귀사역가오수유생강탕',2],['사역산',1]],why:'손발 참·저림 — 四逆',pg:'p.265'},
+'치통':{f:[['백호가인삼탕',1]],why:'치통 — 裏熱(석고열)로 보는 경우',pg:'p.262'},
+'입맛 없음':{f:[['계지탕',2]],why:'입맛 없음 — 表虛·太陰',pg:'p.191'},
+'소화불량':{f:[['인삼탕',1],['소함흉탕',1]],why:'소화불량 — 內虛 또는 흉부·심하 담음',pg:'p.201'},
+'체함':{f:[['대승기탕',1]],why:'숙식 — 위장 정체',pg:'p.193'},
+'속쓰림':{f:[['소함흉탕',1]],why:'명치 쓰림 — 心熱·담음',pg:'p.239'},
+'구역·구토':{f:[['반하사심탕',2]],why:'구역 — 心下痞·한열착잡',pg:'p.216'},
+'복부 팽만':{f:[['인삼탕',1]],why:'배 더부룩 — 內虛·복냉',pg:'p.217'},
+'변비':{f:[['대승기탕',2]],why:'변비 — 裏實',pg:'p.215'},
+'설사':{f:[['인삼탕',2]],why:'설사 — 복탄력·거안과 함께 갈립니다',pg:'p.216~217'},
+'불면':{f:[['감초사심탕',1],['치자시탕',1]],why:'불면 — 心熱·虛煩',pg:'p.220·p.222'},
+'천면·얕은 잠':{f:[['치자시탕',1]],why:'얕은 잠 — 虛煩',pg:'p.222'},
+'다면·졸림':{f:[['인삼탕',1]],why:'잠이 많고 졸림 — 內虛',pg:'p.250'},
+'불안':{f:[['사역산',1],['반하후박탕',1]],why:'불안 — 氣鬱',pg:'p.272'},
+'우울':{f:[['반하후박탕',1]],why:'가라앉음 — 氣鬱·痰飮',pg:'p.272'},
+'심번':{f:[['치자시탕',2]],why:'가슴 답답·뒤척임 — 虛煩',pg:'p.222'},
+'기침':{f:[['소청룡탕',2]],why:'기침 — 水氣',pg:'p.274'},
+'가래':{f:[['소청룡탕',1],['반하후박탕',1]],why:'가래 — 痰飮',pg:'p.274'},
+'코막힘·콧물':{f:[['소청룡탕',2]],why:'맑은 콧물·재채기 — 水飮',pg:'p.274'},
+'목 건조':{f:[['소시호탕가길경석고',1]],why:'목 건조 — 熱',pg:'p.271'},
+'이명':{f:[['삼황사심탕',1]],why:'이명 — 상초 실열',pg:'p.277'},
+'빈뇨':{f:[['오령산',1],['팔미지황환',1]],why:'자주 봄 — 水毒/下焦 허랭',pg:'p.210'},
+'잔뇨감':{f:[['팔미지황환',1]],why:'잔뇨 — 下焦 허',pg:'p.212'},
+'야뇨':{f:[['팔미지황환',2]],why:'야뇨 — 下焦 허랭',pg:'p.212'},
+'부종':{f:[['방기황기탕',1],['월비가출탕',1]],why:'붓기 — 水毒',pg:'p.237'},
+'생리불순':{f:[['당귀작약산',2]],why:'생리 불순·양 적음 — 血虛·津液 고갈',pg:'p.290'},
+'피로':{f:[['인삼탕',1],['진무탕',1]],why:'피로 — 內虛',pg:'p.245'},
+'식은땀':{f:[['계지탕',1]],why:'땀 — 表虛',pg:'p.256'},
+'상열감':{f:[['사역산',1]],why:'얼굴 화끈 — 氣鬱·上熱',pg:'p.221'},
+'가려움':{f:[['계지마황각반탕',2]],why:'몸이 가려움 — 表鬱',pg:'p.101'},
+'두드러기':{f:[['계지마황각반탕',1]],why:'두드러기 — 表鬱·濕熱',pg:'p.175'}
+};
 
-/* 판정 규칙 — w:조건 / f:[처방,점수] / why:근거 / pg:쪽 */
+/* ═══════════════════════════════════════════════════════════════
+   0-c. 복진 상세 항목 (부위·소견) — 0~5 강도, 위치 직접 추가 가능
+   ═══════════════════════════════════════════════════════════════ */
+const ABD = [
+ {g:'심하부',k:'jeongjae',nm:'정재심하(명치 압통)',pg:'p.76~83·p.90',hint:'명치 바로 아래를 눌러 아픈 자리',say:'간열+심열이 만난 자리 · 담음 결흉(小陷胸湯) 쪽'},
+ {g:'심하부',k:'simhaYe',nm:'심하예(心下痞鞕)',pg:'p.76~83',hint:'명치 아래가 막히고 단단하게 잡힘',say:'心下痞鞕 · 瀉心湯類(반하사심탕·감초사심탕), 희안이면 人蔘湯'},
+ {g:'심하부',k:'jungwan',nm:'중완 주위',pg:'p.90·p.102',hint:'심장열이 주로 나타나는 자리',say:'심장열이 몰린 자리 · 心下痞(黃連劑)'},
+ {g:'심하부',k:'bitGyeon',nm:'심하비견',pg:'p.103',hint:'늑골 아래가 뻑뻑하고 압통이 있음',say:'늑골 아래 뻑뻑한 압통 · 木防己湯·大陷胸湯類'},
+ {g:'수분·복직근',k:'subun',nm:'수분혈 통증·비증',pg:'p.84~88·p.90',hint:'배꼽 위 물컹·뻑뻑한 통증',say:'水毒 · 五苓散·防己劑(열증이면 豬苓湯)'},
+ {g:'수분·복직근',k:'rectus',nm:'신복직근(복직근 구련)',pg:'p.68~75·p.90',hint:'양쪽 복직근이 줄처럼 굳고 눌러 아픔',say:'구련·압통 · 芍藥證(작약감초탕·소건중탕)'},
+ {g:'수분·복직근',k:'waterSound',nm:'위내정수·물소리',pg:'p.240',hint:'배에서 꿀렁 소리',say:'위내정수 · 苓桂朮甘湯·理中湯'},
+ {g:'배꼽·소복',k:'leftUmb',nm:'배꼽 좌측 경결',pg:'p.90·p.102',hint:'연필 심처럼 잡히는 경결',say:'瘀血 · 桂枝茯苓丸'},
+ {g:'배꼽·소복',k:'gyeryeong',nm:'계령괴',pg:'원장님 표현',hint:'원장님 표현 그대로 등록 — 정의·처방 대응 확인 대기',say:'정의·처방 대응 확인 대기'},
+ {g:'배꼽·소복',k:'lowerNotIn',nm:'소복불인',pg:'p.89~94',hint:'아랫배를 눌러도 힘없이 폭 꺼짐',say:'소복불인 · 六味·八味地黄丸'},
+ {g:'배꼽·소복',k:'lowerGugeup',nm:'소복구급',pg:'p.89~94',hint:'아랫배가 당겨 굳음',say:'소복구급 · 芍藥·桂枝 계열'},
+ {g:'배꼽·소복',k:'lowerHyeongeup',nm:'소복현급',pg:'p.97~98',hint:'아랫배가 거문고 줄처럼 굳음',say:'소복현급 · 桂枝加龍骨牡蠣湯'},
+ {g:'배꼽·소복',k:'lowerJongbi',nm:'소복종비',pg:'p.95~97',hint:'아랫복부(주로 우하) 덩이',say:'소복종비(우하복부) · 大黃牡丹皮湯'},
+ {g:'배꼽·소복',k:'lowerGeupgyeol',nm:'소복급결',pg:'p.95~97',hint:'아랫배가 급하게 맺힘',say:'소복급결 · 桃核承氣湯'},
+ {g:'배꼽·소복',k:'lowerPain',nm:'소복 압통',pg:'p.95~97',hint:'아랫배 압통',say:'어혈 — 복탄력 3 이상 抵當丸 / 3 이하 大黃蟅蟲丸'},
+ {g:'배꼽·소복',k:'lowerBlood',nm:'소복 어혈·색소침착',pg:'p.95~97',hint:'아랫배 피부색이 어둡게 침착',say:'소복 어혈 · 桂枝茯苓丸 / 大黃蟅蟲丸'},
+ {g:'흉협',k:'hypoHeat',nm:'흉협고만(간열)',pg:'p.98~101',hint:'협하 45도 압박에 압이 오르거나 불편',say:'胸脇苦滿 · 肝熱, 柴胡'},
+ {g:'흉협',k:'hypoDef',nm:'협하 허(간허)',pg:'p.98~101',hint:'손이 쑥 들어감',say:'肝虛 · 손이 쑥 들어감, 當歸'},
+ {g:'흉협',k:'hypoHeui',nm:'협하희안(간한)',pg:'p.101~103',hint:'눌렀을 때 눈이 맑아지고 편안',say:'肝寒 · 吳茱萸'},
+ {g:'기타',k:'kiDong',nm:'제상동계(배꼽 위 박동)',pg:'쪽수 미확인',hint:'배꼽 위가 두근거림',say:'水氣上衝 · 苓桂劑·桂枝加龍骨牡蠣湯 (쪽수 미확인)'}
+];
+const ABDG = ['심하부','수분·복직근','배꼽·소복','흉협','기타'];
+const ABD_MAP = ABD.reduce(function(o,x){o[x.k]=x;return o;}, {});
+
+/* ═══════════════════════════════════════════════════════════════
+   0-d. 판정 규칙
+   ═══════════════════════════════════════════════════════════════ */
 const R = [
-/* ── 복진 ── */
-{w:s=>s.abd.jeongjae>0 && s.abd.chest==='reject', f:[['소함흉탕',4],['시함흉탕',1]],
+/* ── 복진 (2차: 부위·소견 상세) ── */
+{w:s=>s.abd.jeongjae>0 && (S.abd.chestReject>0), f:[['소함흉탕',4],['시함흉탕',1]],
  why:'정재심하(명치) 압통 + 흉부 거안 → 간열과 심열이 만난 담음·결흉', pg:'p.90·p.102·p.239'},
-{w:s=>s.abd.jeongjae>0 && s.abd.chest==='accept', f:[['인삼탕',3],['감초사심탕',1]],
+{w:s=>s.abd.jeongjae>0 && (S.abd.chestAccept>0) && !(S.abd.chestReject>0), f:[['인삼탕',3],['감초사심탕',1]],
  why:'정재심하 압통 + 희안 → 心下痞의 담음 쪽(人蔘湯)', pg:'p.90·p.102'},
-{w:s=>s.abd.chest==='reject', f:[['반하사심탕',3],['감초사심탕',2],['삼황사심탕',1]],
- why:'흉부 거안(전체의 90%) → 心熱, 黃連·瀉心湯類', pg:'p.103'},
-{w:s=>s.abd.chest==='accept', f:[['인삼탕',3],['사역탕',2],['영계출감탕',2]],
- why:'흉부 희안(10%) → 心虛, 苓桂시리즈·人蔘湯·四逆湯類', pg:'p.103'},
+{w:s=>s.abd.simhaYe>=1 && (S.abd.chestReject>0), f:[['반하사심탕',3],['감초사심탕',2],['생강사심탕',1]],
+ why:'심하예(心下痞鞕)·거안 → 心熱, 黃連·瀉心湯類', pg:'p.76~83·p.216'},
+{w:s=>s.abd.simhaYe>=1 && !(S.abd.chestReject>0) && (S.abd.chestAccept>0), f:[['인삼탕',3]],
+ why:'심하예(心下痞鞕)이나 희안 → 담음·內虛 쪽, 人蔘湯', pg:'p.76~83·p.201'},
 {w:s=>s.abd.jungwan>0, f:[['감초사심탕',2],['반하사심탕',2]],
  why:'중완 주위 압통 → 심장열이 중완에 몰린 자리(心下痞)', pg:'p.90·p.102'},
+{w:s=>s.abd.bitGyeon>0 && (S.abd.chestReject>0), f:[['대함흉탕',3],['목방기탕',2]],
+ why:'심하비견 + 흉협통 + 거안 → 水結胸(大陷胸湯)·木防己湯 계열', pg:'p.103'},
+{w:s=>s.abd.bitGyeon>0 && !(S.abd.chestReject>0), f:[['목방기탕',3]],
+ why:'심하비견 — 늑골 아래가 뻑뻑하고 압통 → 木防己湯', pg:'p.103'},
 {w:s=>s.abd.subun>0, f:[['오령산',4],['방기황기탕',2],['저령탕',1]],
- why:'수분혈 비증·압통 + 腎腹直筋 물컹통 → 水毒(수병)', pg:'p.90·p.102'},
+ why:'수분혈 비증·압통 + 腎腹直筋 물컹통 → 水毒(수병)', pg:'p.84~88·p.90'},
+{w:s=>s.abd.waterSound>0, f:[['영계출감탕',3],['이중탕',1]],
+ why:'배에서 물소리(위내정수) → 寒痰·水飮, 苓桂劑', pg:'p.240'},
 {w:s=>s.abd.leftUmb>0, f:[['계지복령환',6]],
  why:'배꼽 좌측에 연필 심처럼 잡히는 경결 → 계지복령환(어혈)', pg:'p.90·p.102'},
-{w:s=>s.abd.hypoch==='heat', f:[['소시호탕',4],['대시호탕',1],['시함흉탕',1]],
- why:'협하 45도 압박에 압이 오르거나 불편 → 胸脇苦滿, 肝熱이므로 柴胡', pg:'p.103'},
-{w:s=>s.abd.hypoch==='deficiency', f:[['당귀작약산',3],['소시호탕',1]],
- why:'협하를 눌렀을 때 손이 쑥 들어감 → 肝虛, 當歸(복탄력 2 이하에서 특히)', pg:'p.103'},
-{w:s=>s.abd.hypoch==='cold', f:[['오수유탕',5]],
- why:'협하 희안 — 누르면 머리가 맑아지고 편안 → 肝寒, 吳茱萸湯證', pg:'p.103'},
 {w:s=>s.abd.rectus>0 && (s.abd.elast||3)<=3, f:[['작약감초탕',3],['소건중탕',3],['당귀작약산',2]],
- why:'복직근 구련·압통 + 복탄력 3 이하 → 芍藥證(작약감초탕·소건중탕)', pg:'p.68~75·p.282'},
-{w:s=>s.abd.rectus>0 && (s.abd.elast||0)>=3 && s.abd.hypoch==='heat', f:[['사역산',3],['대시호탕',2]],
- why:'복직근 구련 + 복탄력 3~4 이상 + 흉협고만 → 四逆散·大柴胡湯', pg:'p.68~75'},
-{w:s=>s.abd.lowerMass==='jeongbi', f:[['대황목단피탕',6]],
- why:'소복종비(우하복부) → 大黃牡丹皮湯', pg:'p.90'},
-{w:s=>s.abd.lowerMass==='geupgyeol', f:[['도핵승기탕',6]],
- why:'소복급결 → 桃核承氣湯', pg:'p.90'},
-{w:s=>s.abd.lowerMass==='hyeongeup', f:[['계지가용골모려탕',5]],
- why:'소복현급(거문고 줄처럼 굳음) → 桂枝加龍骨牡蠣湯', pg:'p.97~98'},
+ why:'신복직근 구련·압통 + 복탄력 3 이하 → 芍藥證(작약감초탕·소건중탕)', pg:'p.68~75·p.282'},
+{w:s=>s.abd.rectus>0 && (s.abd.elast||0)>=4 && s.abd.hypoHeat>0, f:[['사역산',3],['대시호탕',2]],
+ why:'복직근 구련 + 복탄력 4 이상 + 흉협고만 → 四逆散·大柴胡湯', pg:'p.68~75'},
+{w:s=>s.abd.hypoHeat>0, f:[['소시호탕',4],['대시호탕',1],['시함흉탕',1]],
+ why:'협하 45도 압박에 압이 오르거나 불편 → 胸脇苦滿, 肝熱이므로 柴胡', pg:'p.98~101·p.103'},
+{w:s=>s.abd.hypoDef>0, f:[['당귀작약산',3],['소시호탕',1]],
+ why:'협하를 눌렀을 때 손이 쑥 들어감 → 肝虛, 當歸(복탄력 2 이하에서 특히)', pg:'p.98~101·p.103'},
+{w:s=>s.abd.hypoHeui>0, f:[['오수유탕',5]],
+ why:'협하희안 — 누르면 머리가 맑아지고 편안 → 肝寒, 吳茱萸湯證', pg:'p.101~103'},
 {w:s=>s.abd.lowerNotIn>0, f:[['육미지황환',3],['팔미지황환',1]],
  why:'소복불인(누르면 무력) → 六味·八味地黄丸', pg:'p.89~94'},
+{w:s=>s.abd.lowerGugeup>0, f:[['소건중탕',2],['계지가용골모려탕',1],['작약감초탕',2]],
+ why:'소복구급 — 아랫배가 당겨 굳음 → 芍藥·桂枝 계열', pg:'p.89~94'},
+{w:s=>s.abd.lowerHyeongeup>0, f:[['계지가용골모려탕',5]],
+ why:'소복현급(거문고 줄처럼 굳음) → 桂枝加龍骨牡蠣湯', pg:'p.97~98'},
+{w:s=>s.abd.lowerJongbi>0, f:[['대황목단피탕',6]],
+ why:'소복종비(우하복부 덩이) → 大黃牡丹皮湯', pg:'p.95~97'},
+{w:s=>s.abd.lowerGeupgyeol>0, f:[['도핵승기탕',6]],
+ why:'소복급결 → 桃核承氣湯', pg:'p.95~97'},
 {w:s=>s.abd.lowerPain>0 && (s.abd.elast||0)>=3, f:[['저당환',2],['도핵승기탕',1]],
  why:'소복 압통 + 복탄력 3 이상 → 어혈, 抵當丸 쪽', pg:'p.95~97'},
 {w:s=>s.abd.lowerPain>0 && (s.abd.elast||3)<=2, f:[['대황자충환',3]],
  why:'소복 압통 + 복탄력 3 이하 → 大黃蟅蟲丸 쪽', pg:'p.95~97'},
-{w:s=>s.abd.bitGyeon, f:[['목방기탕',4]],
- why:'심하비견 — 늑골 아래가 뻑뻑하고 압통 → 木防己湯·大陷胸湯 계열', pg:'p.103'},
-{w:s=>s.abd.elast>=4 && s.abd.chest==='reject', f:[['대승기탕',1],['백호가인삼탕',1]],
+{w:s=>s.abd.lowerBlood>0, f:[['계지복령환',3],['대황자충환',1]],
+ why:'소복 어혈·색소침착 → 桂枝茯苓丸 / 大黃蟅蟲丸', pg:'p.95~97'},
+{w:s=>s.abd.kiDong>0, f:[['계지가용골모려탕',2],['영계출감탕',2]],
+ why:'제상동계(배꼽 위 박동) → 水氣上衝, 苓桂劑·桂枝加龍骨牡蠣湯 (쪽수 미확인)', pg:'쪽수 미확인'},
+{w:s=>s.abd.elast>=4 && (S.abd.chestReject>0), f:[['대승기탕',1],['백호가인삼탕',1]],
  why:'거안 + 복탄력 강 → 실열약(大黃 계열)을 쓰는 자리', pg:'p.102'},
+{w:s=>s.abd.elast<=2 && (S.abd.chestReject>0), f:[['인삼탕',1],['감초사심탕',1]],
+ why:'거안 + 복탄력 약 → 허열약(黃連 계열)을 쓰는 자리', pg:'p.102'},
 /* ── 체형·피부 ── */
 {w:s=>s.body.build>0 && s.body.build<=2, f:[['백호가인삼탕',2],['사역산',1]],
  why:'마르고 건조한 체형 → 陽證·石膏熱·柴胡熱을 끼는 경우가 90% 이상', pg:'p.172'},
 {w:s=>s.body.build>=4, f:[['대승기탕',2],['대시호탕',1],['방풍통성산',1]],
  why:'살집이 단단하고 복탄력이 좋은 체형 → 裏實, 大黃·枳實이 들어가는 처방', pg:'p.173'},
-{w:s=>s.body.skinColor==='흑', f:[['월비가출탕',2],['갈근황금황련탕',2]],
+{w:s=>has('body.skinColor','흑'), f:[['월비가출탕',2],['갈근황금황련탕',2]],
  why:'피부가 검고 거칠거나 짓무름 → 表에 濕熱·瘀血', pg:'p.175'},
-{w:s=>s.body.skinHeat==='건', f:[['백호가인삼탕',2],['계지가황기탕',1]],
+{w:s=>has('body.skinHeat','건'), f:[['백호가인삼탕',2],['계지가황기탕',1]],
  why:'피부가 하얗고 건조 → 表虛·津液不足·水毒', pg:'p.175'},
 {w:s=>/스테로이드|진통제|장기/.test(s.pt.meds||''), f:[['백호가인삼탕',1]],
  why:'진통제·스테로이드 장기 복용 → 표리한열 혼재·진액 고갈', pg:'p.164~171'},
 /* ── 문진 ── */
-{w:s=>s.inq.appetite==='항진', f:[['백호가인삼탕',4]], why:'잘 먹음(善食) → 裏熱·陽明·石膏證', pg:'p.190'},
-{w:s=>s.inq.appetite==='없음', f:[['계지탕',2],['인삼탕',2]], why:'입맛 없음 → 表虛·太陰', pg:'p.191'},
-{w:s=>s.inq.appetite==='감기뒤', f:[['소시호탕',3]], why:'감기 뒤끝 입맛 없음 → 少陽', pg:'p.192'},
-{w:s=>s.inq.appetite==='숙식', f:[['대승기탕',2]], why:'숙식으로 위장 정체', pg:'p.193'},
-{w:s=>s.inq.digestion==='체기', f:[['인삼탕',2],['소함흉탕',2],['시함흉탕',1]], why:'체기·만성 소화장애 → 內虛 또는 흉부·심하 담음', pg:'p.201'},
+{w:s=>inc('appetite','항진'), f:[['백호가인삼탕',4]], why:'잘 먹음(善食) → 裏熱·陽明·石膏證', pg:'p.190'},
+{w:s=>inc('appetite','없음'), f:[['계지탕',2],['인삼탕',2]], why:'입맛 없음 → 表虛·太陰', pg:'p.191'},
+{w:s=>inc('appetite','감기뒤'), f:[['소시호탕',3]], why:'감기 뒤끝 입맛 없음 → 少陽', pg:'p.192'},
+{w:s=>inc('appetite','숙식'), f:[['대승기탕',2]], why:'숙식으로 위장 정체', pg:'p.193'},
+{w:s=>inc('digestion','체기'), f:[['인삼탕',2],['소함흉탕',2],['시함흉탕',1]], why:'체기·만성 소화장애 → 內虛 또는 흉부·심하 담음', pg:'p.201'},
 {w:s=>inc('mouth','구갈'), f:[['백호가인삼탕',3]], why:'입이 바짝 마르고 찬물을 찾음 → 裏熱·津液 고갈·陽明', pg:'p.203'},
 {w:s=>inc('mouth','구고'), f:[['소시호탕',4]], why:'입이 씀(口苦) → 少陽·간담열', pg:'p.204'},
 {w:s=>inc('mouth','구창'), f:[['감초사심탕',4]], why:'입안·음부 궤양 → 心熱·少陽', pg:'p.205'},
 {w:s=>inc('mouth','구건'), f:[['감초건강탕',2]], why:'입이 타고 물을 헌신짝처럼 마심 → 진액 고갈', pg:'p.206'},
-{w:s=>s.inq.urine==='황', f:[['백호가인삼탕',3]], why:'소변 색이 진하고 노랗다 → 裏熱·陽明', pg:'p.209'},
-{w:s=>s.inq.urine==='불리', f:[['오령산',3],['소시호탕',2]], why:'소변이 시원치 않고 자주 봄 → 수병·담음', pg:'p.210'},
-{w:s=>s.inq.urine==='야뇨', f:[['팔미지황환',3],['부자탕',2]], why:'야뇨·새는 소변 → 하초 허랭·少陰', pg:'p.212~213'},
-{w:s=>s.inq.stool==='변비' && (s.abd.elast||0)>=4, f:[['대승기탕',4],['대시호탕',2]], why:'변비 + 복탄력 4 이상 → 內實·陽明內熱', pg:'p.215'},
-{w:s=>s.inq.stool==='변비' && (s.abd.elast||3)<=3, f:[['대승기탕',1],['조위승기탕',2]], why:'변비이나 복탄력이 강하지 않음 → 공하 강도 조절', pg:'p.215'},
-{w:s=>s.inq.stool==='설사' && (s.abd.elast||0)>=4 && s.abd.chest==='reject', f:[['삼황사심탕',5]], why:'설사 + 복탄력 4 이상 + 흉부 거안 → 心熱·內實', pg:'p.216'},
-{w:s=>s.inq.stool==='설사' && (s.abd.elast||3)<=3 && s.abd.chest==='reject', f:[['반하사심탕',5]], why:'설사 + 복탄력 3 이하 + 흉부 거안 → 少陽(한열착잡)', pg:'p.216'},
-{w:s=>s.inq.stool==='설사' && (s.abd.elast||3)<=3 && s.abd.chest==='accept', f:[['인삼탕',5]], why:'설사 + 복탄력 3 이하 + 희안 → 內虛·복냉(太陰)', pg:'p.217'},
-{w:s=>s.inq.stool==='새벽설사', f:[['백호가인삼탕',3]], why:'대장이 건조해 새벽에 설사 → 裏熱', pg:'p.218'},
+{w:s=>inc('urine','황'), f:[['백호가인삼탕',3]], why:'소변 색이 진하고 노랗다 → 裏熱·陽明', pg:'p.209'},
+{w:s=>inc('urine','불리'), f:[['오령산',3],['소시호탕',2]], why:'소변이 시원치 않고 자주 봄 → 수병·담음', pg:'p.210'},
+{w:s=>inc('urine','야뇨'), f:[['팔미지황환',3],['부자탕',2]], why:'야뇨·새는 소변 → 하초 허랭·少陰', pg:'p.212~213'},
+{w:s=>inc('stool','변비') && (s.abd.elast||0)>=4, f:[['대승기탕',4],['대시호탕',2]], why:'변비 + 복탄력 4 이상 → 內實·陽明內熱', pg:'p.215'},
+{w:s=>inc('stool','변비') && (s.abd.elast||3)<=3, f:[['대승기탕',1],['조위승기탕',2]], why:'변비이나 복탄력이 강하지 않음 → 공하 강도 조절', pg:'p.215'},
+{w:s=>inc('stool','설사') && (s.abd.elast||0)>=4 && (S.abd.chestReject>0), f:[['삼황사심탕',5]], why:'설사 + 복탄력 4 이상 + 흉부 거안 → 心熱·內實', pg:'p.216'},
+{w:s=>inc('stool','설사') && (s.abd.elast||3)<=3 && (S.abd.chestReject>0), f:[['반하사심탕',5]], why:'설사 + 복탄력 3 이하 + 흉부 거안 → 少陽(한열착잡)', pg:'p.216'},
+{w:s=>inc('stool','설사') && (s.abd.elast||3)<=3 && (S.abd.chestAccept>0), f:[['인삼탕',5]], why:'설사 + 복탄력 3 이하 + 희안 → 內虛·복냉(太陰)', pg:'p.217'},
+{w:s=>inc('stool','새벽설사'), f:[['백호가인삼탕',3]], why:'대장이 건조해 새벽에 설사 → 裏熱', pg:'p.218'},
 {w:s=>inc('sleep','불면') && inc('chest','답답'), f:[['감초사심탕',3]], why:'불면 + 가슴 답답 → 心熱·흉부 실열', pg:'p.220'},
 {w:s=>inc('sleep','불면') && s.body.build>0 && s.body.build<=2, f:[['치자시탕',3]], why:'불면 + 마른 체형·허번 → 흉부 허번·진액 고갈', pg:'p.222'},
 {w:s=>inc('sleep','열감'), f:[['사역산',3]], why:'수면 중 열감·사정 장애 → 四逆散', pg:'p.221'},
-{w:s=>s.inq.sweat==='자한', f:[['백호가인삼탕',3]], why:'땀이 많음(다한) → 裏熱·陽明·石膏熱', pg:'p.225'},
-{w:s=>s.inq.sweat==='무한', f:[['마황탕',4]], why:'땀 없음(無汗) → 表實·太陽·麻黃證', pg:'p.226'},
-{w:s=>s.inq.sweat==='두한', f:[['인진호탕',3]], why:'머리에만 땀(頭汗出) → 濕熱 상승', pg:'p.228'},
-{w:s=>s.inq.sweat==='수족한', f:[['대승기탕',2],['백호가인삼탕',2]], why:'손발 땀(手足汗) → 裏熱·陽明', pg:'p.230'},
-{w:s=>s.inq.sweat==='음한', f:[['방기황기탕',3]], why:'음낭·사타구니 땀 → 하초 습열', pg:'p.232'},
-{w:s=>s.inq.edema==='전신', f:[['월비가출탕',4]], why:'전신 부종 + 소변 불리 + 무한 → 表實水毒·太陽', pg:'p.237'},
-{w:s=>s.inq.edema==='하체', f:[['방기황기탕',4]], why:'하체 부종 + 피부 물컹 → 表虛水毒·太陰', pg:'p.237'},
-{w:s=>s.inq.edema==='얼굴' || (s.inq.edema==='전신' && s.inq.urine==='불리'), f:[['오령산',3]], why:'부종 + 소변 불리 + 갈증 → 水毒', pg:'p.238'},
-{w:s=>s.inq.tan==='심하비', f:[['소함흉탕',4]], why:'가슴·명치 담음 + 심하비 + 거안 → 熱痰·少陽/陽明', pg:'p.239'},
-{w:s=>s.inq.tan==='한열상잡', f:[['반하사심탕',4]], why:'한열이 섞인 담음 → 半夏瀉心湯', pg:'p.239'},
-{w:s=>s.inq.tan==='물소리', f:[['영계출감탕',4],['이중탕',1]], why:'배에서 물소리 + 어지럼 + 복냉 → 寒痰·水飮·太陰', pg:'p.240'},
-{w:s=>s.tongue.color==='홍' && s.tongue.coat==='황' && s.tongue.dry==='건', f:[['백호가인삼탕',4],['조위승기탕',2]], why:'설홍 + 황태 + 건조 → 裏實熱·津液 고갈·陽明', pg:'p.241'},
-{w:s=>s.tongue.color==='담' && s.tongue.coat==='백', f:[['인삼탕',4],['부자탕',2]], why:'설담 + 백태 + 습 → 寒證·虛證·太陰', pg:'p.242'},
-{w:s=>s.tongue.coat==='후', f:[['대승기탕',3]], why:'태가 두껍고 지저분 → 宿食·濕熱', pg:'p.243'},
+{w:s=>inc('sweat','자한'), f:[['백호가인삼탕',3]], why:'땀이 많음(다한) → 裏熱·陽明·石膏熱', pg:'p.225'},
+{w:s=>inc('sweat','무한'), f:[['마황탕',4]], why:'땀 없음(無汗) → 表實·太陽·麻黃證', pg:'p.226'},
+{w:s=>inc('sweat','두한'), f:[['인진호탕',3]], why:'머리에만 땀(頭汗出) → 濕熱 상승', pg:'p.228'},
+{w:s=>inc('sweat','수족한'), f:[['대승기탕',2],['백호가인삼탕',2]], why:'손발 땀(手足汗) → 裏熱·陽明', pg:'p.230'},
+{w:s=>inc('sweat','음한'), f:[['방기황기탕',3]], why:'음낭·사타구니 땀 → 하초 습열', pg:'p.232'},
+{w:s=>inc('edema','전신'), f:[['월비가출탕',4]], why:'전신 부종 + 소변 불리 + 무한 → 表實水毒·太陽', pg:'p.237'},
+{w:s=>inc('edema','하체'), f:[['방기황기탕',4]], why:'하체 부종 + 피부 물컹 → 表虛水毒·太陰', pg:'p.237'},
+{w:s=>inc('edema','얼굴') || (inc('edema','전신') && inc('urine','불리')), f:[['오령산',3]], why:'부종 + 소변 불리 + 갈증 → 水毒', pg:'p.238'},
+{w:s=>inc('tan','심하비'), f:[['소함흉탕',4]], why:'가슴·명치 담음 + 심하비 + 거안 → 熱痰·少陽/陽明', pg:'p.239'},
+{w:s=>inc('tan','한열상잡'), f:[['반하사심탕',4]], why:'한열이 섞인 담음 → 半夏瀉心湯', pg:'p.239'},
+{w:s=>inc('tan','물소리'), f:[['영계출감탕',4],['이중탕',1]], why:'배에서 물소리 + 어지럼 + 복냉 → 寒痰·水飮·太陰', pg:'p.240'},
+{w:s=>has('tongue.color','홍') && has('tongue.coat','황') && has('tongue.dry','건'), f:[['백호가인삼탕',4],['조위승기탕',2]], why:'설홍 + 황태 + 건조 → 裏實熱·津液 고갈·陽明', pg:'p.241'},
+{w:s=>has('tongue.color','담') && has('tongue.coat','백'), f:[['인삼탕',4],['부자탕',2]], why:'설담 + 백태 + 습 → 寒證·虛證·太陰', pg:'p.242'},
+{w:s=>has('tongue.coat','후'), f:[['대승기탕',3]], why:'태가 두껍고 지저분 → 宿食·濕熱', pg:'p.243'},
 {w:s=>inc('pulse','부'), f:[['계지탕',3],['마황탕',2]], why:'부맥 → 表證·太陽', pg:'p.244'},
 {w:s=>inc('pulse','침'), f:[['사역탕',4],['진무탕',2]], why:'침맥 → 裏證·少陰·內寒', pg:'p.245'},
 {w:s=>inc('pulse','현'), f:[['소시호탕',4],['사역산',2]], why:'현맥 → 간담열·흉협고만·少陽', pg:'p.247'},
-{w:s=>s.inq.spirit==='강단', f:[['백호가인삼탕',3]], why:'눈빛 매섭고 말 또박또박 → 陽證·熱證', pg:'p.248'},
-{w:s=>s.inq.spirit==='허약', f:[['인삼탕',3],['사역탕',2]], why:'눈빛 풀리고 말이 느림 → 虛證·陰證', pg:'p.250'},
-{w:s=>s.inq.spirit==='섬어', f:[['대승기탕',3],['치자시탕',1]], why:'헛소리·안절부절 → 裏實熱·心熱', pg:'p.252~254'},
+{w:s=>inc('spirit','강단'), f:[['백호가인삼탕',3]], why:'눈빛 매섭고 말 또박또박 → 陽證·熱證', pg:'p.248'},
+{w:s=>inc('spirit','허약'), f:[['인삼탕',3],['사역탕',2]], why:'눈빛 풀리고 말이 느림 → 虛證·陰證', pg:'p.250'},
+{w:s=>inc('spirit','섬어'), f:[['대승기탕',3],['치자시탕',1]], why:'헛소리·안절부절 → 裏實熱·心熱', pg:'p.252~254'},
 {w:s=>inc('coldheat','악풍한'), f:[['계지탕',4]], why:'악풍 + 땀 → 表虛·太陽', pg:'p.256'},
 {w:s=>inc('coldheat','악한무한'), f:[['마황탕',4]], why:'악한 + 무한 → 表實·太陽', pg:'p.257'},
 {w:s=>inc('coldheat','왕래한열'), f:[['소시호탕',5]], why:'왕래한열 → 少陽·간담열', pg:'p.259'},
@@ -723,7 +887,7 @@ const R = [
 {w:s=>inc('head','두통체기'), f:[['소시호탕',3],['시함흉탕',2],['오수유탕',1]], why:'두통 + 체기·구토 + 흉협고만 → 간열 상충·少陽', pg:'p.269'},
 {w:s=>inc('head','현훈') || inc('head','두중'), f:[['영계출감탕',4],['오령산',2]], why:'머리 무거움 + 어지럼 → 水飮·痰飮·水毒', pg:'p.270'},
 {w:s=>inc('throat','인후통'), f:[['소시호탕가길경석고',3]], why:'인후통 + 염증·부종 → 熱證·表裏熱', pg:'p.271'},
-{w:s=>inc('throat','매핵기') || s.inq.tan==='매핵기', f:[['반하후박탕',4]], why:'매핵기 → 氣鬱 + 痰飮', pg:'p.272'},
+{w:s=>inc('throat','매핵기') || inc('tan','매핵기'), f:[['반하후박탕',4]], why:'매핵기 → 氣鬱 + 痰飮', pg:'p.272'},
 {w:s=>inc('een','맑은콧물'), f:[['소청룡탕',4],['계지가황기탕',2]], why:'맑은 콧물 + 재채기 → 水飮·表實/表虛', pg:'p.274'},
 {w:s=>inc('een','탁한콧물'), f:[['소시호탕',3],['갈근황금황련탕',3]], why:'탁한 콧물·비염 + 흉협고만 → 少陽·간폐열', pg:'p.275'},
 {w:s=>inc('een','이명충혈'), f:[['삼황사심탕',3],['황련아교탕',2]], why:'이명·눈 충혈 + 흉부 답답 → 상초 실열·심열', pg:'p.277'},
@@ -731,17 +895,16 @@ const R = [
 {w:s=>inc('chest','희안'), f:[['인삼탕',3],['사역탕',2],['영계출감탕',2]], why:'흉부 희안 → 心虛·虛寒·太陰', pg:'p.280'},
 {w:s=>inc('chest','동계'), f:[['영계출감탕',3]], why:'가슴 두근거림 → 心水·水毒, 苓桂劑', pg:'p.281'},
 {w:s=>inc('chest','흉비'), f:[['괄루해백반하탕',3]], why:'흉비 통증 → 瓜蔞薤白半夏湯', pg:'p.281'},
-{w:s=>s.inq.abpain==='거안' && (s.abd.elast||0)>=4, f:[['대승기탕',3],['도핵승기탕',2]], why:'복통 + 거안 + 복탄력 4 이상 → 內實·瘀血·宿食', pg:'p.282'},
-{w:s=>s.inq.abpain==='희안' && (s.abd.elast||3)<=2, f:[['인삼탕',4],['소건중탕',2]], why:'복통 + 희안 + 복탄력 2 이하 → 內虛·寒證·太陰', pg:'p.282'},
-{w:s=>s.inq.abpain==='복직근', f:[['소건중탕',3],['당귀작약산',2],['사역산',2]], why:'복직근을 쥐어짜는 통증 → 芍藥證', pg:'p.282'},
+{w:s=>inc('abpain','거안') && (s.abd.elast||0)>=4, f:[['대승기탕',3],['도핵승기탕',2]], why:'복통 + 거안 + 복탄력 4 이상 → 內實·瘀血·宿食', pg:'p.282'},
+{w:s=>inc('abpain','희안') && (s.abd.elast||3)<=2, f:[['인삼탕',4],['소건중탕',2]], why:'복통 + 희안 + 복탄력 2 이하 → 內虛·寒證·太陰', pg:'p.282'},
+{w:s=>inc('abpain','복직근'), f:[['소건중탕',3],['당귀작약산',2],['사역산',2]], why:'복직근을 쥐어짜는 통증 → 芍藥證', pg:'p.282'},
 {w:s=>inc('muscle','목어깨'), f:[['갈근탕',4]], why:'목·어깨 굳음 + 무한 → 表實·太陽·葛根證', pg:'p.283'},
 {w:s=>inc('muscle','흉협고만'), f:[['소시호탕',3],['시함흉탕',2],['사역산',2]], why:'근육 굳음 + 흉협고만 → 간주근·간열·少陽', pg:'p.283'},
 {w:s=>inc('muscle','관절'), f:[['백호가인삼탕',3],['백호가계지탕',2]], why:'관절·뼈가 쑤시고 건조 → 裏熱로 진액이 마름', pg:'p.284'},
-{w:s=>s.inq.mens==='어혈', f:[['계지복령환',4],['도핵승기탕',2],['대황목단피탕',2]], why:'생리통 + 덩어리혈 + 소복 압통 → 瘀血', pg:'p.285~286'},
-{w:s=>s.inq.mens==='흉협', f:[['소시호탕',3],['사역산',3]], why:'생리통 + 흉협고만 + 복직근 긴장 → 간열·혈열·少陽', pg:'p.287'},
-{w:s=>s.inq.mens==='양적음', f:[['당귀작약산',3],['온경탕',2],['백호가인삼탕',1]], why:'생리량 적음 + 마름·건조 → 진액 고갈·혈허', pg:'p.290~292'}
+{w:s=>inc('mens','어혈'), f:[['계지복령환',4],['도핵승기탕',2],['대황목단피탕',2]], why:'생리통 + 덩어리혈 + 소복 압통 → 瘀血', pg:'p.285~286'},
+{w:s=>inc('mens','흉협'), f:[['소시호탕',3],['사역산',3]], why:'생리통 + 흉협고만 + 복직근 긴장 → 간열·혈열·少陽', pg:'p.287'},
+{w:s=>inc('mens','양적음'), f:[['당귀작약산',3],['온경탕',2],['백호가인삼탕',1]], why:'생리량 적음 + 마름·건조 → 진액 고갈·혈허', pg:'p.290~292'}
 ];
-
 /* 문진 그룹 */
 const G = [
  {t:'식욕·소화',keys:['appetite','digestion'],open:true},
@@ -751,27 +914,36 @@ const G = [
  {t:'가슴·배·근육·월경',keys:['chest','abpain','muscle','mens'],open:false}
 ];
 const GNAME = {appetite:'식욕',digestion:'소화',mouth:'입',urine:'소변',stool:'대변',sleep:'수면',sweat:'땀',edema:'부종',tan:'담음',spirit:'신(神)',coldheat:'한열',head:'머리',throat:'인후',een:'눈·코·귀',chest:'가슴',abpain:'복통',muscle:'근육',mens:'월경'};
+const PULSEL = [{v:'부',l:'부(浮)'},{v:'침',l:'침(沈)'},{v:'지',l:'지(遲)'},{v:'삭',l:'삭(數)'},{v:'현',l:'현(弦)'},
+ {v:'긴',l:'긴(緊)'},{v:'활',l:'활(滑)'},{v:'삽',l:'삽(澀)'},{v:'홍',l:'홍(洪)'},{v:'대',l:'대(大)'},
+ {v:'세',l:'세(細)'},{v:'완',l:'완(緩)'},{v:'미',l:'미(微)'},{v:'약',l:'약(弱)'},{v:'결',l:'결(結·代)'}];
 
 /* ═══════════════════════════════════════════════════════════════
-   1. 상태
+   1. 상태 — 모든 문진은 배열(다중선택), 복진 소견은 0~5 강도
    ═══════════════════════════════════════════════════════════════ */
+const NORMAL = new Set(['정상','양호','없음','해당없음','보통']);
 const fresh = () => ({
   meta:{mode:'doctor', photo:null},
-  pt:{name:'',sex:'',age:'',ht:'',wt:'',bp:'',meds:'',chief:'',onset:'',aggr:'',relief:''},
-  body:{build:null,skinColor:'',skinHeat:'',skinThick:null,skinTurgor:null},
-  abd:{elast:null,chest:'',chestLevel:null,jeongjae:null,jungwan:null,subun:null,
-       leftUmb:null,rectus:null,hypoch:'',hypochLevel:null,bitGyeon:false,
-       lowerNotIn:null,lowerMass:'',lowerPain:null},
-  tongue:{color:'',coat:'',dry:''},
+  pt:{name:'',sex:'',birth:'',age:'',phone:'',addr:'',email:'',ht:'',wt:'',bp:'',meds:'',chief:'',onset:'',aggr:'',relief:''},
+  sx:[],
+  body:{build:null,skinColor:[],skinHeat:[],skinThick:null,skinTurgor:null},
+  abd:{elast:null,chestReject:null,chestAccept:null,
+       jeongjae:null,simhaYe:null,jungwan:null,bitGyeon:null,subun:null,rectus:null,waterSound:null,
+       leftUmb:null,gyeryeong:null,lowerNotIn:null,lowerGugeup:null,lowerHyeongeup:null,
+       lowerJongbi:null,lowerGeupgyeol:null,lowerPain:null,lowerBlood:null,
+       hypoHeat:null,hypoDef:null,hypoHeui:null,kiDong:null,custom:[]},
+  tongue:{color:[],coat:[],dry:[]},
   pulse:[],
-  inq:{appetite:'',digestion:'',mouth:[],urine:'',stool:'',sleep:[],sweat:'',edema:'',tan:'',
-       spirit:'',coldheat:[],head:[],throat:[],een:[],chest:[],abpain:'',muscle:[],mens:''}
+  inq:{appetite:[],digestion:[],mouth:[],urine:[],stool:[],sleep:[],sweat:[],edema:[],tan:[],
+       spirit:[],coldheat:[],head:[],throat:[],een:[],chest:[],abpain:[],muscle:[],mens:[]}
 });
 let S = fresh();
-const PATHNUM = new Set(['body.build','body.skinThick','body.skinTurgor','abd.elast','abd.chestLevel',
-  'abd.jeongjae','abd.jungwan','abd.subun','abd.leftUmb','abd.rectus','abd.lowerPain']);
+const PATHNUM = new Set(['body.build','body.skinThick','body.skinTurgor','abd.elast','abd.chestReject','abd.chestAccept']
+  .concat(ABD.map(x=>'abd.'+x.k)));
 const get = p => p.split('.').reduce((o,k)=>o?o[k]:undefined, S);
-const inc = (k,v) => (S.inq[k]||[]).includes(v);
+const inc = (k,v) => { const a = S.inq[k]; return Array.isArray(a) ? a.includes(v) : a===v; };
+const has = (p,v) => { const x = get(p); return Array.isArray(x) ? x.includes(v) : x===v; };
+const num = (p,d) => { const v = get(p); return (v===null||v===undefined||v==='') ? d : Number(v); };
 
 function setVal(path, raw, multi){
   const parts = path.split('.'), key = parts[parts.length-1];
@@ -779,7 +951,13 @@ function setVal(path, raw, multi){
   if(multi){
     const arr = Array.isArray(o[key]) ? o[key].slice() : [];
     const i = arr.indexOf(raw);
-    if(i>=0) arr.splice(i,1); else arr.push(raw);
+    if(i>=0){ arr.splice(i,1); }
+    else {
+      let base = arr.filter(x=>!NORMAL.has(x));
+      if(NORMAL.has(raw)) base = [];
+      base.push(raw);
+      arr.length = 0; base.forEach(x=>arr.push(x));
+    }
     o[key] = arr;
   } else if(PATHNUM.has(path)){
     const n = Number(raw);
@@ -790,478 +968,178 @@ function setVal(path, raw, multi){
   renderResults();
 }
 
+/* 만 나이 · BMI */
+function ageFromBirth(b){
+  if(!b) return '';
+  const d = new Date(b + 'T00:00:00');
+  if(isNaN(d.getTime())) return '';
+  const n = new Date(); let a = n.getFullYear() - d.getFullYear();
+  const m = n.getMonth() - d.getMonth();
+  if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+  return (a >= 0 && a < 130) ? a : '';
+}
+function syncAge(){
+  const a = ageFromBirth(S.pt.birth);
+  S.pt.age = (a===''?'':String(a));
+  const el = document.getElementById('age-out');
+  if(el) el.textContent = (a===''?'만 나이 자동':'만 '+a+'세');
+  const el2 = document.getElementById('age-out-p');
+  if(el2) el2.textContent = (a===''?'만 나이 자동':'만 '+a+'세');
+}
+function bmiOf(ht, wt){
+  const h = parseFloat(String(ht||'').replace(/[^0-9.]/g,''));
+  const w = parseFloat(String(wt||'').replace(/[^0-9.]/g,''));
+  if(!h || !w || h < 80 || h > 230 || w < 10 || w > 300) return null;
+  return Math.round(w / Math.pow(h/100, 2) * 10) / 10;
+}
+function bmiLabel(b){
+  if(b===null) return '';
+  if(b < 18.5) return '저체중';
+  if(b < 23) return '정상';
+  if(b < 25) return '비만 전단계';
+  if(b < 30) return '1단계 비만';
+  return '2단계 비만';
+}
+function syncBmi(){
+  const b = bmiOf(S.pt.ht, S.pt.wt);
+  ['bmi-out','bmi-out-p'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.textContent = b===null ? 'BMI 자동' : 'BMI '+b.toFixed(1)+' · '+bmiLabel(b);
+  });
+  const note = document.getElementById('bmi-note');
+  if(note) note.textContent = b===null ? '키(cm)와 몸무게(kg)를 넣으면 자동 계산합니다.' :
+    '키 '+S.pt.ht+'cm · '+S.pt.wt+'kg — 체질량지수 '+b.toFixed(1)+' ('+bmiLabel(b)+').';
+}
+
+/* 주증상 */
+function sxHas(k){ return S.sx.some(x=>x.k===k); }
+function sxToggle(k, pain){
+  if(sxHas(k)) S.sx = S.sx.filter(x=>x.k!==k);
+  else S.sx.push({k:k, pain: pain?1:0, vas: null});
+}
+function sxMove(k, dir){
+  const i = S.sx.findIndex(x=>x.k===k); if(i<0) return;
+  if(dir==='up' && i>0){ const a=S.sx.splice(i,1)[0]; S.sx.splice(i-1,0,a); }
+  if(dir==='down' && i<S.sx.length-1){ const a=S.sx.splice(i,1)[0]; S.sx.splice(i+1,0,a); }
+  if(dir==='top' && i>0){ const a=S.sx.splice(i,1)[0]; S.sx.unshift(a); }
+  if(dir==='del'){ S.sx.splice(i,1); }
+  if(dir==='pain'){ S.sx[i].pain = S.sx[i].pain?0:1; if(!S.sx[i].pain) S.sx[i].vas = null; }
+}
+const RANKW = [1, 0.7, 0.5, 0.35];
+const rankW = i => RANKW[Math.min(i,3)];
+
 /* ═══════════════════════════════════════════════════════════════
    2. 판정 엔진
    ═══════════════════════════════════════════════════════════════ */
 function assess(){
   const s = S;
+  const r1 = v => Math.round(v*10)/10;
   const acc = {}, fired = [];
+  const add = (n,p,why) => { if(!F[n]) return; const a = acc[n] || (acc[n]={p:0,why:[]}); a.p += p; if(why) a.why.push(why); };
+
+  /* 복진·문진 규칙 */
   R.forEach(r=>{ let on=false; try{on=!!r.w(S);}catch(e){} if(!on) return; fired.push(r);
-    r.f.forEach(([n,p])=>{ const a = acc[n] || (acc[n]={p:0,why:[]}); a.p += p; a.why.push({t:r.why,pg:r.pg}); });
+    r.f.forEach(([n,p])=> add(n,p,{t:r.why,pg:r.pg}));
   });
+
+  /* 주증상 — 순위 가중 · 통증 강도 */
+  S.sx.forEach((it,i)=>{
+    const m = SXMAP[it.k]; if(!m) return;
+    const w = rankW(i);
+    const tag = (i+1)+'순위 주증상 · '+it.k+(it.pain&&it.vas!=null?' (통증 VAS '+it.vas+'/10)':'');
+    m.f.forEach(([n,p])=>add(n, r1(p*w), {t:'['+tag+'] '+m.why, pg:m.pg}));
+    if(it.pain && it.vas!==null && it.vas>=7 && m.f.length) add(m.f[0][0], r1(0.5*w), {t:'['+tag+'] 강한 통증 — 같은 방향 처방에 무게를 더함', pg:m.pg});
+  });
+
   const list = Object.keys(acc).filter(n=>F[n]).map(n=>{
     const a = acc[n], f = F[n], e = S.abd.elast;
     let eff = a.p, fit = null;
-    if(f.band && e){ const [lo,hi]=f.band; const inB = e>=lo && e<=hi;
+    if(f.band && e){ const lo=f.band[0], hi=f.band[1]; const inB = e>=lo && e<=hi;
       fit = inB ? 'in' : 'out'; eff += inB ? 1.5 : -2; }
-    return {n, f, p:a.p, eff, fit, why:a.why.slice(0,4)};
+    return {n:n, f:f, p:r1(a.p), eff:r1(eff), fit:fit, why:a.why.slice(0,5)};
   }).sort((x,y)=>y.eff-x.eff);
 
   const yuk = {태양:0,양명:0,소양:0,태음:0,소음:0,궐음:0};
   list.forEach(x=>{ if(x.f.yuk) yuk[x.f.yuk] += Math.max(0,x.eff); });
-  /* 증후 신호 보정 */
-  const sig = (k,v)=>yuk[k]+=v;
+  const sig = (k,v)=>{ yuk[k]+=v; };
   if(inc('coldheat','악한무한')||inc('coldheat','악풍한')) sig('태양',4);
-  if(s.inq.stool==='변비'||inc('coldheat','대갈발열')||inc('mouth','구갈')||s.inq.urine==='황') sig('양명',3);
-  if(inc('coldheat','왕래한열')||s.abd.hypoch==='heat'||inc('mouth','구고')) sig('소양',4);
-  if(s.abd.chest==='accept'||s.inq.stool==='설사'&&(s.abd.elast||3)<=2) sig('태음',3);
-  if(inc('pulse','침')||s.inq.urine==='야뇨'||inc('coldheat','수족냉')) sig('소음',4);
-  if(s.abd.hypoch==='cold'||s.inq.mens==='어혈'||s.abd.leftUmb>0) sig('궐음',3);
+  if(inc('stool','변비')||inc('coldheat','대갈발열')||inc('mouth','구갈')||inc('urine','황')) sig('양명',3);
+  if(inc('coldheat','왕래한열')||num('abd.hypoHeat',0)>0||inc('mouth','구고')) sig('소양',4);
+  if(num('abd.chestAccept',0)>0||(inc('stool','설사')&&num('abd.elast',3)<=2)) sig('태음',3);
+  if(inc('pulse','침')||inc('urine','야뇨')||inc('coldheat','수족냉')) sig('소음',4);
+  if(num('abd.hypoHeui',0)>0||inc('mens','어혈')||num('abd.leftUmb',0)>0) sig('궐음',3);
+
   const yukSorted = Object.entries(yuk).sort((a,b)=>b[1]-a[1]);
   const yMax = yukSorted[0][1] || 1;
 
   /* 한열 */
   let heat=0, cold=0;
-  if(s.abd.chest==='reject') heat+=3; if(s.abd.chest==='accept') cold+=3;
-  if((s.abd.elast||0)>=4) heat+=2;     if((s.abd.elast||3)<=2) cold+=2;
-  if(s.tongue.color==='홍') heat+=2;   if(s.tongue.color==='담') cold+=2;
-  if(s.tongue.coat==='황') heat+=2;    if(s.tongue.coat==='백') cold+=1.5;
+  const chR = num('abd.chestReject',0), chA = num('abd.chestAccept',0), el = num('abd.elast',0);
+  if(chR>0) heat+=3; if(chA>0) cold+=3;
+  if(el>=4) heat+=2; if(el>0 && el<=2) cold+=2;
+  if(has('tongue.color','홍')) heat+=2; if(has('tongue.color','담')) cold+=2;
+  if(has('tongue.coat','황')) heat+=2; if(has('tongue.coat','백')) cold+=1.5;
   if(inc('mouth','구갈')||inc('mouth','구건')) heat+=2;
   if(inc('coldheat','대갈발열')) heat+=3;
-  if(s.inq.sweat==='자한') heat+=1.5;
+  if(inc('sweat','자한')) heat+=1.5;
   if(inc('coldheat','수족냉')) cold+=2.5;
-  if(inc('pulse','침')) cold+=1;  if(inc('pulse','삭')) heat+=1;
-  if(s.inq.stool==='설사') cold+=1; if(s.inq.stool==='변비') heat+=1;
-  if(s.inq.urine==='황') heat+=1.5; if(s.inq.urine==='야뇨') cold+=1;
+  if(inc('pulse','침')) cold+=1; if(inc('pulse','삭')) heat+=1;
+  if(inc('stool','설사')) cold+=1; if(inc('stool','변비')) heat+=1;
+  if(inc('urine','황')) heat+=1.5; if(inc('urine','야뇨')) cold+=1;
 
   /* 허실 */
-  const e = s.abd.elast, ch = s.abd.chest;
   let heosil='판단 보류', heosilWhy='복탄력과 흉부 압진을 넣어 주십시오';
-  if(e && ch==='reject'){ if(e>=4){heosil='實熱(裏實)';heosilWhy='거안 + 복탄력 강 → 大黃 계열 실열약';}
-    else if(e<=2){heosil='虛熱(裏虛熱)';heosilWhy='거안 + 복탄력 약 → 黃連 계열 허열약';}
+  if(el && chR>0 && chA===0){ if(el>=4){heosil='實熱(裏實)';heosilWhy='거안 + 복탄력 강 → 大黃 계열 실열약';}
+    else if(el<=2){heosil='虛熱(裏虛熱)';heosilWhy='거안 + 복탄력 약 → 黃連 계열 허열약';}
     else {heosil='虛實相半';heosilWhy='거안 + 복탄력 3 → 강도를 낮춰 시작';} }
-  else if(e && ch==='accept'){ heosil = e<=2 ? '虛寒(裏虛寒)' : '虛實混在'; heosilWhy='희안 → 心虛, 음증약 쪽'; }
-  else if(e){ heosil = e<=2 ? '虛(內虛)' : e>=4 ? '實(內實)' : '경계(복탄력 3)'; heosilWhy='복탄력만으로 본 대략'; }
+  else if(el && chA>0 && chR===0){ heosil = el<=2 ? '虛寒(裏虛寒)' : '虛實混在'; heosilWhy='희안 → 心虛, 음증약 쪽'; }
+  else if(el && chR>0 && chA>0){ heosil='虛實混在(거안·희안 함께)'; heosilWhy='부위에 따라 다름 — 부위별 압통을 나눠 확인'; }
+  else if(el){ heosil = el<=2 ? '虛(內虛)' : el>=4 ? '實(內實)' : '경계(복탄력 3)'; heosilWhy='복탄력만으로 본 대략'; }
 
   /* 기혈수 */
   const flags = {수독:0, 어혈:0, 담음:0, 기울:0};
-  if(s.abd.subun>0) flags.수독+=3+ (s.abd.subun>2?2:0);
-  if(s.inq.edema && s.inq.edema!=='없음') flags.수독+=3;
-  if(s.inq.urine==='불리') flags.수독+=2;
-  if(inc('head','현훈')) flags.수독+=2;
-  if(s.inq.tan==='물소리') flags.수독+=2;
-  if(s.abd.jeongjae>0 && ch==='reject') flags.담음+=3;
-  if(s.inq.tan==='심하비') flags.담음+=3;
-  if(inc('throat','매핵기')||s.inq.tan==='매핵기') flags.담음+=2, flags.기울+=3;
-  if(inc('chest','흉비')||inc('chest','동계')) flags.담음+=2;
-  if(s.abd.leftUmb>0) flags.어혈+=4;
-  if(s.abd.lowerMass==='jeongbi'||s.abd.lowerMass==='geupgyeol') flags.어혈+=3;
-  if(s.abd.lowerPain>0) flags.어혈+=2;
-  if(s.inq.mens==='어혈') flags.어혈+=3;
-  if(s.body.skinColor==='흑') flags.어혈+=1;
-  if(s.abd.hypoch==='heat') flags.기울+=3;
-  if(inc('coldheat','왕래한열')) flags.기울+=2;
-  if(s.inq.spirit==='불안'||s.inq.spirit==='우울') flags.기울+=2;
+  if(num('abd.subun',0)>0) flags.수독 += 3 + (num('abd.subun',0)>2?2:0);
+  if(num('abd.waterSound',0)>0) flags.수독 += 2;
+  if(S.inq.edema.length) flags.수독 += 3;
+  if(inc('urine','불리')) flags.수독 += 2;
+  if(inc('head','현훈')) flags.수독 += 2;
+  if(num('abd.simhaYe',0)>0 && chR>0) flags.담음 += 3;
+  if(inc('tan','심하비')) flags.담음 += 3;
+  if(inc('throat','매핵기')||inc('tan','매핵기')) { flags.담음 += 2; flags.기울 += 3; }
+  if(inc('chest','흉비')||inc('chest','동계')) flags.담음 += 2;
+  if(num('abd.leftUmb',0)>0) flags.어혈 += 4;
+  if(num('abd.lowerJongbi',0)>0||num('abd.lowerGeupgyeol',0)>0) flags.어혈 += 3;
+  if(num('abd.lowerBlood',0)>0) flags.어혈 += 2;
+  if(num('abd.lowerPain',0)>0) flags.어혈 += 2;
+  if(inc('mens','어혈')) flags.어혈 += 3;
+  if(has('body.skinColor','흑')) flags.어혈 += 1;
+  if(num('abd.hypoHeat',0)>0) flags.기울 += 3;
+  if(inc('coldheat','왕래한열')) flags.기울 += 2;
+  if(inc('spirit','불안')||inc('spirit','우울')) flags.기울 += 2;
 
-  return {any:fired.length>0, fired, list, yuk, yukSorted, yMax, heat, cold,
-          heosil, heosilWhy, flags, top:list[0]};
+  const maxVas = S.sx.reduce((m,x)=> (x.pain && x.vas!==null && x.vas>m) ? x.vas : m, 0);
+
+  return {any:fired.length>0 || S.sx.length>0, fired:fired, list:list, yuk:yuk, yukSorted:yukSorted,
+          yMax:yMax, heat:heat, cold:cold, heosil:heosil, heosilWhy:heosilWhy, flags:flags,
+          maxVas:maxVas, top:list[0]};
 }
 
 /* 복진 소견 문장 */
 function abdFindings(){
-  const a=S.abd, o=[];
+  const a = S.abd, o = [];
   if(a.elast) o.push({k:'복탄력 '+a.elast, v: a.elast<=2?'內虛 · 乾薑 계열(복냉·허증)':a.elast>=4?'內實 · 大黃 계열(실증·열증)':'기준값 3 · 허실 반반, 강도 조절'});
-  if(a.chest==='reject') o.push({k:'흉부 거안',v:'心熱 · 黃連·瀉心湯類 (거안이 전체의 90%)'});
-  if(a.chest==='accept') o.push({k:'흉부 희안',v:'心虛 · 苓桂시리즈·人蔘湯·四逆湯類 (10%)'});
-  if(a.jeongjae>0) o.push({k:'정재심하',v:'간열 + 심열이 만난 자리 · 담음 결흉(小陷胸湯) 쪽'});
-  if(a.jungwan>0) o.push({k:'중완',v:'심장열이 몰린 자리 · 心下痞(黃連劑)'});
-  if(a.subun>0) o.push({k:'수분혈',v:'水毒 · 五苓散·防己劑(열증이면 豬苓湯)'});
-  if(a.leftUmb>0) o.push({k:'배꼽 좌측',v:'연필 심처럼 잡히는 경결 · 桂枝茯苓丸(瘀血)'});
-  if(a.hypoch==='heat') o.push({k:'흉협',v:'胸脇苦滿 · 肝熱, 柴胡'});
-  if(a.hypoch==='deficiency') o.push({k:'흉협',v:'肝虛 · 손이 쑥 들어감, 當歸'});
-  if(a.hypoch==='cold') o.push({k:'흉협',v:'肝寒 · 누르면 머리가 맑아짐, 吳茱萸'});
-  if(a.rectus>0) o.push({k:'복직근',v:'구련·압통 · 芍藥證(작약감초탕·소건중탕)'});
-  if(a.bitGyeon) o.push({k:'심하비견',v:'늑골 아래 뻑뻑한 압통 · 木防己湯·大陷胸湯類'});
-  if(a.lowerMass==='jeongbi') o.push({k:'소복',v:'종비(우하복부) · 大黃牡丹皮湯'});
-  if(a.lowerMass==='geupgyeol') o.push({k:'소복',v:'급결 · 桃核承氣湯'});
-  if(a.lowerMass==='hyeongeup') o.push({k:'소복',v:'현급 · 桂枝加龍骨牡蠣湯'});
-  if(a.lowerNotIn>0) o.push({k:'소복',v:'불인 · 六味·八味地黄丸'});
-  if(a.lowerPain>0) o.push({k:'소복',v:'압통 · 어혈, 복탄력 3 이상 抵當丸 / 3 이하 大黃蟅蟲丸'});
+  if(a.chestReject>0) o.push({k:'흉부 거안 '+a.chestReject, v:'心熱 · 黃連·瀉心湯類 (거안이 전체의 90%)'});
+  if(a.chestAccept>0) o.push({k:'흉부 희안 '+a.chestAccept, v:'心虛 · 苓桂시리즈·人蔘湯·四逆湯類 (10%)'});
+  ABD.forEach(function(it){ if(num('abd.'+it.k,0)>0) o.push({k:it.nm+' '+num('abd.'+it.k,0), v:it.say}); });
+  (a.custom||[]).forEach(function(c){ o.push({k:'추가 · '+c.nm+(c.sev!==''&&c.sev!==null?' '+c.sev:''),
+    v:(c.loc?c.loc+' · ':'')+'원장님이 직접 추가한 소견 — 처방 대응은 원장님 판단'}); });
   return o;
 }
 
 function gradeOf(x){
   const s = x.eff;
-  const g = s>=8 ? '主之' : s>=4.5 ? '與' : '宜';
-  return g;
+  return s>=8 ? '主之' : s>=4.5 ? '與' : '宜';
 }
-
-/* ═══════════════════════════════════════════════════════════════
-   3. 화면 그리기
-   ═══════════════════════════════════════════════════════════════ */
-const $ = id => document.getElementById(id);
-const L = () => S.meta.mode==='patient' ? 'p' : 'd';
-
-function chips(path, key, cls){
-  const o = OPT[key], cur = get(path);
-  const multi = Array.isArray(cur);
-  return '<div class="chips">' + o.items.map(it=>{
-    const on = multi ? cur.includes(it.v) : cur===it.v;
-    return '<button type="button" class="chip '+(cls||'')+'" data-k="'+path+'" data-v="'+it.v+'" data-m="'+(multi?1:0)+'" aria-pressed="'+on+'">'+(it[L()]||it.d)+'</button>';
-  }).join('') + '</div>';
-}
-function chipsRaw(path, items, multi){
-  const cur = get(path);
-  return '<div class="chips">' + items.map(it=>{
-    const on = multi ? (cur||[]).includes(it.v) : cur===it.v;
-    return '<button type="button" class="chip" data-k="'+path+'" data-v="'+it.v+'" data-m="'+(multi?1:0)+'" aria-pressed="'+on+'">'+it.l+'</button>';
-  }).join('') + '</div>';
-}
-function seg(path, max, labels, cls, from){
-  const cur = get(path), f = from===undefined?1:from;
-  let h = '<div class="seg '+(cls||'')+'">';
-  for(let i=f;i<=max;i++) h += '<button type="button" data-k="'+path+'" data-v="'+i+'" aria-pressed="'+(cur===i)+'">'+i+(labels?'<span>'+(labels[i-(from===0?0:1)]||'')+'</span>':'')+'</button>';
-  return h + '</div>';
-}
-function scaleHint(a,b){ return '<div class="scale-hint"><span>'+a+'</span><span>'+b+'</span></div>'; }
-
-/* 복부 지도 */
-function abdMap(){
-  const pts = [
-    {k:'abd.jeongjae', x:100, y:74,  l:'정재심하', side:'r'},
-    {k:'abd.jungwan',  x:100, y:90,  l:'중완',     side:'r'},
-    {k:'abd.rectus',   x:76,  y:100, l:'',         side:'n'},
-    {k:'abd.subun',    x:100, y:109, l:'수분',     side:'r'},
-    {k:'abd.leftUmb',  x:79,  y:127, l:'좌측',     side:'l'},
-    {k:'abd.lowerPain',x:100, y:150, l:'소복',     side:'r'}
-  ];
-  const col  = v => !v ? '#ffffff' : v<=2 ? '#c3e2d7' : v<=3 ? '#7fc4ae' : '#2b8a6f';
-  const ring = v => !v ? '#b9cac2' : '#14624f';
-  const hyp  = S.abd.hypoch;
-  let h = '<figure class="abd-map"><svg viewBox="0 0 200 206" role="img" aria-label="복부 압통 지도 — 점을 누르면 강도가 바뀝니다">';
-  /* 몸통 */
-  h += '<path d="M66 12 C56 20 54 34 54 52 C54 74 52 100 55 124 C58 150 63 172 67 188 L133 188 C137 172 142 150 145 124 C148 100 146 74 146 52 C146 34 144 20 134 12 Z" fill="#fff" stroke="#cfdcd5" stroke-width="1.2"/>';
-  h += '<path d="M66 12 C80 18 120 18 134 12" fill="none" stroke="#e3ebe6" stroke-width="1"/>';
-  /* 늑골 */
-  h += '<path d="M55 80 C44 82 40 88 38 96" fill="none" stroke="#cfdcd5" stroke-width="1.2" stroke-linecap="round"/>';
-  h += '<path d="M145 80 C156 82 160 88 162 96" fill="none" stroke="#cfdcd5" stroke-width="1.2" stroke-linecap="round"/>';
-  /* 흉협 표시 */
-  h += '<g opacity="'+(hyp?1:.45)+'"><circle cx="47" cy="84" r="4" fill="'+(hyp?'#f0d9a8':'#fff')+'" stroke="#d9c79a" stroke-width="1.1"/>'+
-       '<circle cx="153" cy="84" r="4" fill="'+(hyp?'#f0d9a8':'#fff')+'" stroke="#d9c79a" stroke-width="1.1"/>'+
-       '</g>';
-  /* 배꼽 */
-  h += '<circle cx="100" cy="124" r="2.8" fill="none" stroke="#c3d1ca" stroke-width="1.2"/>';
-  h += '<text x="100" y="200" text-anchor="middle" style="font-size:8px;fill:#9aaba2">배꼽 아래 = 小腹</text>';
-  pts.forEach(p=>{
-    const v = get(p.k)||0;
-    h += '<g class="hit" data-cyc="'+p.k+'" role="button" tabindex="0" aria-label="'+p.l+' 강도 '+(v||'없음')+'">';
-    h += '<circle cx="'+p.x+'" cy="'+p.y+'" r="14" fill="transparent"/>';
-    h += '<circle class="dot" cx="'+p.x+'" cy="'+p.y+'" r="7" fill="'+col(v)+'" stroke="'+ring(v)+'" stroke-width="1.3"/>';
-    if(v) h += '<text x="'+p.x+'" y="'+(p.y+2.8)+'" text-anchor="middle" style="fill:'+(v>=4?'#fff':'#134a3c')+'">'+v+'</text>';
-    if(p.l){
-      const tx = p.side==='r' ? p.x+11 : p.x-11;
-      const an = p.side==='r' ? 'start' : 'end';
-      h += '<text x="'+tx+'" y="'+(p.y+3)+'" text-anchor="'+an+'">'+p.l+'</text>';
-    }
-    h += '</g>';
-  });
-  h += '</svg><figcaption>점을 누르면 압통 강도가 0→5로</figcaption></figure>';
-  return h;
-}
-
-/* ── 원장님 진료 패널 ── */
-function panelDoctor(){
-  const basic =
-  '<div class="card"><h2><span class="no">1</span>기본·주소증<span class="src">p.162 표준진료부</span></h2>'+
-  '<div class="grid4" style="margin-bottom:10px">'+
-    '<label class="field"><span class="flabel">이름</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="환자명"></label>'+
-    '<label class="field"><span class="flabel">성별</span>'+chipsRaw('pt.sex',[{v:'남',l:'남'},{v:'여',l:'여'}],false)+'</label>'+
-    '<label class="field"><span class="flabel">나이</span><input class="inp" data-t="pt.age" value="'+esc(S.pt.age)+'" placeholder="만 나이"></label>'+
-    '<label class="field"><span class="flabel">혈압</span><input class="inp" data-t="pt.bp" value="'+esc(S.pt.bp)+'" placeholder="120/80"></label>'+
-  '</div>'+
-  '<div class="grid2" style="margin-bottom:10px">'+
-    '<label class="field"><span class="flabel">키·몸무게</span><input class="inp" data-t="pt.ht" value="'+esc(S.pt.ht)+'" placeholder="172cm · 68kg"></label>'+
-    '<label class="field"><span class="flabel">복용약물·기저질환</span><input class="inp" data-t="pt.meds" value="'+esc(S.pt.meds)+'" placeholder="혈압약, 스테로이드, 당뇨 …"></label>'+
-  '</div>'+
-  '<label class="field"><span class="flabel">주소증 <span class="k">겉으로 드러난 객증</span></span><textarea class="inp" data-t="pt.chief" placeholder="예) 두 달 전부터 잠을 못 자고 가슴이 답답하다">'+esc(S.pt.chief)+'</textarea></label>'+
-  '<div class="grid3">'+
-    '<label class="field"><span class="flabel">언제부터</span><input class="inp" data-t="pt.onset" value="'+esc(S.pt.onset)+'" placeholder="2개월 전"></label>'+
-    '<label class="field"><span class="flabel">언제 심한가</span><input class="inp" data-t="pt.aggr" value="'+esc(S.pt.aggr)+'" placeholder="밤에, 식후"></label>'+
-    '<label class="field"><span class="flabel">어떻게 하면 낫나</span><input class="inp" data-t="pt.relief" value="'+esc(S.pt.relief)+'" placeholder="눕거나 따뜻하게"></label>'+
-  '</div></div>';
-
-  const body =
-  '<div class="card"><h2><span class="no">2</span>체형·피부<span class="src">p.172~177</span></h2>'+
-  '<div class="field"><div class="flabel">체형</div>'+seg('body.build',5,['마름','','','','강해보임'],'warm')+scaleHint('마르고 건조','살집 단단하고 강해 보임')+'</div>'+
-  '<div class="grid3">'+
-   '<div class="field"><div class="flabel">피부색</div>'+chipsRaw('body.skinColor',[{v:'청',l:'청'},{v:'적',l:'적'},{v:'황',l:'황'},{v:'백',l:'백'},{v:'흑',l:'흑'}],false)+'</div>'+
-   '<div class="field"><div class="flabel">피부 성질</div>'+chipsRaw('body.skinHeat',[{v:'열',l:'열하다'},{v:'건',l:'건조하다'}],false)+'</div>'+
-   '<div class="field"><div class="flabel">피부 두께</div>'+seg('body.skinThick',5)+'</div>'+
-  '</div>'+
-  '<div class="field"><div class="flabel">피부 탄력</div>'+seg('body.skinTurgor',5)+scaleHint('무르다','탄력 좋다')+'</div>'+
-  '</div>';
-
-  const abd =
-  '<div class="card live"><h2><span class="no">3</span>복진<span class="src">p.63~103 · p.162</span></h2>'+
-  '<p class="card-sub">복진이 가장 객관적입니다. <b>복탄력 3을 손으로 익히는 것</b>이 출발점이고, 다음이 흉협고만, 다음이 흉부 압진입니다(p.44).</p>'+
-  '<div class="field"><div class="flabel">복탄력 <span class="req">필수</span></div>'+seg('abd.elast',5,['아주 무름','무름','기준(3)','단단','아주 단단'],'warm')+scaleHint('누르면 푹 들어감 — 內虛','단단하게 버팀 — 內實')+'</div>'+
-  '<div class="abd-wrap">'+ abdMap() +
-    '<div>'+
-      '<div class="field"><div class="flabel">흉부 압진 <span class="req">필수</span></div>'+
-        chipsRaw('abd.chest',[{v:'reject',l:'거안(누르면 답답·피함)'},{v:'accept',l:'희안(누르면 편안)'}],false)+
-        '<div style="margin-top:7px">'+seg('abd.chestLevel',5,['미약','','중','','뚜렷'])+'</div>'+
-        '<div class="scale-hint"><span>거안 → 心熱·瀉心劑</span><span>희안 → 心虛·苓桂</span></div></div>'+
-      '<div class="field"><div class="flabel">협하(늑골 아래) 45도 압박</div>'+
-        chipsRaw('abd.hypoch',[{v:'heat',l:'압이 오르거나 불편 — 肝熱'},{v:'deficiency',l:'손이 쑥 들어감 — 肝虛'},{v:'cold',l:'머리가 맑아지고 편안 — 肝寒'}],false)+'</div>'+
-    '</div></div>'+
-  '<div class="grid4" style="margin-top:4px">'+
-    '<div class="field"><div class="flabel">정재심하</div>'+seg('abd.jeongjae',5,null,'',0)+'</div>'+
-    '<div class="field"><div class="flabel">중완</div>'+seg('abd.jungwan',5,null,'',0)+'</div>'+
-    '<div class="field"><div class="flabel">수분혈</div>'+seg('abd.subun',5,null,'',0)+'</div>'+
-    '<div class="field"><div class="flabel">배꼽 좌측</div>'+seg('abd.leftUmb',5,null,'',0)+'</div>'+
-  '</div>'+
-  '<div class="grid4">'+
-    '<div class="field"><div class="flabel">복직근 구련</div>'+seg('abd.rectus',5,null,'',0)+'</div>'+
-    '<div class="field"><div class="flabel">소복 압통</div>'+seg('abd.lowerPain',5,null,'',0)+'</div>'+
-    '<div class="field"><div class="flabel">소복 불인</div>'+seg('abd.lowerNotIn',5,null,'',0)+'</div>'+
-    '<div class="field"><div class="flabel">심하비견</div><div class="chips"><button type="button" class="chip" data-k="abd.bitGyeon" data-v="1" aria-pressed="'+S.abd.bitGyeon+'">있음</button></div></div>'+
-  '</div>'+
-  '<div class="field"><div class="flabel">소복 특이 소견</div>'+
-    chipsRaw('abd.lowerMass',[{v:'jeongbi',l:'종비(우하복부 덩이)'},{v:'geupgyeol',l:'급결'},{v:'hyeongeup',l:'현급(거문고 줄)'}],false)+'</div>'+
-  '</div>';
-
-  const tm =
-  '<div class="card"><h2><span class="no">4</span>설·맥·신<span class="src">p.241~255</span></h2>'+
-  '<div class="grid3">'+
-   '<div class="field"><div class="flabel">설색</div>'+chipsRaw('tongue.color',[{v:'담',l:'담백'},{v:'홍',l:'홍'},{v:'자',l:'자암'},{v:'청',l:'청'}],false)+'</div>'+
-   '<div class="field"><div class="flabel">설태</div>'+chipsRaw('tongue.coat',[{v:'백',l:'백태'},{v:'황',l:'황태'},{v:'후',l:'두껍고 지저분'},{v:'박',l:'박'},{v:'무',l:'무태'}],false)+'</div>'+
-   '<div class="field"><div class="flabel">건습</div>'+chipsRaw('tongue.dry',[{v:'건',l:'건조'},{v:'습',l:'습윤'}],false)+'</div>'+
-  '</div>'+
-  '<div class="field"><div class="flabel">맥</div>'+chipsRaw('pulse',[{v:'부',l:'부(浮)'},{v:'침',l:'침(沈)'},{v:'현',l:'현(弦)'},{v:'삭',l:'삭(數)'},{v:'지',l:'지(遲)'},{v:'홍',l:'홍(洪)'},{v:'대',l:'대(大)'},{v:'세',l:'세(細)'},{v:'완',l:'완(緩)'}],true)+'</div>'+
-  '<div class="field"><div class="flabel">신(神)</div>'+chips('inq.spirit','spirit')+'</div>'+
-  '</div>';
-
-  let inq = '<div class="card"><h2><span class="no">5</span>문진<span class="src">p.189~295</span></h2>';
-  G.forEach(g=>{
-    const cnt = g.keys.reduce((n,k)=>{ const v=S.inq[k]; return n + (Array.isArray(v)?v.length:(v?1:0)); },0);
-    inq += '<details class="grp" '+(g.open?'open':'')+'><summary>'+g.t+' <span class="cnt">'+(cnt||'')+'</span></summary><div class="grp-body">';
-    g.keys.forEach(k=>{
-      const req = k==='urine' ? ' <span class="req">색 확인</span>' : '';
-      const hint = k==='urine' ? '<div class="scale-hint" style="justify-content:flex-start"><span>소변색을 꼭 물어봐야 합니다 — p.149</span></div>'
-                 : k==='stool' ? '<div class="scale-hint" style="justify-content:flex-start"><span>복탄력·거안과 묶어서 봅니다 — p.215~218</span></div>' : '';
-      inq += '<div class="field"><div class="flabel">'+GNAME[k]+req+'</div>'+chips('inq.'+k,k)+hint+'</div>';
-    });
-    inq += '</div></details>';
-  });
-  inq += '</div>';
-  return basic + body + abd + tm + inq;
-}
-
-/* ── 환자 문진표 패널 ── */
-function panelPatient(){
-  const step = (n,t,done)=>'<div class="step'+(done?' done':'')+'"><i>'+(done?'✓':n)+'</i>'+t+'</div>';
-  const filled = (S.inq.appetite?1:0)+(S.inq.urine?1:0)+(S.inq.stool?1:0)+(S.abd.elast?1:0);
-  let h = '<div class="card"><h2><span class="no">?</span>환자용 문진표<span class="src">같은 데이터로 판정</span></h2>'+
-  '<p class="card-sub">환자가 직접 체크하는 화면입니다. 여기서 체크한 값은 <b>원장님 화면과 같은 내부 데이터</b>로 들어가 판정이 똑같이 나옵니다.</p>'+
-  '<div class="steps">'+step(1,'기본',!!(S.pt.chief||S.pt.name))+step(2,'평소 몸',filled>0)+step(3,'잠·땀',!!(S.inq.sleep.length||S.inq.sweat))+step(4,'배 눌러보기',!!S.abd.elast)+'</div></div>';
-
-  h += '<div class="card"><h2><span class="no">1</span>어떤 점이 가장 불편하십니까</h2>'+
-   '<label class="field"><span class="flabel">이름</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="성함"></label>'+
-   '<div class="grid3"><label class="field"><span class="flabel">성별</span>'+chipsRaw('pt.sex',[{v:'남',l:'남'},{v:'여',l:'여'}],false)+'</label>'+
-   '<label class="field"><span class="flabel">나이</span><input class="inp" data-t="pt.age" value="'+esc(S.pt.age)+'" placeholder="만 나이"></label>'+
-   '<label class="field"><span class="flabel">키·몸무게</span><input class="inp" data-t="pt.ht" value="'+esc(S.pt.ht)+'" placeholder="172cm · 68kg"></label></div>'+
-   '<label class="field"><span class="flabel">가장 불편한 점을 자유롭게 적어 주십시오</span><textarea class="inp" data-t="pt.chief" placeholder="예) 두 달 전부터 잠을 못 자고 가슴이 답답합니다">'+esc(S.pt.chief)+'</textarea></label>'+
-   '</div>';
-
-  h += '<div class="card"><h2><span class="no">2</span>평소 몸 상태</h2>'+
-   '<div class="field"><div class="flabel">체형</div>'+seg('body.build',5,['마름','','','','살집 있음'],'warm')+scaleHint('마르고 마른 편','살집이 있고 단단한 편')+'</div>'+
-   '<div class="field"><div class="flabel">피부는 어떤 편입니까</div>'+chipsRaw('body.skinColor',[{v:'백',l:'하얗다'},{v:'황',l:'누렇다'},{v:'적',l:'붉다'},{v:'흑',l:'검고 거칠다'},{v:'청',l:'푸르스름하다'}],false)+'</div>'+
-   '<div class="grid2">'+
-     '<div class="field"><div class="flabel">식욕</div>'+chips('inq.appetite','appetite')+'</div>'+
-     '<div class="field"><div class="flabel">소화</div>'+chips('inq.digestion','digestion')+'</div>'+
-   '</div>'+
-   '<div class="field"><div class="flabel">입</div>'+chips('inq.mouth','mouth')+'</div>'+
-   '<div class="grid2">'+
-     '<div class="field"><div class="flabel">소변</div>'+chips('inq.urine','urine')+'</div>'+
-     '<div class="field"><div class="flabel">대변</div>'+chips('inq.stool','stool')+'</div>'+
-   '</div></div>';
-
-  h += '<div class="card"><h2><span class="no">3</span>잠·땀·몸의 열기</h2>'+
-   '<div class="field"><div class="flabel">잠</div>'+chips('inq.sleep','sleep')+'</div>'+
-   '<div class="field"><div class="flabel">땀</div>'+chips('inq.sweat','sweat')+'</div>'+
-   '<div class="field"><div class="flabel">춥거나 더운 느낌</div>'+chips('inq.coldheat','coldheat')+'</div>'+
-   '<div class="field"><div class="flabel">붓기</div>'+chips('inq.edema','edema')+'</div>'+
-   '<div class="field"><div class="flabel">목·어깨·관절</div>'+chips('inq.muscle','muscle')+'</div>'+
-   '<div class="field"><div class="flabel">기분·마음 상태</div>'+chips('inq.spirit','spirit')+'</div>'+
-   '</div>';
-
-  h += '<div class="card live"><h2><span class="no">4</span>배를 눌러 봅니다 <span class="src">가족이 눌러 줄 때</span></h2>'+
-   '<div class="notice info" style="margin-bottom:11px"><b>배는 직접 눌러 보셔야 합니다.</b> 무릎을 세우고 편히 누운 뒤, 배꼽에서 손가락 두 마디 위에서부터 천천히 눌러 주십시오. 아프거나 피하고 싶은 곳, 오히려 편해지는 곳을 골라 주시면 됩니다.</div>'+
-   '<div class="field"><div class="flabel">배의 힘 <span class="k">누르면 푹 들어가나요, 단단하게 버티나요</span></div>'+seg('abd.elast',5,['아주 물렁','물렁','보통','단단','아주 단단'],'warm')+'</div>'+
-   '<div class="abd-wrap">'+abdMap()+'<div>'+
-     '<div class="field"><div class="flabel">가슴께를 눌렀을 때</div>'+chipsRaw('abd.chest',[{v:'reject',l:'답답하고 피하고 싶다'},{v:'accept',l:'오히려 편하고 눈이 맑아진다'}],false)+'</div>'+
-     '<div class="field"><div class="flabel">옆구리 아래로 손을 넣어 눌렀을 때</div>'+chipsRaw('abd.hypoch',[{v:'heat',l:'숨이 차거나 불편하다'},{v:'deficiency',l:'손이 쑥 들어간다'},{v:'cold',l:'머리가 맑아지고 편하다'}],false)+'</div>'+
-     '<div class="field"><div class="flabel">배꼽 왼쪽을 눌렀을 때</div>'+seg('abd.leftUmb',5,null,'',0)+scaleHint('아무것도 안 잡힘','단단한 줄이 잡힌다')+'</div>'+
-   '</div></div>'+
-   '<div class="grid4">'+
-     '<div class="field"><div class="flabel">명치(정재심하)</div>'+seg('abd.jeongjae',5,null,'',0)+'</div>'+
-     '<div class="field"><div class="flabel">중완</div>'+seg('abd.jungwan',5,null,'',0)+'</div>'+
-     '<div class="field"><div class="flabel">배꼽 위(수분혈)</div>'+seg('abd.subun',5,null,'',0)+'</div>'+
-     '<div class="field"><div class="flabel">아랫배</div>'+seg('abd.lowerPain',5,null,'',0)+'</div>'+
-   '</div></div>';
-
-  h += '<div class="card"><h2><span class="no">5</span>그 밖에</h2>'+
-   '<div class="grid2">'+
-    '<div class="field"><div class="flabel">머리</div>'+chips('inq.head','head')+'</div>'+
-    '<div class="field"><div class="flabel">목</div>'+chips('inq.throat','throat')+'</div>'+
-   '</div>'+
-   '<div class="field"><div class="flabel">눈·코·귀</div>'+chips('inq.een','een')+'</div>'+
-   '<div class="field"><div class="flabel">가슴</div>'+chips('inq.chest','chest')+'</div>'+
-   '<div class="grid2">'+
-    '<div class="field"><div class="flabel">배 아픈 곳</div>'+chips('inq.abpain','abpain')+'</div>'+
-    '<div class="field"><div class="flabel">월경(여성)</div>'+chips('inq.mens','mens')+'</div>'+
-   '</div>'+
-   '<div class="field"><div class="flabel">먹고 있는 약이 있으면 적어 주십시오</div><input class="inp" data-t="pt.meds" value="'+esc(S.pt.meds)+'" placeholder="혈압약, 당뇨약, 진통제 등"></div>'+
-   '</div>';
-  return h;
-}
-
-/* ── 사진 탭 수동 보정 ── */
-function panelPhoto(){
-  return '<div class="steps">'+
-   '<div class="step done"><i>✓</i>사진 올리기</div>'+
-   '<div class="step'+(S.abd.elast?' done':'')+'"><i>'+(S.abd.elast?'✓':'2')+'</i>핵심 항목 옮겨 적기</div>'+
-   '<div class="step'+(S.abd.elast?' done':'')+'"><i>'+(S.abd.elast?'✓':'3')+'</i>오른쪽 판정 확인</div></div>'+
-   '<div class="field"><div class="flabel">복탄력 <span class="req">필수</span></div>'+seg('abd.elast',5,['아주 무름','무름','기준(3)','단단','아주 단단'],'warm')+'</div>'+
-   '<div class="field"><div class="flabel">흉부 압진</div>'+chipsRaw('abd.chest',[{v:'reject',l:'거안(답답·피함)'},{v:'accept',l:'희안(편안)'}],false)+'</div>'+
-   '<div class="grid4">'+
-     '<div class="field"><div class="flabel">정재심하</div>'+seg('abd.jeongjae',5,null,'',0)+'</div>'+
-     '<div class="field"><div class="flabel">중완</div>'+seg('abd.jungwan',5,null,'',0)+'</div>'+
-     '<div class="field"><div class="flabel">수분혈</div>'+seg('abd.subun',5,null,'',0)+'</div>'+
-     '<div class="field"><div class="flabel">배꼽 좌측</div>'+seg('abd.leftUmb',5,null,'',0)+'</div>'+
-   '</div>'+
-   '<div class="grid2">'+
-     '<div class="field"><div class="flabel">협하 압박</div>'+chipsRaw('abd.hypoch',[{v:'heat',l:'불편 — 肝熱'},{v:'deficiency',l:'쑥 들어감 — 肝虛'},{v:'cold',l:'맑아짐 — 肝寒'}],false)+'</div>'+
-     '<div class="field"><div class="flabel">소복</div>'+chipsRaw('abd.lowerMass',[{v:'jeongbi',l:'종비'},{v:'geupgyeol',l:'급결'},{v:'hyeongeup',l:'현급'}],false)+'</div>'+
-   '</div>'+
-   '<div class="grid2">'+
-     '<div class="field"><div class="flabel">소변</div>'+chips('inq.urine','urine')+'</div>'+
-     '<div class="field"><div class="flabel">대변</div>'+chips('inq.stool','stool')+'</div>'+
-   '</div>'+
-   '<div class="grid3">'+
-     '<div class="field"><div class="flabel">설색</div>'+chipsRaw('tongue.color',[{v:'담',l:'담백'},{v:'홍',l:'홍'},{v:'자',l:'자암'}],false)+'</div>'+
-     '<div class="field"><div class="flabel">설태</div>'+chipsRaw('tongue.coat',[{v:'백',l:'백태'},{v:'황',l:'황태'},{v:'후',l:'후'}],false)+'</div>'+
-     '<div class="field"><div class="flabel">맥</div>'+chipsRaw('pulse',[{v:'부',l:'부'},{v:'침',l:'침'},{v:'현',l:'현'},{v:'삭',l:'삭'},{v:'지',l:'지'}],true)+'</div>'+
-   '</div>'+
-   '<div class="field"><div class="flabel">주소증</div><input class="inp" data-t="pt.chief" value="'+esc(S.pt.chief)+'" placeholder="문진표에 적힌 주된 불편"></div>';
-}
-
-function esc(v){ return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-/* ── 결과 패널 ── */
-function emptyHTML(){
-  return '<div class="res"><div class="res-card"><div class="res-title">변증 판정 요약<span class="badge off">대기</span></div>'+
-  '<div class="empty"><b class="t">아직 입력이 없습니다</b>복진의 <b>복탄력</b>과 <b>흉부 거안·희안</b> 두 가지만 넣어도<br>첫 판정이 나옵니다.</div></div>'+
-  '<div class="res-card"><div class="res-title">읽는 순서<span class="badge">안내</span></div>'+
-  '<div class="legend">'+
-   '<p style="margin:0 0 8px"><b>1. 복진 먼저</b> — 복탄력 3을 기준으로 3 미만은 內虛(乾薑), 3 초과는 內實(大黃).</p>'+
-   '<p style="margin:0 0 8px"><b>2. 흉부 압진</b> — 거안은 心熱(黃連·瀉心劑), 희안은 心虛(苓桂·人蔘).</p>'+
-   '<p style="margin:0 0 8px"><b>3. 부위</b> — 정재심하·중완·수분혈·협하·소복 순으로 짚습니다.</p>'+
-   '<p style="margin:0"><b>4. 문진으로 겸증 확정</b> — 같은 설사도 복탄력과 거안·희안 조합으로 少陽·太陰·陽明이 갈립니다.</p>'+
-  '</div></div></div>';
-}
-
-function verdictCard(a){
-  const yk = a.yukSorted;
-  const main = yk[0][1]>0 ? yk[0] : null;
-  const second = yk[1] && yk[1][1] >= Math.max(3, yk[0][1]*0.55) ? yk[1] : null;
-  const rows = yk.map(([k,v])=>{
-    const w = Math.round(v/(a.yMax||1)*100);
-    return '<div class="yuk-row '+(main&&k===main[0]?'main':'')+'"><span class="nm">'+k+'병</span>'+
-      '<span class="tr"><span class="fi" style="width:'+Math.max(v?6:0,w)+'%"></span></span>'+
-      '<span class="vl">'+Math.round(v/(a.yMax||1)*100)+'</span></div>';
-  }).join('');
-  const tagH = a.heat-a.cold>=4 ? '<span class="tag heat">열(陽) 쪽</span>' :
-               a.cold-a.heat>=4 ? '<span class="tag cold">한(陰) 쪽</span>' :
-               '<span class="tag mid">한열 착잡</span>';
-  const flags = Object.entries(a.flags).filter(([k,v])=>v>=3).map(([k,v])=>
-    '<span class="tag soft">'+k+' '+(v>=6?'뚜렷':v>=4?'있음':'의심')+'</span>').join('');
-  let h = '<div class="res-card"><div class="res-title">변증 판정 요약<span class="badge">'+
-    (main? main[0]+'병'+(second?' · '+second[0]+'병 겸':'') : '근거 부족')+'</span></div>';
-  h += '<div class="yuk">'+rows+'</div>';
-  h += '<div class="verdict-line">'+tagH+
-    '<span class="tag '+(a.heosil.startsWith('實')?'heat':a.heosil.startsWith('虛')?'cold':'mid')+'">'+a.heosil+'</span>'+
-    (flags||'')+'</div>';
-  h += '<div class="legend" style="margin-top:9px">'+(main?'<b>'+main[0]+'병</b> — '+yukText(main[0],a)+(second?' / <b>겸</b> '+second[0]+'병':'') : '')+'</div>';
-  h += '<div class="legend" style="margin-top:4px;color:#8c9791">'+a.heosilWhy+'</div>';
-  h += '</div>';
-
-  const af = abdFindings();
-  if(af.length){
-    h += '<div class="res-card"><div class="res-title">복진 소견<span class="badge">'+af.length+'</span></div><ul class="rx-why">'+
-      af.map(x=>'<li><b>'+x.k+'</b> — '+x.v+'</li>').join('')+'</ul></div>';
-  }
-  return h;
-}
-function yukText(k,a){
-  const m = {
-    태양:'표(表)에 병이 있어 오한·무한·부맥 쪽을 봅니다. 계지탕·마황탕·갈근탕 계열에서 갈립니다.',
-    양명:'열이 속에 맺혀 갈증·다한·변비·황태 쪽을 봅니다. 石膏(白虎)와 大黃(承氣) 사이에서 갈립니다.',
-    소양:'반표반리로 왕래한열·흉협고만·구고 쪽을 봅니다. 柴胡劑에서 갈립니다.',
-    태음:'속이 냉하고 설사·복만 쪽을 봅니다. 人蔘湯·苓桂劑 쪽입니다.',
-    소음:'맥이 침하고 수족이 차며 但欲寐 쪽을 봅니다. 附子·乾薑 계열과 黃連阿膠湯 사이입니다.',
-    궐음:'한열착잡·기충·소갈 쪽을 봅니다. 吳茱萸湯·當歸四逆湯 쪽입니다.'
-  };
-  return m[k]||'';
-}
-
-function rxCard(a){
-  const top = a.list.filter(x=>x.eff>=1.5).slice(0,3);
-  if(!top.length) return '';
-  let h = '<div class="res-card"><div class="res-title">탕약 처방 제안<span class="badge">'+top.length+'순위</span></div>';
-  top.forEach((x,i)=>{
-    const g = gradeOf(x);
-    const gc = g==='主之'?'g1':g==='與'?'g2':'g3';
-    const fitT = x.fit==='in' ? '<span class="ok">복탄력 밴드 적합</span>' : x.fit==='out' ? '<span class="no">복탄력 밴드와 어긋남</span>' : '';
-    h += '<article class="rx'+(i===0?' first':'')+'">';
-    h += '<div class="rx-head"><span class="rx-rank">'+(i+1)+'순위</span><h3>'+x.n+' <small>'+x.f.han+'</small></h3>'+
-         '<span class="grade '+gc+'">'+g+'</span></div>';
-    h += '<div class="rx-meta"><span>'+x.f.yuk+'병</span><span>근거 '+x.f.pg+'</span>'+fitT+'</div>';
-    h += '<ul class="rx-why">'+x.why.map(w=>'<li>'+w.t+' <span class="pg">'+w.pg+'</span></li>').join('')+'</ul>';
-    /* 조문 */
-    const jm = x.f.jm||[];
-    if(jm.length){
-      h += '<details class="jm"'+(i===0?' open':'')+'><summary>참조 상한론 조문 '+jm.length+'건</summary><div class="jm-body">'+
-        jm.map(j=>'<blockquote class="jm-q"><span class="zh">'+j.zh+'</span><span class="ko">'+j.ko+'</span><cite>'+
-          (j.kind==='book'?'책 원문 확인 · p.149':'송본 '+j.no+'조 · 책 쪽수 대조 전')+'</cite></blockquote>').join('')+'</div></details>';
-    } else {
-      h += '<details class="jm"><summary>참조 상한론 조문</summary><div class="jm-body">'+
-        '<blockquote class="jm-q pending"><span class="zh">조문 원문 미대조</span><span class="ko">이 처방의 조문은 아직 책 원문과 대조하지 않아 지어내지 않고 비워 두었습니다. 책 서술 근거는 '+x.f.pg+'입니다.</span><cite>대조 대기</cite></blockquote></div></details>';
-    }
-    if(i===0){
-      const cb = combos(x.n, a);
-      h += '<div class="rx-foot"><span class="pill">합방</span>'+
-        (cb.length? cb.map(c=>'<span class="pill">'+c.n+' <small style="font-weight:600;color:#6d8a80">('+c.r+')</small></span>').join('')
-          : '<span class="pill" style="color:#7b8a82">겸증이 뚜렷하지 않아 단방을 권합니다</span>')+'</div>';
-      if(cb.length) h += '<div class="legend" style="margin-top:6px">합방 시 중복 약재는 <b>용량이 높은 쪽</b>을 씁니다(p.50). 가감은 하지 않고 원방 그대로 쓰는 것이 원칙입니다(p.19).</div>';
-    }
-    h += '</article>';
-  });
-  h += '<div class="legend" style="margin-top:10px;border-top:1px dashed var(--line);padding-top:9px">'+
-   '<b>主之</b> 정증에 잘 맞음 · <b>與</b> 한번 줘 보라(증상이 뚜렷할 때 상당수) · <b>宜</b> 맞을 것 같다 — p.101~103 스펙트럼</div>';
-  h += '</div>';
-  return h;
-}
-
-function combos(topN, a){
-  const o=[];
-  if(a.flags.담음>=3) o.push({n:'영계출감탕',r:'담음'});
-  if(a.flags.수독>=3) o.push({n:'오령산',r:'수독'});
-  if(a.flags.어혈>=4) o.push({n:'계지복령환',r:'어혈'});
-  if(a.flags.기울>=3) o.push({n:'반하후박탕',r:'기울'});
-  return o.filter(c=>c.n!==topN).slice(0,2);
-}
-
 const ACU_PART = {
   jeongjae:{t:'정재심하(명치)',p:['중완(CV12)','거궐(CV14)','내관(PC6)','공손(SP4)']},
   jungwan:{t:'중완',p:['중완(CV12)','상완(CV13)','족삼리(ST36)','내관(PC6)']},
@@ -1280,28 +1158,498 @@ const ACU_YUK = {
   소음:['태계(KI3)','조해(KI6)','관원(CV4)','신수(BL23)'],
   궐음:['태충(LR3)','행간(LR2)','내관(PC6)','단중(CV17)']
 };
+/* ═══════════════════════════════════════════════════════════════
+   3. 화면 그리기
+   ═══════════════════════════════════════════════════════════════ */
+const $ = id => document.getElementById(id);
+const L = () => S.meta.mode==='patient' ? 'p' : 'd';
+function esc(v){ return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function chips(path, key, cls){
+  const o = OPT[key], cur = get(path);
+  const multi = Array.isArray(cur);
+  return '<div class="chips">' + o.items.map(function(it){
+    const on = multi ? cur.includes(it.v) : cur===it.v;
+    return '<button type="button" class="chip '+(cls||'')+'" data-k="'+path+'" data-v="'+esc(it.v)+'" data-m="'+(multi?1:0)+'" aria-pressed="'+on+'">'+esc(it[L()]||it.d)+'</button>';
+  }).join('') + '</div>';
+}
+function chipsRaw(path, items, multi){
+  const cur = get(path);
+  return '<div class="chips">' + items.map(function(it){
+    const on = multi ? (cur||[]).includes(it.v) : cur===it.v;
+    return '<button type="button" class="chip" data-k="'+path+'" data-v="'+esc(it.v)+'" data-m="'+(multi?1:0)+'" aria-pressed="'+on+'">'+esc(it.l)+'</button>';
+  }).join('') + '</div>';
+}
+function seg(path, max, labels, cls, from){
+  const cur = get(path), f = from===undefined?1:from;
+  let h = '<div class="seg '+(cls||'')+'">';
+  for(let i=f;i<=max;i++) h += '<button type="button" data-k="'+path+'" data-v="'+i+'" aria-pressed="'+(cur===i)+'">'+i+(labels?'<span>'+(labels[i-(from===0?0:1)]||'')+'</span>':'')+'</button>';
+  return h + '</div>';
+}
+function scaleHint(a,b){ return '<div class="scale-hint"><span>'+a+'</span><span>'+b+'</span></div>'; }
+
+/* 복부 지도 */
+function abdMap(){
+  const pts = [
+    {k:'abd.jeongjae', x:100, y:70,  l:'정재심하', side:'r'},
+    {k:'abd.simhaYe',  x:100, y:83,  l:'심하예',   side:'l'},
+    {k:'abd.jungwan',  x:100, y:96,  l:'중완',     side:'r'},
+    {k:'abd.subun',    x:100, y:108, l:'수분',     side:'l'},
+    {k:'abd.rectus',   x:76,  y:100, l:'',         side:'n'},
+    {k:'abd.leftUmb',  x:79,  y:127, l:'좌측',     side:'l'},
+    {k:'abd.lowerPain',x:100, y:148, l:'소복',     side:'r'},
+    {k:'abd.lowerHyeongeup', x:100, y:160, l:'',   side:'n'}
+  ];
+  const col  = v => !v ? '#ffffff' : v<=2 ? '#c3e2d7' : v<=3 ? '#7fc4ae' : '#2b8a6f';
+  const ring = v => !v ? '#b9cac2' : '#14624f';
+  const hy = num('abd.hypoHeat',0), hd = num('abd.hypoDef',0), hh = num('abd.hypoHeui',0);
+  const hcol = hy ? '#f3c9a8' : hd ? '#cfe0ee' : hh ? '#d8e8c9' : '#fff';
+  let h = '<figure class="abd-map"><svg viewBox="0 0 200 206" role="img" aria-label="복부 압통 지도 — 점을 누르면 강도가 0→5로 바뀝니다">';
+  h += '<path d="M66 12 C56 20 54 34 54 52 C54 74 52 100 55 124 C58 150 63 172 67 188 L133 188 C137 172 142 150 145 124 C148 100 146 74 146 52 C146 34 144 20 134 12 Z" fill="#fff" stroke="#cfdcd5" stroke-width="1.2"/>';
+  h += '<path d="M66 12 C80 18 120 18 134 12" fill="none" stroke="#e3ebe6" stroke-width="1"/>';
+  h += '<path d="M55 80 C44 82 40 88 38 96" fill="none" stroke="#cfdcd5" stroke-width="1.2" stroke-linecap="round"/>';
+  h += '<path d="M145 80 C156 82 160 88 162 96" fill="none" stroke="#cfdcd5" stroke-width="1.2" stroke-linecap="round"/>';
+  h += '<g opacity="'+((hy||hd||hh)?1:.45)+'"><circle cx="47" cy="84" r="4" fill="'+hcol+'" stroke="#d9c79a" stroke-width="1.1"/>'+
+       '<circle cx="153" cy="84" r="4" fill="'+hcol+'" stroke="#d9c79a" stroke-width="1.1"/></g>';
+  h += '<circle cx="100" cy="124" r="2.8" fill="none" stroke="#c3d1ca" stroke-width="1.2"/>';
+  h += '<text x="100" y="200" text-anchor="middle" style="font-size:8px;fill:#9aaba2">배꼽 아래 = 小腹</text>';
+  pts.forEach(function(p){
+    const v = num(p.k,0)||0;
+    h += '<g class="hit" data-cyc="'+p.k+'" role="button" tabindex="0" aria-label="'+p.l+' 강도 '+(v||'없음')+'">';
+    h += '<circle cx="'+p.x+'" cy="'+p.y+'" r="13" fill="transparent"/>';
+    h += '<circle class="dot" cx="'+p.x+'" cy="'+p.y+'" r="6.5" fill="'+col(v)+'" stroke="'+ring(v)+'" stroke-width="1.3"/>';
+    if(v) h += '<text x="'+p.x+'" y="'+(p.y+2.6)+'" text-anchor="middle" style="fill:'+(v>=4?'#fff':'#134a3c')+'">'+v+'</text>';
+    if(p.l){
+      const tx = p.side==='r' ? p.x+10 : p.x-10;
+      const an = p.side==='r' ? 'start' : 'end';
+      h += '<text x="'+tx+'" y="'+(p.y+3)+'" text-anchor="'+an+'">'+p.l+'</text>';
+    }
+    h += '</g>';
+  });
+  h += '</svg><figcaption>점을 누르면 압통 강도가 0→5로</figcaption></figure>';
+  return h;
+}
+
+/* 인적 사항 */
+function idCard(){
+  const ageTxt = S.pt.age==='' ? '만 나이 자동' : '만 '+S.pt.age+'세';
+  const b = bmiOf(S.pt.ht, S.pt.wt);
+  return '<div class="card"><h2><span class="no">1</span>인적 사항<span class="src">p.162 표준진료부</span></h2>'+
+  '<div class="grid4" style="margin-bottom:10px">'+
+    '<label class="field"><span class="flabel">이름</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="환자명"></label>'+
+    '<div class="field"><div class="flabel">성별</div>'+chipsRaw('pt.sex',[{v:'남',l:'남'},{v:'여',l:'여'}],false)+'</div>'+
+    '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out">'+ageTxt+'</b></span><input class="inp" type="date" data-t="pt.birth" value="'+esc(S.pt.birth)+'"></label>'+
+    '<label class="field"><span class="flabel">혈압</span><input class="inp" data-t="pt.bp" value="'+esc(S.pt.bp)+'" placeholder="120/80"></label>'+
+  '</div>'+
+  '<div class="grid3" style="margin-bottom:10px">'+
+    '<label class="field"><span class="flabel">전화번호</span><input class="inp" type="tel" inputmode="tel" data-t="pt.phone" value="'+esc(S.pt.phone)+'" placeholder="010-0000-0000"></label>'+
+    '<label class="field"><span class="flabel">이메일</span><input class="inp" type="email" inputmode="email" data-t="pt.email" value="'+esc(S.pt.email)+'" placeholder="name@example.com"></label>'+
+    '<label class="field"><span class="flabel">주소</span><input class="inp" data-t="pt.addr" value="'+esc(S.pt.addr)+'" placeholder="부산 동래구 …"></label>'+
+  '</div>'+
+  '<div class="grid4" style="margin-bottom:10px">'+
+    '<label class="field"><span class="flabel">키(cm)</span><input class="inp" inputmode="decimal" data-t="pt.ht" value="'+esc(S.pt.ht)+'" placeholder="172"></label>'+
+    '<label class="field"><span class="flabel">몸무게(kg)</span><input class="inp" inputmode="decimal" data-t="pt.wt" value="'+esc(S.pt.wt)+'" placeholder="68"></label>'+
+    '<div class="field span2"><div class="flabel">체질량지수 <b class="bmiout" id="bmi-out">'+(b===null?'BMI 자동':'BMI '+b.toFixed(1)+' · '+bmiLabel(b))+'</b></div>'+
+      '<div class="hint" id="bmi-note">'+(b===null?'키(cm)와 몸무게(kg)를 넣으면 자동 계산합니다.':'키 '+esc(S.pt.ht)+'cm · '+esc(S.pt.wt)+'kg — 체질량지수 '+b.toFixed(1)+' ('+bmiLabel(b)+').')+'</div></div>'+
+  '</div>'+
+  '<label class="field"><span class="flabel">복용약물·기저질환</span><input class="inp" data-t="pt.meds" value="'+esc(S.pt.meds)+'" placeholder="혈압약, 스테로이드, 당뇨 …"></label>'+
+  '<label class="field"><span class="flabel">주소증 <span class="k">겉으로 드러난 객증</span></span><textarea class="inp" data-t="pt.chief" placeholder="예) 두 달 전부터 잠을 못 자고 가슴이 답답하다">'+esc(S.pt.chief)+'</textarea></label>'+
+  '<div class="grid3">'+
+    '<label class="field"><span class="flabel">언제부터</span><input class="inp" data-t="pt.onset" value="'+esc(S.pt.onset)+'" placeholder="2개월 전"></label>'+
+    '<label class="field"><span class="flabel">언제 심한가</span><input class="inp" data-t="pt.aggr" value="'+esc(S.pt.aggr)+'" placeholder="밤에, 식후"></label>'+
+    '<label class="field"><span class="flabel">어떻게 하면 낫나</span><input class="inp" data-t="pt.relief" value="'+esc(S.pt.relief)+'" placeholder="눕거나 따뜻하게"></label>'+
+  '</div></div>';
+}
+
+/* 주증상 카드 */
+function sxPickHTML(){
+  let h = '<div class="field"><div class="flabel">증상 고르기 <span class="k">여러 개 선택</span></div>';
+  SXP.forEach(function(g){
+    const n = g.items.filter(function(it){ return sxHas(it[0]); }).length;
+    h += '<details class="grp" '+(g.open?'open':'')+'><summary>'+g.g+' <span class="cnt">'+(n||'')+'</span></summary><div class="grp-body"><div class="chips">'+
+      g.items.map(function(it){
+        return '<button type="button" class="chip" data-sxt="'+esc(it[0])+'" data-spain="'+it[1]+'" aria-pressed="'+sxHas(it[0])+'">'+esc(it[0])+(it[1]?' <small>통증</small>':'')+'</button>';
+      }).join('')+'</div></div></details>';
+  });
+  h += '</div>';
+  h += '<div class="addrow n3"><input class="inp" id="sx-add" placeholder="증상 직접 추가 (예: 손목 저림)">'+
+    '<label class="chk"><input type="checkbox" id="sx-add-pain"> 통증</label>'+
+    '<button class="btn mini primary" id="sx-add-go" type="button">추가</button></div>';
+  return h;
+}
+function sxRowsHTML(){
+  if(!S.sx.length) return '<div class="notice calm" style="margin-top:10px">아직 고른 증상이 없습니다. 고르면 <b>심한 순위</b>와 <b>통증 강도(0~10)</b>를 정할 수 있습니다.</div>';
+  let h = '<div style="margin-top:12px">';
+  S.sx.forEach(function(x,i){
+    h += '<div class="sx-row'+(i===0?' first':'')+'">';
+    h += '<span class="rk">'+(i+1)+'</span>';
+    h += '<span class="nm">'+esc(x.k)+(x.pain?'<small>통증</small>':'')+'</span>';
+    h += '<span class="tools">'+
+      '<button type="button" data-mv="up" data-sxk="'+esc(x.k)+'" title="위로" aria-label="위로">▲</button>'+
+      '<button type="button" data-mv="down" data-sxk="'+esc(x.k)+'" title="아래로" aria-label="아래로">▼</button>'+
+      (i? '<button type="button" data-mv="top" data-sxk="'+esc(x.k)+'" title="1순위로" aria-label="1순위로">1</button>':'')+
+      '<button type="button" data-mv="pain" data-sxk="'+esc(x.k)+'" title="통증 여부" aria-label="통증 여부">통</button>'+
+      '<button type="button" data-mv="del" data-sxk="'+esc(x.k)+'" title="빼기" aria-label="빼기">×</button>'+
+      '</span>';
+    if(x.pain){
+      h += '<div class="vas-wrap"><span class="vas-lbl">0 무통</span>'+
+        '<input type="range" class="vas" min="0" max="10" step="1" value="'+(x.vas==null?0:x.vas)+'" data-vas="'+esc(x.k)+'" aria-label="'+esc(x.k)+' 통증 강도">'+
+        '<span class="vasv">'+(x.vas==null?'미입력':x.vas+' / 10')+'</span>'+
+        '<span class="vas-lbl">10 견딜 수 없음</span></div>';
+    }
+    h += '</div>';
+  });
+  return h + '</div>';
+}
+function sxCard(){
+  return '<div class="card live"><h2><span class="no">2</span>주증상 — 다중선택·순위·통증강도<span class="src">p.178~188</span></h2>'+
+   '<p class="card-sub">증상을 <b>여러 개</b> 고르고 <b>심한 순서</b>를 정합니다. 통증은 <b>10 = 견딜 수 없는 통증</b>을 기준으로 0~10을 넣습니다. <b>순위가 높은 증상</b>일수록 판정에 무게를 둡니다.</p>'+
+   sxPickHTML() + sxRowsHTML() + '</div>';
+}
+
+/* 체형·피부 */
+function bodyCard(){
+  return '<div class="card"><h2><span class="no">3</span>체형·피부<span class="src">p.172~177</span></h2>'+
+  '<div class="field"><div class="flabel">체형</div>'+seg('body.build',5,['마름','','','','강해보임'],'warm')+scaleHint('마르고 건조','살집 단단하고 강해 보임')+'</div>'+
+  '<div class="grid3">'+
+   '<div class="field"><div class="flabel">피부색 <span class="k">여러 개 가능</span></div>'+chipsRaw('body.skinColor',[{v:'청',l:'청'},{v:'적',l:'적'},{v:'황',l:'황'},{v:'백',l:'백'},{v:'흑',l:'흑'}],true)+'</div>'+
+   '<div class="field"><div class="flabel">피부 성질</div>'+chipsRaw('body.skinHeat',[{v:'열',l:'열하다'},{v:'건',l:'건조하다'}],true)+'</div>'+
+   '<div class="field"><div class="flabel">피부 두께</div>'+seg('body.skinThick',5)+'</div>'+
+  '</div>'+
+  '<div class="field"><div class="flabel">피부 탄력</div>'+seg('body.skinTurgor',5)+scaleHint('무르다','탄력 좋다')+'</div>'+
+  '</div>';
+}
+
+/* 복진 카드 */
+function abdCell(k){
+  const it = ABD_MAP[k], v = S.abd[k];
+  return '<div class="abd-cell'+(v?' on':'')+'"><div class="nm" title="'+esc(it.hint)+'">'+esc(it.nm)+' <i>'+esc(it.pg)+'</i></div>'+
+    seg('abd.'+k,5,null,'',0)+'</div>';
+}
+function customList(){
+  const cs = S.abd.custom||[];
+  if(!cs.length) return '';
+  return '<div class="cust">'+cs.map(function(c,i){
+    return '<span class="c">'+esc(c.nm)+(c.loc?' · '+esc(c.loc):'')+(c.sev!==''&&c.sev!==null?' · '+esc(c.sev):'')+
+      '<button type="button" data-custdel="'+i+'" aria-label="지우기" title="지우기">×</button></span>';
+  }).join('')+'</div>';
+}
+function abdCard(){
+  let h = '<div class="card live"><h2><span class="no">4</span>복진<span class="src">p.63~103 · p.162</span></h2>';
+  h += '<p class="card-sub">복진이 가장 객관적입니다. <b>복탄력 3을 손으로 익히는 것</b>이 출발점이고, 다음이 흉협고만, 다음이 흉부 압진입니다(p.44). 부위·소견은 <b>0~5</b>로, 책에 없는 자리는 <b>직접 추가</b>합니다.</p>';
+  h += '<div class="field"><div class="flabel">복탄력 <span class="req">필수</span></div>'+seg('abd.elast',5,['아주 무름','무름','기준(3)','단단','아주 단단'],'warm')+scaleHint('누르면 푹 들어감 — 內虛','단단하게 버팀 — 內實')+'</div>';
+  h += '<div class="abd-wrap">'+abdMap()+
+    '<div>'+
+      '<div class="field"><div class="flabel">흉부 압진 — 거안 <span class="req">필수</span></div>'+
+        seg('abd.chestReject',5,['미약','','중','','뚜렷'])+scaleHint('누르면 답답·피함 → 心熱·瀉心劑','')+'</div>'+
+      '<div class="field"><div class="flabel">흉부 압진 — 희안</div>'+
+        seg('abd.chestAccept',5,['미약','','중','','뚜렷'])+scaleHint('누르면 편안·눈 맑아짐 → 心虛·苓桂','')+'</div>'+
+      '<div class="notice info" style="margin-top:2px">거안·희안은 <b>부위에 따라 함께</b> 있을 수 있어 따로 넣습니다. 둘 다 0이면 흉부 미확인으로 봅니다.</div>'+
+    '</div></div>';
+  h += ABDG.map(function(g,gi){
+    const items = ABD.filter(function(x){ return x.g===g; });
+    const n = items.filter(function(x){ return num('abd.'+x.k,0)>0; }).length;
+    return '<details class="grp" '+(gi===0?'open':'')+'><summary>'+g+' <span class="cnt">'+(n||'')+'</span></summary><div class="grp-body"><div class="abd-grid">'+
+      items.map(function(x){ return abdCell(x.k); }).join('')+'</div></div></details>';
+  }).join('');
+  h += '<div class="field" style="margin-top:10px"><div class="flabel">위치·소견 직접 추가 <span class="k">책에 없는 자리도 적어 둡니다</span></div>'+
+   '<div class="addrow">'+
+    '<input class="inp" id="abd-add-nm" placeholder="예) 좌 협하 압통, 제하 경결">'+
+    '<select class="inp" id="abd-add-loc">'+['상복부','중완','수분혈','제방','소복','흉협','기타'].map(function(x){return '<option>'+x+'</option>';}).join('')+'</select>'+
+    '<select class="inp" id="abd-add-sev">'+[0,1,2,3,4,5].map(function(v){return '<option value="'+v+'"'+(v===3?' selected':'')+'>'+v+'</option>';}).join('')+'</select>'+
+    '<button class="btn mini primary" id="abd-add-go" type="button">추가</button></div>'+
+   customList()+'</div>';
+  h += '</div>';
+  return h;
+}
+
+/* 설·맥·신 */
+function tmCard(){
+  return '<div class="card"><h2><span class="no">5</span>설·맥·신<span class="src">p.241~255</span></h2>'+
+  '<div class="grid3">'+
+   '<div class="field"><div class="flabel">설색</div>'+chipsRaw('tongue.color',[{v:'담',l:'담백'},{v:'홍',l:'홍'},{v:'자',l:'자암'},{v:'청',l:'청'}],true)+'</div>'+
+   '<div class="field"><div class="flabel">설태</div>'+chipsRaw('tongue.coat',[{v:'백',l:'백태'},{v:'황',l:'황태'},{v:'후',l:'두껍고 지저분'},{v:'박',l:'박'},{v:'무',l:'무태'}],true)+'</div>'+
+   '<div class="field"><div class="flabel">건습</div>'+chipsRaw('tongue.dry',[{v:'건',l:'건조'},{v:'습',l:'습윤'}],true)+'</div>'+
+  '</div>'+
+  '<div class="field"><div class="flabel">맥 <span class="k">다중선택 — 겸맥 그대로</span></div>'+chipsRaw('pulse',PULSEL,true)+'</div>'+
+  '<div class="field"><div class="flabel">신(神)</div>'+chips('inq.spirit','spirit')+'</div>'+
+  '</div>';
+}
+
+/* 문진 */
+function inqCard(){
+  let inq = '<div class="card"><h2><span class="no">6</span>문진<span class="src">p.189~295</span></h2>'+
+   '<p class="card-sub">모든 항목이 <b>다중선택</b>입니다. <b>정상·없음</b>을 고르면 다른 선택은 풀립니다.</p>';
+  G.forEach(function(g){
+    const cnt = g.keys.reduce(function(n,k){ const v=S.inq[k]; return n + (Array.isArray(v)?v.length:(v?1:0)); },0);
+    inq += '<details class="grp" '+(g.open?'open':'')+'><summary>'+g.t+' <span class="cnt">'+(cnt||'')+'</span></summary><div class="grp-body">';
+    g.keys.forEach(function(k){
+      const req = k==='urine' ? ' <span class="req">색 확인</span>' : '';
+      const hint = k==='urine' ? '<div class="scale-hint" style="justify-content:flex-start"><span>소변색을 꼭 물어봐야 합니다 — p.149</span></div>'
+                 : k==='stool' ? '<div class="scale-hint" style="justify-content:flex-start"><span>복탄력·거안과 묶어서 봅니다 — p.215~218</span></div>' : '';
+      inq += '<div class="field"><div class="flabel">'+GNAME[k]+req+'</div>'+chips('inq.'+k,k)+hint+'</div>';
+    });
+    inq += '</div></details>';
+  });
+  inq += '</div>';
+  return inq;
+}
+
+function panelDoctor(){ return idCard() + sxCard() + bodyCard() + abdCard() + tmCard() + inqCard(); }
+
+/* ── 환자 문진표 ── */
+function panelPatient(){
+  function step(n,t,done){ return '<div class="step'+(done?' done':'')+'"><i>'+(done?'✓':n)+'</i>'+t+'</div>'; }
+  const filled = (S.inq.appetite.length?1:0)+(S.inq.urine.length?1:0)+(S.inq.stool.length?1:0)+(num('abd.elast',0)?1:0);
+  const ageTxt = S.pt.age==='' ? '만 나이 자동' : '만 '+S.pt.age+'세';
+  const b = bmiOf(S.pt.ht, S.pt.wt);
+  let h = '<div class="card"><h2><span class="no">?</span>환자용 문진표<span class="src">같은 데이터로 판정</span></h2>'+
+  '<p class="card-sub">환자가 직접 체크하는 화면입니다. 여기서 체크한 값은 <b>원장님 화면과 같은 내부 데이터</b>로 들어가 판정이 똑같이 나옵니다.</p>'+
+  '<div class="steps">'+step(1,'인적 사항',!!(S.pt.name||S.pt.birth))+step(2,'불편한 곳',S.sx.length>0)+step(3,'평소 몸',filled>0)+step(4,'배 눌러보기',!!num('abd.elast',0))+'</div></div>';
+
+  h += '<div class="card"><h2><span class="no">1</span>인적 사항</h2>'+
+   '<div class="grid2" style="margin-bottom:10px">'+
+     '<label class="field"><span class="flabel">성함</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="성함"></label>'+
+     '<div class="field"><div class="flabel">성별</div>'+chipsRaw('pt.sex',[{v:'남',l:'남'},{v:'여',l:'여'}],false)+'</div>'+
+   '</div>'+
+   '<div class="grid3" style="margin-bottom:10px">'+
+     '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out-p">'+ageTxt+'</b></span><input class="inp" type="date" data-t="pt.birth" value="'+esc(S.pt.birth)+'"></label>'+
+     '<label class="field"><span class="flabel">전화번호</span><input class="inp" type="tel" inputmode="tel" data-t="pt.phone" value="'+esc(S.pt.phone)+'" placeholder="010-0000-0000"></label>'+
+     '<label class="field"><span class="flabel">이메일</span><input class="inp" type="email" inputmode="email" data-t="pt.email" value="'+esc(S.pt.email)+'" placeholder="name@example.com"></label>'+
+   '</div>'+
+   '<label class="field"><span class="flabel">주소</span><input class="inp" data-t="pt.addr" value="'+esc(S.pt.addr)+'" placeholder="부산 동래구 …"></label>'+
+   '<div class="grid3">'+
+     '<label class="field"><span class="flabel">키(cm)</span><input class="inp" inputmode="decimal" data-t="pt.ht" value="'+esc(S.pt.ht)+'" placeholder="172"></label>'+
+     '<label class="field"><span class="flabel">몸무게(kg)</span><input class="inp" inputmode="decimal" data-t="pt.wt" value="'+esc(S.pt.wt)+'" placeholder="68"></label>'+
+     '<div class="field"><div class="flabel">체질량지수 <b class="bmiout" id="bmi-out-p">'+(b===null?'BMI 자동':'BMI '+b.toFixed(1)+' · '+bmiLabel(b))+'</b></div><div class="hint">키와 몸무게를 넣으면 저절로 계산됩니다.</div></div>'+
+   '</div></div>';
+
+  h += '<div class="card live"><h2><span class="no">2</span>어디가 가장 불편하십니까</h2>'+
+   '<div class="notice info" style="margin-bottom:11px"><b>여러 개를 고르실 수 있습니다.</b> 고른 순서대로 <b>1순위·2순위</b>가 됩니다. 통증이면 <b>10 = 견딜 수 없는 통증</b>을 기준으로 아픈 정도를 움직여 주십시오.</div>'+
+   '<label class="field"><span class="flabel">가장 불편한 점을 자유롭게 적어 주십시오</span><textarea class="inp" data-t="pt.chief" placeholder="예) 두 달 전부터 잠을 못 자고 가슴이 답답합니다">'+esc(S.pt.chief)+'</textarea></label>'+
+   sxPickHTML() + sxRowsHTML() + '</div>';
+
+  h += '<div class="card"><h2><span class="no">3</span>평소 몸 상태</h2>'+
+   '<div class="field"><div class="flabel">체형</div>'+seg('body.build',5,['마름','','','','살집 있음'],'warm')+scaleHint('마르고 마른 편','살집이 있고 단단한 편')+'</div>'+
+   '<div class="field"><div class="flabel">피부는 어떤 편입니까 <span class="k">여러 개 가능</span></div>'+chipsRaw('body.skinColor',[{v:'백',l:'하얗다'},{v:'황',l:'누렇다'},{v:'적',l:'붉다'},{v:'흑',l:'검고 거칠다'},{v:'청',l:'푸르스름하다'}],true)+'</div>'+
+   '<div class="grid2">'+
+     '<div class="field"><div class="flabel">식욕</div>'+chips('inq.appetite','appetite')+'</div>'+
+     '<div class="field"><div class="flabel">소화</div>'+chips('inq.digestion','digestion')+'</div>'+
+   '</div>'+
+   '<div class="field"><div class="flabel">입</div>'+chips('inq.mouth','mouth')+'</div>'+
+   '<div class="grid2">'+
+     '<div class="field"><div class="flabel">소변</div>'+chips('inq.urine','urine')+'</div>'+
+     '<div class="field"><div class="flabel">대변</div>'+chips('inq.stool','stool')+'</div>'+
+   '</div></div>';
+
+  h += '<div class="card"><h2><span class="no">4</span>잠·땀·몸의 열기</h2>'+
+   '<div class="field"><div class="flabel">잠</div>'+chips('inq.sleep','sleep')+'</div>'+
+   '<div class="field"><div class="flabel">땀</div>'+chips('inq.sweat','sweat')+'</div>'+
+   '<div class="field"><div class="flabel">춥거나 더운 느낌</div>'+chips('inq.coldheat','coldheat')+'</div>'+
+   '<div class="field"><div class="flabel">붓기</div>'+chips('inq.edema','edema')+'</div>'+
+   '<div class="field"><div class="flabel">목·어깨·관절</div>'+chips('inq.muscle','muscle')+'</div>'+
+   '<div class="field"><div class="flabel">기분·마음 상태</div>'+chips('inq.spirit','spirit')+'</div>'+
+   '</div>';
+
+  h += '<div class="card live"><h2><span class="no">5</span>배를 눌러 봅니다 <span class="src">가족이 눌러 줄 때</span></h2>'+
+   '<div class="notice info" style="margin-bottom:11px"><b>배는 직접 눌러 보셔야 합니다.</b> 무릎을 세우고 편히 누운 뒤, 명치에서부터 천천히 눌러 주십시오. 아프거나 피하고 싶은 곳, 오히려 편해지는 곳을 0~5로 표시해 주시면 됩니다.</div>'+
+   '<div class="field"><div class="flabel">배의 힘 <span class="k">누르면 푹 들어가나요, 단단하게 버티나요</span></div>'+seg('abd.elast',5,['아주 물렁','물렁','보통','단단','아주 단단'],'warm')+'</div>'+
+   '<div class="abd-wrap">'+abdMap()+'<div>'+
+     '<div class="field"><div class="flabel">가슴께를 눌렀을 때 답답하고 피하고 싶다</div>'+seg('abd.chestReject',5,null,'',0)+'</div>'+
+     '<div class="field"><div class="flabel">가슴께를 눌렀을 때 오히려 편하고 눈이 맑아진다</div>'+seg('abd.chestAccept',5,null,'',0)+'</div>'+
+     '<div class="field"><div class="flabel">옆구리 아래로 손을 넣어 눌렀을 때</div>'+
+       '<div class="hint">불편·숨참 = 흉협고만 / 손이 쑥 들어감 = 허 / 머리 맑아짐 = 희안</div>'+
+       '<div class="abd-grid" style="margin-top:6px">'+abdCell('hypoHeat')+abdCell('hypoDef')+abdCell('hypoHeui')+'</div></div>'+
+   '</div></div>'+
+   '<div class="abd-grid">'+['jeongjae','simhaYe','jungwan','subun','rectus','leftUmb','lowerNotIn','lowerGugeup','lowerHyeongeup','lowerJongbi','lowerGeupgyeol','lowerPain'].map(function(k){ return abdCell(k); }).join('')+'</div>'+
+   '</div>';
+
+  h += '<div class="card"><h2><span class="no">6</span>그 밖에</h2>'+
+   '<div class="grid2">'+
+    '<div class="field"><div class="flabel">머리</div>'+chips('inq.head','head')+'</div>'+
+    '<div class="field"><div class="flabel">목</div>'+chips('inq.throat','throat')+'</div>'+
+   '</div>'+
+   '<div class="field"><div class="flabel">눈·코·귀</div>'+chips('inq.een','een')+'</div>'+
+   '<div class="field"><div class="flabel">가슴</div>'+chips('inq.chest','chest')+'</div>'+
+   '<div class="grid2">'+
+    '<div class="field"><div class="flabel">배 아픈 곳</div>'+chips('inq.abpain','abpain')+'</div>'+
+    '<div class="field"><div class="flabel">월경(여성)</div>'+chips('inq.mens','mens')+'</div>'+
+   '</div>'+
+   '<div class="field"><div class="flabel">먹고 있는 약이 있으면 적어 주십시오</div><input class="inp" data-t="pt.meds" value="'+esc(S.pt.meds)+'" placeholder="혈압약, 당뇨약, 진통제 등"></div>'+
+   '</div>';
+  return h;
+}
+
+/* ── 사진 탭 수동 보정 ── */
+function panelPhoto(){
+  const done = !!num('abd.elast',0);
+  let h = '<div class="steps">'+
+   '<div class="step done"><i>✓</i>사진 올리기</div>'+
+   '<div class="step'+(done?' done':'')+'"><i>'+(done?'✓':'2')+'</i>핵심 항목 옮겨 적기</div>'+
+   '<div class="step'+(done?' done':'')+'"><i>'+(done?'✓':'3')+'</i>오른쪽 판정 확인</div></div>';
+  h += '<div class="grid2" style="margin-bottom:10px">'+
+   '<label class="field"><span class="flabel">이름</span><input class="inp" data-t="pt.name" value="'+esc(S.pt.name)+'" placeholder="환자명"></label>'+
+   '<label class="field"><span class="flabel">생년월일 <b class="ageout" id="age-out">'+(S.pt.age===''?'만 나이 자동':'만 '+S.pt.age+'세')+'</b></span><input class="inp" type="date" data-t="pt.birth" value="'+esc(S.pt.birth)+'"></label>'+
+   '</div>';
+  h += sxPickHTML();
+  h += '<div class="field"><div class="flabel">복탄력 <span class="req">필수</span></div>'+seg('abd.elast',5,['아주 무름','무름','기준(3)','단단','아주 단단'],'warm')+'</div>';
+  h += '<div class="grid2">'+
+   '<div class="field"><div class="flabel">흉부 거안</div>'+seg('abd.chestReject',5,null,'',0)+'</div>'+
+   '<div class="field"><div class="flabel">흉부 희안</div>'+seg('abd.chestAccept',5,null,'',0)+'</div></div>';
+  h += '<div class="abd-grid">'+['jeongjae','simhaYe','bitGyeon','jungwan','subun','rectus','leftUmb','gyeryeong','lowerHyeongeup','lowerJongbi','lowerGeupgyeol','lowerPain'].map(function(k){ return abdCell(k); }).join('')+'</div>';
+  h += '<div class="grid2" style="margin-top:10px">'+
+   '<div class="field"><div class="flabel">소변</div>'+chips('inq.urine','urine')+'</div>'+
+   '<div class="field"><div class="flabel">대변</div>'+chips('inq.stool','stool')+'</div></div>';
+  h += '<div class="grid3">'+
+   '<div class="field"><div class="flabel">설색</div>'+chipsRaw('tongue.color',[{v:'담',l:'담백'},{v:'홍',l:'홍'},{v:'자',l:'자암'}],true)+'</div>'+
+   '<div class="field"><div class="flabel">설태</div>'+chipsRaw('tongue.coat',[{v:'백',l:'백태'},{v:'황',l:'황태'},{v:'후',l:'후'}],true)+'</div>'+
+   '<div class="field"><div class="flabel">맥</div>'+chipsRaw('pulse',PULSEL,true)+'</div></div>';
+  h += '<div class="field"><div class="flabel">주소증</div><input class="inp" data-t="pt.chief" value="'+esc(S.pt.chief)+'" placeholder="문진표에 적힌 주된 불편"></div>';
+  return h;
+}
+
+/* ── 결과 패널 ── */
+function emptyHTML(){
+  return '<div class="res"><div class="res-card"><div class="res-title">변증 판정 요약<span class="badge off">대기</span></div>'+
+  '<div class="empty"><b class="t">아직 입력이 없습니다</b>복진의 <b>복탄력</b>과 <b>흉부 거안·희안</b> 두 가지만 넣어도<br>첫 판정이 나옵니다. 증상을 고르면 <b>순위·통증강도</b>가 함께 반영됩니다.</div></div>'+
+  '<div class="res-card"><div class="res-title">읽는 순서<span class="badge">안내</span></div>'+
+  '<div class="legend">'+
+   '<p style="margin:0 0 8px"><b>1. 복진 먼저</b> — 복탄력 3을 기준으로 3 미만은 內虛(乾薑), 3 초과는 內實(大黃).</p>'+
+   '<p style="margin:0 0 8px"><b>2. 흉부 압진</b> — 거안은 心熱(黃連·瀉心劑), 희안은 心虛(苓桂·人蔘).</p>'+
+   '<p style="margin:0 0 8px"><b>3. 부위</b> — 정재심하·심하예·중완·수분혈·협하·소복 순으로 짚습니다.</p>'+
+   '<p style="margin:0"><b>4. 문진으로 겸증 확정</b> — 같은 설사도 복탄력과 거안·희안 조합으로 少陽·太陰·陽明이 갈립니다.</p>'+
+  '</div></div></div>';
+}
+
+function sxResCard(){
+  if(!S.sx.length) return '';
+  let h = '<div class="res-card"><div class="res-title">주증상 순위<span class="badge">'+S.sx.length+'개</span></div><div class="sxres">';
+  S.sx.forEach(function(x,i){
+    h += '<div class="sxres-row'+(i===0?' first':'')+'"><span class="rk">'+(i+1)+'</span><div><b>'+esc(x.k)+'</b>'+
+      (x.pain&&x.vas!=null?' <span style="color:var(--warn);font-weight:800">VAS '+x.vas+'</span>':'')+
+      (x.pain&&x.vas!=null?'<div class="vasbar"><i style="width:'+(x.vas*10)+'%"></i></div>':'')+
+      '</div></div>';
+  });
+  return h+'</div><div class="legend" style="margin-top:9px">순위 가중 — 1순위 100% · 2순위 70% · 3순위 50% · 4순위 이하 35%. 통증 VAS 7 이상은 같은 방향 처방에 무게를 더합니다.</div></div>';
+}
+
+function verdictCard(a){
+  const yk = a.yukSorted;
+  const main = yk[0][1]>0 ? yk[0] : null;
+  const second = yk[1] && yk[1][1] >= Math.max(3, yk[0][1]*0.55) ? yk[1] : null;
+  const rows = yk.map(function(p){
+    const k = p[0], v = p[1];
+    const w = Math.round(v/(a.yMax||1)*100);
+    return '<div class="yuk-row '+(main&&k===main[0]?'main':'')+'"><span class="nm">'+k+'병</span>'+
+      '<span class="tr"><span class="fi" style="width:'+Math.max(v?6:0,w)+'%"></span></span>'+
+      '<span class="vl">'+Math.round(v/(a.yMax||1)*100)+'</span></div>';
+  }).join('');
+  const tagH = a.heat-a.cold>=4 ? '<span class="tag heat">열(陽) 쪽</span>' :
+               a.cold-a.heat>=4 ? '<span class="tag cold">한(陰) 쪽</span>' :
+               '<span class="tag mid">한열 착잡</span>';
+  const flags = Object.entries(a.flags).filter(function(p){ return p[1]>=3; }).map(function(p){
+    const k = p[0], v = p[1];
+    return '<span class="tag soft">'+k+' '+(v>=6?'뚜렷':v>=4?'있음':'의심')+'</span>';
+  }).join('');
+  let h = '<div class="res-card"><div class="res-title">변증 판정 요약<span class="badge">'+
+    (main? main[0]+'병'+(second?' · '+second[0]+'병 겸':'') : '근거 부족')+'</span></div>';
+  h += '<div class="yuk">'+rows+'</div>';
+  h += '<div class="verdict-line">'+tagH+
+    '<span class="tag '+(a.heosil.indexOf('實')===0?'heat':a.heosil.indexOf('虛')===0?'cold':'mid')+'">'+a.heosil+'</span>'+
+    (a.maxVas>=7?'<span class="tag heat">통증 VAS '+a.maxVas+' — 강도 높음</span>':'')+
+    (flags||'')+'</div>';
+  h += '<div class="legend" style="margin-top:9px">'+(main?'<b>'+main[0]+'병</b> — '+yukText(main[0])+(second?' / <b>겸</b> '+second[0]+'병':'') : '')+'</div>';
+  h += '<div class="legend" style="margin-top:4px;color:#8c9791">'+a.heosilWhy+'</div>';
+  h += '</div>';
+
+  const af = abdFindings();
+  if(af.length){
+    h += '<div class="res-card"><div class="res-title">복진 소견<span class="badge">'+af.length+'</span></div><ul class="rx-why">'+
+      af.map(function(x){ return '<li><b>'+esc(x.k)+'</b> — '+esc(x.v)+'</li>'; }).join('')+'</ul></div>';
+  }
+  return h;
+}
+function yukText(k){
+  const m = {
+    태양:'표(表)에 병이 있어 오한·무한·부맥 쪽을 봅니다. 계지탕·마황탕·갈근탕 계열에서 갈립니다.',
+    양명:'열이 속에 맺혀 갈증·다한·변비·황태 쪽을 봅니다. 石膏(白虎)와 大黃(承氣) 사이에서 갈립니다.',
+    소양:'반표반리로 왕래한열·흉협고만·구고 쪽을 봅니다. 柴胡劑에서 갈립니다.',
+    태음:'속이 냉하고 설사·복만 쪽을 봅니다. 人蔘湯·苓桂劑 쪽입니다.',
+    소음:'맥이 침하고 수족이 차며 但欲寐 쪽을 봅니다. 附子·乾薑 계열과 黃連阿膠湯 사이입니다.',
+    궐음:'한열착잡·기충·소갈 쪽을 봅니다. 吳茱萸湯·當歸四逆湯 쪽입니다.'
+  };
+  return m[k]||'';
+}
+
+function rxCard(a){
+  const top = a.list.filter(function(x){ return x.eff>=1.5; }).slice(0,3);
+  if(!top.length) return '';
+  let h = '<div class="res-card"><div class="res-title">탕약 처방 제안<span class="badge">'+top.length+'순위</span></div>';
+  top.forEach(function(x,i){
+    const g = gradeOf(x);
+    const gc = g==='主之'?'g1':g==='與'?'g2':'g3';
+    const fitT = x.fit==='in' ? '<span class="ok">복탄력 밴드 적합</span>' : x.fit==='out' ? '<span class="no">복탄력 밴드와 어긋남</span>' : '';
+    h += '<article class="rx'+(i===0?' first':'')+'">';
+    h += '<div class="rx-head"><span class="rx-rank">'+(i+1)+'순위</span><h3>'+esc(x.n)+' <small>'+x.f.han+'</small></h3>'+
+         '<span class="grade '+gc+'">'+g+'</span></div>';
+    h += '<div class="rx-meta"><span>'+x.f.yuk+'병</span><span>근거 '+x.f.pg+'</span>'+fitT+'</div>';
+    h += '<ul class="rx-why">'+x.why.map(function(w){ return '<li>'+esc(w.t)+' <span class="pg">'+w.pg+'</span></li>'; }).join('')+'</ul>';
+    const jm = x.f.jm||[];
+    if(jm.length){
+      h += '<details class="jm"'+(i===0?' open':'')+'><summary>참조 상한론 조문 '+jm.length+'건</summary><div class="jm-body">'+
+        jm.map(function(j){ return '<blockquote class="jm-q"><span class="zh">'+j.zh+'</span><span class="ko">'+j.ko+'</span><cite>'+
+          (j.kind==='book'?'책 원문 확인 · p.149':'송본 '+j.no+'조 · 책 쪽수 대조 전')+'</cite></blockquote>'; }).join('')+'</div></details>';
+    } else {
+      h += '<details class="jm"><summary>참조 상한론 조문</summary><div class="jm-body">'+
+        '<blockquote class="jm-q pending"><span class="zh">조문 원문 미대조</span><span class="ko">이 처방의 조문은 아직 책 원문과 대조하지 않아 지어내지 않고 비워 두었습니다. 책 서술 근거는 '+x.f.pg+'입니다.</span><cite>대조 대기</cite></blockquote></div></details>';
+    }
+    if(i===0){
+      const cb = combos(x.n, a);
+      h += '<div class="rx-foot"><span class="pill">합방</span>'+
+        (cb.length? cb.map(function(c){ return '<span class="pill">'+c.n+' <small style="font-weight:600;color:#6d8a80">('+c.r+')</small></span>'; }).join('')
+          : '<span class="pill" style="color:#7b8a82">겸증이 뚜렷하지 않아 단방을 권합니다</span>')+'</div>';
+      if(cb.length) h += '<div class="legend" style="margin-top:6px">합방 시 중복 약재는 <b>용량이 높은 쪽</b>을 씁니다(p.50). 가감은 하지 않고 원방 그대로 쓰는 것이 원칙입니다(p.19).</div>';
+    }
+    h += '</article>';
+  });
+  h += '<div class="legend" style="margin-top:10px;border-top:1px dashed var(--line);padding-top:9px">'+
+   '<b>主之</b> 정증에 잘 맞음 · <b>與</b> 한번 줘 보라(증상이 뚜렷할 때 상당수) · <b>宜</b> 맞을 것 같다 — p.101~103 스펙트럼</div>';
+  h += '</div>';
+  return h;
+}
+
+function combos(topN, a){
+  const o=[];
+  if(a.flags.담음>=3) o.push({n:'영계출감탕',r:'담음'});
+  if(a.flags.수독>=3) o.push({n:'오령산',r:'수독'});
+  if(a.flags.어혈>=4) o.push({n:'계지복령환',r:'어혈'});
+  if(a.flags.기울>=3) o.push({n:'반하후박탕',r:'기울'});
+  return o.filter(function(c){ return c.n!==topN; }).slice(0,2);
+}
 
 function acuCard(a){
   const ab = S.abd, groups = [];
-  const push=(t,pts)=>{ if(pts&&pts.length) groups.push({t,p:pts}); };
+  const push=function(t,pts){ if(pts&&pts.length) groups.push({t:t,p:pts}); };
   const main = a.yukSorted[0][1]>0 ? a.yukSorted[0][0] : null;
   if(main) push(main+'병 기본혈', ACU_YUK[main]);
-  if(ab.jeongjae>0) push(ACU_PART.jeongjae.t, ACU_PART.jeongjae.p);
-  if(ab.jungwan>0) push(ACU_PART.jungwan.t, ACU_PART.jungwan.p);
-  if(ab.subun>0) push(ACU_PART.subun.t, ACU_PART.subun.p);
-  if(ab.leftUmb>0) push(ACU_PART.leftUmb.t, ACU_PART.leftUmb.p);
-  if(ab.rectus>0) push(ACU_PART.rectus.t, ACU_PART.rectus.p);
-  if(ab.hypoch) push(ACU_PART.hypoch.t, ACU_PART.hypoch.p);
-  if(ab.lowerPain>0||ab.lowerMass||ab.lowerNotIn>0) push(ACU_PART.lower.t, ACU_PART.lower.p);
-  if(ab.chest) push(ACU_PART.chest.t, ACU_PART.chest.p);
+  if(num('abd.jeongjae',0)>0) push(ACU_PART.jeongjae.t, ACU_PART.jeongjae.p);
+  if(num('abd.simhaYe',0)>0) push('심하예(心下痞)', ACU_PART.jeongjae.p);
+  if(num('abd.jungwan',0)>0) push(ACU_PART.jungwan.t, ACU_PART.jungwan.p);
+  if(num('abd.subun',0)>0) push(ACU_PART.subun.t, ACU_PART.subun.p);
+  if(num('abd.leftUmb',0)>0) push(ACU_PART.leftUmb.t, ACU_PART.leftUmb.p);
+  if(num('abd.rectus',0)>0) push(ACU_PART.rectus.t, ACU_PART.rectus.p);
+  if(num('abd.hypoHeat',0)>0||num('abd.hypoDef',0)>0||num('abd.hypoHeui',0)>0) push(ACU_PART.hypoch.t, ACU_PART.hypoch.p);
+  if(num('abd.lowerPain',0)>0||num('abd.lowerJongbi',0)>0||num('abd.lowerGeupgyeol',0)>0||num('abd.lowerNotIn',0)>0||num('abd.lowerHyeongeup',0)>0||num('abd.lowerGugeup',0)>0) push(ACU_PART.lower.t, ACU_PART.lower.p);
+  if(num('abd.chestReject',0)>0||num('abd.chestAccept',0)>0) push(ACU_PART.chest.t, ACU_PART.chest.p);
+  if((ab.custom||[]).length) (ab.custom||[]).forEach(function(c){ push('추가 소견 · '+c.nm+(c.loc?' ('+c.loc+')':''), ACU_PART.lower.p); });
   if(!groups.length) return '';
-  const mode = (ab.elast&&ab.elast>=4)||ab.chest==='reject' ? '사법(瀉) 위주 — 자극을 조금 세게, 시간은 짧게'
-             : (ab.elast&&ab.elast<=2)||ab.chest==='accept' ? '보법(補) 위주 — 자극은 부드럽게, 뜸을 곁들임'
+  const mode = (num('abd.elast',0)>=4)||num('abd.chestReject',0)>0 ? '사법(瀉) 위주 — 자극을 조금 세게, 시간은 짧게'
+             : (num('abd.elast',0)>0&&num('abd.elast',0)<=2)||num('abd.chestAccept',0)>0 ? '보법(補) 위주 — 자극은 부드럽게, 뜸을 곁들임'
              : '평보평사 — 반응을 보며 조절';
   let h = '<div class="res-card"><div class="res-title">침 처방 초안<span class="badge">검토 필요</span></div>';
-  groups.forEach(g=>{
-    h += '<div class="acu-grp"><h4>'+g.t+'</h4><div class="chips">'+
-      g.p.map(p=>'<span class="chip" aria-pressed="true" style="cursor:default">'+p+'</span>').join('')+'</div></div>';
+  groups.forEach(function(g){
+    h += '<div class="acu-grp"><h4>'+esc(g.t)+'</h4><div class="chips">'+
+      g.p.map(function(p){ return '<span class="chip" aria-pressed="true" style="cursor:default">'+p+'</span>'; }).join('')+'</div></div>';
   });
   h += '<div class="legend" style="margin-top:4px"><b>자극 방향</b> — '+mode+'</div>';
   h += '<div class="disc">※ 침 처방은 책 복진 부위 기반 초안이며 <b>원장님 임상 검토가 필요</b>합니다. 혈자리 선택·자침 심도·유침 시간은 대면 진찰 소견으로 정하십시오.</div>';
@@ -1311,36 +1659,27 @@ function acuCard(a){
 
 function hasAnyInput(){
   const a = S.abd;
-  return !!(S.pt.chief || S.pt.name || a.elast || a.chest || a.jeongjae || a.jungwan || a.subun ||
-    a.leftUmb || a.rectus || a.hypoch || a.lowerPain || a.lowerMass || a.bitGyeon ||
-    S.inq.appetite || S.inq.urine || S.inq.stool || S.inq.sweat || S.inq.edema || S.inq.tan ||
-    S.inq.mouth.length || S.inq.sleep.length || S.inq.coldheat.length || S.inq.chest.length ||
-    S.inq.head.length || S.inq.een.length || S.inq.muscle.length || S.inq.mens ||
-    S.pulse.length || S.tongue.color || S.tongue.coat || S.body.build);
+  const anyAbd = num('abd.elast',0)||num('abd.chestReject',0)||num('abd.chestAccept',0)||
+    ABD.some(function(x){ return num('abd.'+x.k,0)>0; }) || (a.custom||[]).length;
+  return !!(S.pt.chief || S.pt.name || S.pt.birth || anyAbd || S.sx.length ||
+    S.inq.appetite.length || S.inq.urine.length || S.inq.stool.length || S.inq.sweat.length ||
+    S.inq.edema.length || S.inq.tan.length || S.inq.mouth.length || S.inq.sleep.length ||
+    S.inq.coldheat.length || S.inq.chest.length || S.inq.head.length || S.inq.een.length ||
+    S.inq.muscle.length || S.inq.mens.length || S.inq.spirit.length || S.inq.digestion.length ||
+    S.inq.abpain.length || S.inq.throat.length ||
+    S.pulse.length || S.tongue.color.length || S.tongue.coat.length || S.body.build);
 }
 function needMoreCard(){
   const miss = [];
-  if(!S.abd.elast) miss.push('복탄력(1~5)');
-  if(!S.abd.chest) miss.push('흉부 거안·희안');
-  if(!S.inq.stool) miss.push('대변');
-  if(!S.inq.urine) miss.push('소변');
-  if(!S.tongue.coat && !S.pulse.length) miss.push('설태 또는 맥');
+  if(!num('abd.elast',0)) miss.push('복탄력(1~5)');
+  if(!num('abd.chestReject',0) && !num('abd.chestAccept',0)) miss.push('흉부 거안·희안');
+  if(!S.inq.stool.length) miss.push('대변');
+  if(!S.inq.urine.length) miss.push('소변');
+  if(!S.tongue.coat.length && !S.pulse.length) miss.push('설태 또는 맥');
   return '<div class="res-card"><div class="res-title">조금 더 넣으면 판정이 섭니다<span class="badge">안내</span></div>'+
-    '<ul class="rx-why">'+(miss.length?miss.map(m=>'<li>'+m+'</li>').join(''):'<li>넣으신 값으로 겸증을 가릴 항목이 더 필요합니다</li>')+'</ul>'+
+    '<ul class="rx-why">'+(miss.length?miss.map(function(m){ return '<li>'+m+'</li>'; }).join(''):'<li>넣으신 값으로 겸증을 가릴 항목이 더 필요합니다</li>')+'</ul>'+
     '<div class="legend" style="margin-top:8px">복진 두 항목(복탄력·흉부 압진)만으로도 첫 판정이 나옵니다.</div></div>';
 }
-function renderResults(){
-  const a = assess();
-  const box = $('results');
-  if(!a.any){
-    if(!hasAnyInput()){ box.innerHTML = emptyHTML(); }
-    else { box.innerHTML = '<div class="res">'+verdictCard(a)+needMoreCard()+'</div>'; }
-    updateBar(a); return;
-  }
-  box.innerHTML = '<div class="res">'+verdictCard(a)+rxCard(a)+acuCard(a)+dataCard()+'</div>';
-  updateBar(a);
-}
-
 function dataCard(){
   return '<div class="res-card"><div class="res-title">오늘 기록<span class="badge">복사·저장</span></div>'+
    '<div style="display:flex;gap:7px;flex-wrap:wrap">'+
@@ -1349,129 +1688,222 @@ function dataCard(){
    '<div id="json-out" style="display:none;margin-top:9px"><pre class="mono" style="font-size:11px;line-height:1.5;background:#f7faf8;border:1px solid var(--line);border-radius:9px;padding:9px;overflow:auto;max-height:220px;margin:0">'+esc(JSON.stringify(S,null,1))+'</pre></div>'+
   '</div>';
 }
-
 function summaryText(){
   const a = assess();
   const main = a.yukSorted[0][1]>0 ? a.yukSorted[0][0] : '';
-  const top = a.list.filter(x=>x.eff>=1.5).slice(0,3);
-  const L=[];
-  if(S.pt.name) L.push('환자: '+S.pt.name+(S.pt.age?' (만 '+S.pt.age+'세)':''));
+  const top = a.list.filter(function(x){ return x.eff>=1.5; }).slice(0,3);
+  const L = [];
+  if(S.pt.name) L.push('환자: '+S.pt.name+(S.pt.sex?' ('+S.pt.sex+')':'')+(S.pt.age?' · 만 '+S.pt.age+'세':''));
+  if(S.pt.birth) L.push('생년월일: '+S.pt.birth+(S.pt.age?' (만 '+S.pt.age+'세)':''));
+  if(S.pt.phone||S.pt.email) L.push('연락처: '+[S.pt.phone,S.pt.email].filter(Boolean).join(' / '));
+  if(S.pt.addr) L.push('주소: '+S.pt.addr);
+  if(S.pt.ht||S.pt.wt){
+    const b = bmiOf(S.pt.ht,S.pt.wt);
+    L.push('신체: '+[S.pt.ht?S.pt.ht+'cm':'',S.pt.wt?S.pt.wt+'kg':'',b!==null?('BMI '+b.toFixed(1)+' '+bmiLabel(b)):''].filter(Boolean).join(' · '));
+  }
+  if(S.pt.bp) L.push('혈압: '+S.pt.bp);
+  if(S.pt.meds) L.push('복용약물: '+S.pt.meds);
   if(S.pt.chief) L.push('주소증: '+S.pt.chief);
-  L.push('변증: '+main+'병'+(a.heat-a.cold>=4?' · 열(陽)':a.cold-a.heat>=4?' · 한(陰)':' · 한열착잡')+' · '+a.heosil);
-  if(S.abd.elast) L.push('복진: 복탄력 '+S.abd.elast+(S.abd.chest==='reject'?' · 흉부 거안':S.abd.chest==='accept'?' · 흉부 희안':'')+
-    (S.abd.jeongjae>0?' · 정재심하 '+S.abd.jeongjae:'')+(S.abd.subun>0?' · 수분혈 '+S.abd.subun:'')+(S.abd.leftUmb>0?' · 배꼽좌측 '+S.abd.leftUmb:''));
-  if(top.length) L.push('처방: '+top.map((x,i)=>(i+1)+')'+x.n+'('+gradeOf(x)+')').join(' '));
-  const af = abdFindings(); if(af.length) L.push('복진 소견: '+af.map(x=>x.k+' '+x.v).join(' / '));
+  if(S.pt.onset||S.pt.aggr||S.pt.relief) L.push('경과: '+[S.pt.onset?'언제부터 '+S.pt.onset:'',S.pt.aggr?'심할 때 '+S.pt.aggr:'',S.pt.relief?'나을 때 '+S.pt.relief:''].filter(Boolean).join(' · '));
+  if(S.sx.length) L.push('주증상: '+S.sx.map(function(x,i){ return (i+1)+')'+x.k+(x.pain&&x.vas!=null?' VAS '+x.vas:'')+(x.pain&&x.vas==null?' (통증)':''); }).join(' '));
+  L.push('변증: '+(main?main+'병':'미정')+(a.heat-a.cold>=4?' · 열(陽)':a.cold-a.heat>=4?' · 한(陰)':' · 한열착잡')+' · '+a.heosil);
+  if(num('abd.elast',0)||num('abd.chestReject',0)||num('abd.chestAccept',0)){
+    L.push('복진: 복탄력 '+(num('abd.elast',0)||'-')+(num('abd.chestReject',0)?' · 흉부 거안 '+num('abd.chestReject',0):'')+(num('abd.chestAccept',0)?' · 흉부 희안 '+num('abd.chestAccept',0):''));
+  }
+  const af = abdFindings(); if(af.length) L.push('복진 소견: '+af.map(function(x){ return x.k+' '+x.v; }).join(' / '));
+  if(S.pulse.length) L.push('맥: '+S.pulse.join('·'));
+  if(S.tongue.color.length||S.tongue.coat.length) L.push('설: '+(S.tongue.color.join('·')||'-')+' / '+(S.tongue.coat.join('·')||'-'));
+  if(top.length) L.push('처방: '+top.map(function(x,i){ return (i+1)+')'+x.n+'('+gradeOf(x)+')'; }).join(' '));
   return L.join('\n');
 }
-
 function updateBar(a){
   const t = $('mbar-title'), s = $('mbar-sub');
+  if(!t||!s) return;
   if(!a||!a.any){
     if(hasAnyInput()){ t.textContent='근거가 더 필요합니다'; s.textContent='복탄력·흉부 압진을 넣어 주십시오'; }
     else { t.textContent='아직 입력이 없습니다'; s.textContent='복진부터 넣으면 판정이 나옵니다'; }
-    return; }
+    return;
+  }
   const main = a.yukSorted[0][1]>0 ? a.yukSorted[0][0] : '';
-  const top = a.list.filter(x=>x.eff>=1.5)[0];
-  t.textContent = main+'병 · '+a.heosil;
+  const top = a.list.filter(function(x){ return x.eff>=1.5; })[0];
+  t.textContent = (main?main+'병 · ':'')+a.heosil+(S.sx.length?' · '+S.sx[0].k+' 외 '+(S.sx.length-1)+'건':'');
   s.textContent = top ? top.n+' ('+gradeOf(top)+')' : '근거가 더 필요합니다';
+}
+function renderResults(){
+  window.__gaonDiag.renders++;
+  const a = assess();
+  const box = $('results');
+  if(!box) return;
+  if(!a.any){
+    box.innerHTML = hasAnyInput() ? '<div class="res">'+sxResCard()+verdictCard(a)+needMoreCard()+'</div>' : emptyHTML();
+    updateBar(a); return;
+  }
+  box.innerHTML = '<div class="res">'+sxResCard()+verdictCard(a)+rxCard(a)+acuCard(a)+dataCard()+'</div>';
+  updateBar(a);
 }
 
 /* ═══════════════════════════════════════════════════════════════
    4. 이벤트
    ═══════════════════════════════════════════════════════════════ */
-function syncPressed(el){
-  const path = el.getAttribute('data-k'), v = el.getAttribute('data-v'), multi = el.getAttribute('data-m')==='1';
-  if(!path) return;
-  const box = el.parentElement;
-  if(multi){ el.setAttribute('aria-pressed', el.getAttribute('aria-pressed')==='true'?'false':'true'); }
-  else {
-    Array.from(box.children).forEach(c=>{ if(c.hasAttribute && c.hasAttribute('data-k')) c.setAttribute('aria-pressed','false'); });
-    const now = get(path);
-    const isNum = PATHNUM.has(path);
-    const same = isNum ? String(now)===v : now===v;
-    if(!(same && String(now)!=='' )) el.setAttribute('aria-pressed','true');
-  }
+function keepOpen(fn){
+  const st = Array.prototype.map.call(document.querySelectorAll('details.grp'), function(d){ return d.open; });
+  fn();
+  document.querySelectorAll('details.grp').forEach(function(d,i){ if(st[i]!==undefined) d.open = st[i]; });
+}
+function renderPanels(){
+  const d = $('panel-doctor'), p = $('panel-patient'), ph = $('panel-photo-body');
+  if(d) d.innerHTML = panelDoctor();
+  if(p) p.innerHTML = panelPatient();
+  if(ph) ph.innerHTML = panelPhoto();
+  syncAge(); syncBmi();
+  renderResults();
 }
 
 document.addEventListener('click', function(ev){
+  /* 복부 지도 */
   const cyc = ev.target.closest('[data-cyc]');
-  if(cyc){ const p = cyc.getAttribute('data-cyc'); const cur = get(p)||0; const nxt = cur>=5?0:cur+1; setVal(p, String(nxt), false);
-    const map = cyc.closest('.abd-map'); if(map){ const tmp=document.createElement('div'); tmp.innerHTML=abdMap(); map.replaceWith(tmp.firstChild); }
-    return; }
+  if(cyc){
+    const p = cyc.getAttribute('data-cyc');
+    const cur = num(p,0)||0, nxt = cur>=5?0:cur+1;
+    setVal(p, String(nxt), false);
+    const map = cyc.closest('.abd-map');
+    if(map){
+      const tmp = document.createElement('div'); tmp.innerHTML = abdMap();
+      map.replaceWith(tmp.firstChild);
+    }
+    return;
+  }
+  /* 증상 칩 */
+  const st = ev.target.closest('[data-sxt]');
+  if(st){
+    sxToggle(st.getAttribute('data-sxt'), st.getAttribute('data-spain')==='1');
+    keepOpen(renderPanels);
+    return;
+  }
+  /* 순위·통증 도구 */
+  const mv = ev.target.closest('[data-mv]');
+  if(mv){
+    sxMove(mv.getAttribute('data-sxk'), mv.getAttribute('data-mv'));
+    keepOpen(renderPanels);
+    return;
+  }
+  /* 추가 소견 삭제 */
+  const cd = ev.target.closest('[data-custdel]');
+  if(cd){
+    S.abd.custom.splice(Number(cd.getAttribute('data-custdel')),1);
+    keepOpen(renderPanels);
+    return;
+  }
+  /* 증상 직접 추가 */
+  if(ev.target.closest('#sx-add-go')){
+    const inp = $('sx-add'); if(!inp) return;
+    const v = (inp.value||'').trim();
+    if(!v) { inp.focus(); return; }
+    if(!sxHas(v)) S.sx.push({k:v, pain: ($('sx-add-pain')&&$('sx-add-pain').checked)?1:0, vas:null});
+    inp.value = ''; if($('sx-add-pain')) $('sx-add-pain').checked = false;
+    keepOpen(renderPanels);
+    return;
+  }
+  /* 복진 위치·소견 직접 추가 */
+  if(ev.target.closest('#abd-add-go')){
+    const nm = ($('abd-add-nm')&&$('abd-add-nm').value||'').trim();
+    if(!nm){ if($('abd-add-nm')) $('abd-add-nm').focus(); return; }
+    S.abd.custom.push({nm:nm, loc:($('abd-add-loc')||{}).value||'기타', sev:Number(($('abd-add-sev')||{}).value||0)});
+    keepOpen(renderPanels);
+    return;
+  }
+  /* 일반 칩·세그 */
   const el = ev.target.closest('[data-k]');
   if(!el) return;
   const path = el.getAttribute('data-k'), v = el.getAttribute('data-v'), multi = el.getAttribute('data-m')==='1';
-  if(path==='abd.bitGyeon'){ S.abd.bitGyeon = !S.abd.bitGyeon; el.setAttribute('aria-pressed', S.abd.bitGyeon?'true':'false'); renderResults(); return; }
   setVal(path, v, multi);
-  /* 화면 상태 동기화 */
-  if(multi){ el.setAttribute('aria-pressed', (get(path)||[]).includes(v)?'true':'false'); }
-  else {
+  if(multi){
+    el.setAttribute('aria-pressed', (get(path)||[]).includes(v)?'true':'false');
+    refreshCounts();
+  } else {
     const box = el.parentElement;
-    Array.from(box.children).forEach(c=>{ if(c.hasAttribute && c.hasAttribute('data-k')) c.setAttribute('aria-pressed','false'); });
+    Array.prototype.forEach.call(box.children, function(c){
+      if(c.hasAttribute && c.hasAttribute('data-k')) c.setAttribute('aria-pressed','false');
+    });
     const now = get(path);
-    if(!(PATHNUM.has(path) ? now===null||now===undefined : now==='')) el.setAttribute('aria-pressed','true');
-    /* 다른 탭에도 같은 값을 반영하기 위해 카운터 갱신 */
+    if(!(PATHNUM.has(path) ? (now===null||now===undefined) : now==='')) el.setAttribute('aria-pressed','true');
     if(path.indexOf('inq.')===0 || PATHNUM.has(path)) refreshCounts();
   }
 });
 
 document.addEventListener('input', function(ev){
+  /* 통증 강도 */
+  const vs = ev.target.closest('[data-vas]');
+  if(vs){
+    const k = vs.getAttribute('data-vas');
+    const it = S.sx.filter(function(x){ return x.k===k; })[0];
+    if(it){ it.vas = Number(vs.value); }
+    const wrap = vs.closest('.vas-wrap');
+    const out = wrap && wrap.querySelector('.vasv');
+    if(out) out.textContent = vs.value+' / 10';
+    renderResults();
+    return;
+  }
+  /* 글자 입력 */
   const t = ev.target.closest('[data-t]');
   if(!t) return;
-  const path = t.getAttribute('data-t').split('.'); let o=S;
-  for(let i=0;i<path.length-1;i++) o=o[path[i]];
+  const path = t.getAttribute('data-t').split('.'); let o = S;
+  for(let i=0;i<path.length-1;i++) o = o[path[i]];
   o[path[path.length-1]] = t.value;
+  if(t.getAttribute('data-t')==='pt.birth') syncAge();
+  if(t.getAttribute('data-t')==='pt.ht'||t.getAttribute('data-t')==='pt.wt') syncBmi();
   renderResults();
 });
 
 function refreshCounts(){
-  document.querySelectorAll('.grp').forEach(g=>{
-    const keys = Array.from(g.querySelectorAll('[data-k^="inq."]')).map(b=>b.getAttribute('data-k').split('.')[1]);
+  document.querySelectorAll('.grp').forEach(function(g){
+    const keys = Array.prototype.map.call(g.querySelectorAll('[data-k^="inq."]'), function(b){ return b.getAttribute('data-k').split('.')[1]; });
     const uniq = Array.from(new Set(keys));
-    const n = uniq.reduce((c,k)=>{ const v=S.inq[k]; return c + (Array.isArray(v)?v.length:(v?1:0)); },0);
+    const n = uniq.reduce(function(c,k){ const v=S.inq[k]; return c + (Array.isArray(v)?v.length:(v?1:0)); },0);
     const cnt = g.querySelector('.cnt'); if(cnt) cnt.textContent = n||'';
   });
 }
 
 /* 탭 */
-document.querySelectorAll('.tabs button').forEach(b=>{
-  b.addEventListener('click', ()=>{
+document.querySelectorAll('.tabs button').forEach(function(b){
+  b.addEventListener('click', function(){
     const m = b.getAttribute('data-mode');
     S.meta.mode = m;
-    document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected', x===b?'true':'false'));
-    ['doctor','patient','photo'].forEach(k=>{ const p=$('panel-'+k); if(p) p.hidden = (k!==m); });
+    document.querySelectorAll('.tabs button').forEach(function(x){ x.setAttribute('aria-selected', x===b?'true':'false'); });
+    ['doctor','patient','photo'].forEach(function(k){ const p=$('panel-'+k); if(p) p.hidden = (k!==m); });
     renderPanels();
   });
 });
 
-function renderPanels(){
-  $('panel-doctor').innerHTML = panelDoctor();
-  $('panel-patient').innerHTML = panelPatient();
-  $('panel-photo-body').innerHTML = panelPhoto();
-  renderResults();
-}
-
-/* 예시·초기화·인쇄·복사 */
+/* 예시 */
 const EX = [
  {name:'예시 1 — 마른 체형 · 불면 · 가슴 답답', s:{
-   pt:{name:'예시1',sex:'여',age:'48',ht:'163cm · 51kg',bp:'118/74',meds:'',chief:'두 달 전부터 잠을 못 자고 가슴이 답답하다',onset:'2개월 전',aggr:'밤에',relief:'눕거나 따뜻하게'},
-   body:{build:2,skinColor:'백',skinHeat:'건',skinThick:2,skinTurgor:3},
-   abd:{elast:3,chest:'reject',chestLevel:3,jeongjae:2,jungwan:2,subun:0,leftUmb:0,rectus:0,hypoch:'heat',hypochLevel:2,bitGyeon:false,lowerNotIn:0,lowerMass:'',lowerPain:0},
-   tongue:{color:'홍',coat:'황',dry:'건'},pulse:['현','삭'],
-   inq:{appetite:'',digestion:'',mouth:['구창','구고'],urine:'',stool:'변비',sleep:['불면','심번'],sweat:'',edema:'',tan:'',spirit:'불안',coldheat:[],head:[],throat:[],een:[],chest:['답답'],abpain:'',muscle:[],mens:''}}},
+   pt:{name:'예시1',sex:'여',birth:'1978-04-12',age:'',phone:'010-0000-1111',addr:'부산 동래구 온천동',email:'',ht:'163',wt:'51',bp:'118/74',meds:'',chief:'두 달 전부터 잠을 못 자고 가슴이 답답하다',onset:'2개월 전',aggr:'밤에',relief:'눕거나 따뜻하게'},
+   sx:[{k:'불면',pain:0,vas:null},{k:'심번',pain:0,vas:null},{k:'두통',pain:1,vas:6}],
+   body:{build:2,skinColor:['백'],skinHeat:['건'],skinThick:2,skinTurgor:3},
+   abd:{elast:3,chestReject:4,chestAccept:0,jeongjae:2,simhaYe:3,jungwan:2,bitGyeon:0,subun:0,rectus:0,waterSound:0,
+        leftUmb:0,gyeryeong:0,lowerNotIn:0,lowerGugeup:0,lowerHyeongeup:0,lowerJongbi:0,lowerGeupgyeol:0,lowerPain:0,lowerBlood:0,
+        hypoHeat:2,hypoDef:0,hypoHeui:0,kiDong:0,custom:[]},
+   tongue:{color:['홍'],coat:['황'],dry:['건']},pulse:['현','삭'],
+   inq:{appetite:[],digestion:[],mouth:['구창','구고'],urine:[],stool:['변비'],sleep:['불면','심번'],sweat:[],edema:[],tan:[],spirit:['불안'],coldheat:[],head:[],throat:[],een:[],chest:['답답'],abpain:[],muscle:[],mens:[]}}},
  {name:'예시 2 — 복탄력 강 · 변비 · 대갈', s:{
-   pt:{name:'예시2',sex:'남',age:'55',ht:'175cm · 82kg',bp:'138/88',meds:'혈압약 장기',chief:'변이 굳고 목이 마르며 얼굴이 화끈하다',onset:'6개월',aggr:'식후',relief:'찬물'},
-   body:{build:4,skinColor:'적',skinHeat:'열',skinThick:4,skinTurgor:4},
-   abd:{elast:5,chest:'reject',chestLevel:4,jeongjae:3,jungwan:3,subun:0,leftUmb:0,rectus:1,hypoch:'heat',hypochLevel:3,bitGyeon:false,lowerNotIn:0,lowerMass:'',lowerPain:0},
-   tongue:{color:'홍',coat:'황',dry:'건'},pulse:['홍','삭'],
-   inq:{appetite:'항진',digestion:'',mouth:['구갈'],urine:'황',stool:'변비',sleep:[],sweat:'자한',edema:'',tan:'',spirit:'강단',coldheat:['대갈발열'],head:[],throat:[],een:[],chest:[],abpain:'',muscle:[],mens:'해당없음'}}},
- {name:'예시 3 — 희안 · 복냉 · 설사 · 어지럼', s:{
-   pt:{name:'예시3',sex:'여',age:'62',ht:'158cm · 58kg',bp:'126/78',meds:'',chief:'묽은 변을 자주 보고 어지럽다',onset:'1년',aggr:'아침',relief:'따뜻하게'},
-   body:{build:3,skinColor:'백',skinHeat:'',skinThick:3,skinTurgor:2},
-   abd:{elast:2,chest:'accept',chestLevel:3,jeongjae:0,jungwan:1,subun:3,leftUmb:0,rectus:0,hypoch:'',hypochLevel:null,bitGyeon:false,lowerNotIn:2,lowerMass:'',lowerPain:0},
-   tongue:{color:'담',coat:'백',dry:'습'},pulse:['침','지'],
-   inq:{appetite:'없음',digestion:'불량',mouth:[],urine:'불리',stool:'설사',sleep:['다면'],sweat:'',edema:'하체',tan:'물소리',spirit:'허약',coldheat:['수족냉'],head:['현훈'],throat:[],een:[],chest:[],abpain:'희안',muscle:[],mens:'해당없음'}}}
+   pt:{name:'예시2',sex:'남',birth:'1971-09-03',age:'',phone:'010-0000-2222',addr:'부산 동래구 사직동',email:'',ht:'175',wt:'82',bp:'138/88',meds:'혈압약 장기',chief:'변이 굳고 목이 마르며 얼굴이 화끈하다',onset:'6개월',aggr:'식후',relief:'찬물'},
+   sx:[{k:'변비',pain:0,vas:null},{k:'상열감',pain:0,vas:null},{k:'두통',pain:1,vas:7}],
+   body:{build:4,skinColor:['적'],skinHeat:['열'],skinThick:4,skinTurgor:4},
+   abd:{elast:5,chestReject:4,chestAccept:0,jeongjae:3,simhaYe:2,jungwan:3,bitGyeon:0,subun:0,rectus:1,waterSound:0,
+        leftUmb:0,gyeryeong:0,lowerNotIn:0,lowerGugeup:0,lowerHyeongeup:0,lowerJongbi:0,lowerGeupgyeol:0,lowerPain:0,lowerBlood:0,
+        hypoHeat:3,hypoDef:0,hypoHeui:0,kiDong:0,custom:[]},
+   tongue:{color:['홍'],coat:['황'],dry:['건']},pulse:['홍','삭'],
+   inq:{appetite:['항진'],digestion:[],mouth:['구갈'],urine:['황'],stool:['변비'],sleep:[],sweat:['자한'],edema:[],tan:[],spirit:['강단'],coldheat:['대갈발열'],head:[],throat:[],een:[],chest:[],abpain:[],muscle:[],mens:['해당없음']}}},
+ {name:'예시 3 — 희안 · 복냉 · 설사 · 소복현급', s:{
+   pt:{name:'예시3',sex:'여',birth:'1964-01-28',age:'',phone:'010-0000-3333',addr:'부산 부산진구 전포동',email:'',ht:'158',wt:'58',bp:'126/78',meds:'',chief:'묽은 변을 자주 보고 아랫배가 당기며 어지럽다',onset:'1년',aggr:'아침',relief:'따뜻하게'},
+   sx:[{k:'설사',pain:0,vas:null},{k:'어지럼·현훈',pain:0,vas:null},{k:'복통',pain:1,vas:5}],
+   body:{build:3,skinColor:['백'],skinHeat:[],skinThick:3,skinTurgor:2},
+   abd:{elast:2,chestReject:0,chestAccept:3,jeongjae:0,simhaYe:1,jungwan:1,bitGyeon:0,subun:3,rectus:2,waterSound:2,
+        leftUmb:0,gyeryeong:0,lowerNotIn:2,lowerGugeup:3,lowerHyeongeup:4,lowerJongbi:0,lowerGeupgyeol:0,lowerPain:0,lowerBlood:0,
+        hypoHeat:0,hypoDef:0,hypoHeui:0,kiDong:0,custom:[{nm:'좌 협하 압통',loc:'흉협',sev:2}]},
+   tongue:{color:['담'],coat:['백'],dry:['습']},pulse:['침','지'],
+   inq:{appetite:['없음'],digestion:['불량'],mouth:[],urine:['불리'],stool:['설사'],sleep:['다면'],sweat:[],edema:['하체'],tan:['물소리'],spirit:['허약'],coldheat:['수족냉'],head:['현훈'],throat:[],een:[],chest:[],abpain:['희안'],muscle:[],mens:['해당없음']}}}
 ];
 function deepMerge(base, add){
   for(const k in add){
@@ -1483,47 +1915,68 @@ function deepMerge(base, add){
   return base;
 }
 let exIdx = -1;
-$('btn-example').addEventListener('click', ()=>{
-  exIdx = (exIdx+1) % EX.length;
-  const mode = document.querySelector('.tabs button[aria-selected="true"]').getAttribute('data-mode');
-  S = deepMerge(fresh(), EX[exIdx].s); S.meta.mode = mode;
-  renderPanels();
-});
-$('btn-reset').addEventListener('click', ()=>{ if(!confirm('입력한 내용을 모두 지웁니다. 계속할까요?')) return;
-  const m = S.meta.mode; S = fresh(); S.meta.mode = m; renderPanels(); });
-$('btn-print').addEventListener('click', ()=>window.print());
-$('mbar-go').addEventListener('click', ()=>{ document.querySelector('.col-out').scrollIntoView({behavior:'smooth',block:'start'}); });
 document.addEventListener('click', function(ev){
+  if(ev.target.closest('#btn-example')){
+    exIdx = (exIdx+1) % EX.length;
+    const mode = document.querySelector('.tabs button[aria-selected="true"]').getAttribute('data-mode');
+    S = deepMerge(fresh(), JSON.parse(JSON.stringify(EX[exIdx].s))); S.meta.mode = mode;
+    if(!S.abd.custom) S.abd.custom = [];
+    renderPanels();
+    return;
+  }
+  if(ev.target.closest('#btn-reset')){
+    if(!confirm('입력한 내용을 모두 지웁니다. 계속할까요?')) return;
+    const m = S.meta.mode; S = fresh(); S.meta.mode = m; renderPanels();
+    return;
+  }
+  if(ev.target.closest('#btn-print')){ window.print(); return; }
+  if(ev.target.closest('#mbar-go')){
+    const c = document.querySelector('.col-out'); if(c) c.scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
   if(ev.target.closest('#btn-copy')){
     const txt = summaryText();
-    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
-      const b=document.getElementById('btn-copy'); b.textContent='복사되었습니다'; setTimeout(()=>b.textContent='차트 요약 복사',1600);
-    }).catch(()=>fallbackCopy(txt));
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(function(){
+      const b = document.getElementById('btn-copy'); if(!b) return;
+      b.textContent = '복사되었습니다'; setTimeout(function(){ b.textContent = '차트 요약 복사'; },1600);
+    }).catch(function(){ fallbackCopy(txt); });
     else fallbackCopy(txt);
+    return;
   }
   if(ev.target.closest('#btn-json')){
-    const o=document.getElementById('json-out'); if(o) o.style.display = o.style.display==='none'?'block':'none';
+    const o = document.getElementById('json-out'); if(o) o.style.display = o.style.display==='none'?'block':'none';
+    return;
   }
 });
-function fallbackCopy(t){ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
-  try{document.execCommand('copy');}catch(e){} ta.remove(); }
+function fallbackCopy(t){
+  const ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); }catch(e){} ta.remove();
+}
 
 /* 사진 */
 const drop = $('drop'), pin = $('photo-input');
-['dragover','dragenter'].forEach(e=>drop.addEventListener(e, ev=>{ev.preventDefault();drop.classList.add('over');}));
-['dragleave','drop'].forEach(e=>drop.addEventListener(e, ev=>{ev.preventDefault();drop.classList.remove('over');}));
-drop.addEventListener('drop', ev=>{ const f = ev.dataTransfer.files && ev.dataTransfer.files[0]; if(f) showPhoto(f); });
-pin.addEventListener('change', ()=>{ if(pin.files[0]) showPhoto(pin.files[0]); });
+if(drop && pin){
+  ['dragover','dragenter'].forEach(function(e){ drop.addEventListener(e, function(ev){ ev.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(e){ drop.addEventListener(e, function(ev){ ev.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function(ev){ const f = ev.dataTransfer.files && ev.dataTransfer.files[0]; if(f) showPhoto(f); });
+  pin.addEventListener('change', function(){ if(pin.files[0]) showPhoto(pin.files[0]); });
+}
 function showPhoto(file){
   const r = new FileReader();
-  r.onload = ()=>{ $('preview-img').src = r.result; $('preview').classList.add('on');
-    $('preview-meta').innerHTML = '<b>'+esc(file.name)+'</b><br>'+(file.size/1024).toFixed(0)+' KB · '+new Date().toLocaleTimeString('ko-KR')+'<br><span style="color:#a1441d">판독 미연동 — 아래 수동 보정으로 입력합니다</span>'; };
+  r.onload = function(){
+    const img = $('preview-img'), pv = $('preview'), meta = $('preview-meta');
+    if(img) img.src = r.result;
+    if(pv) pv.classList.add('on');
+    if(meta) meta.innerHTML = '<b>'+esc(file.name)+'</b><br>'+(file.size/1024).toFixed(0)+' KB · '+new Date().toLocaleTimeString('ko-KR')+'<br><span style="color:#a1441d">판독 미연동 — 아래 수동 보정으로 입력합니다</span>';
+  };
   r.readAsDataURL(file);
 }
 
 /* 시작 */
 renderPanels();
+window.__gaonDiag.ready = true;
 })();
+
 </script>
 </body>
 </html>
